@@ -5,4 +5,4 @@ TO DO LIST :
     - faire page à propos
     - faire la page détail projet
     - régler le carrousel
-
+    - Numéro des projet entre crochet a mettre en dessous quand on passe la souris dessus
