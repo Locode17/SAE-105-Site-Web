@@ -183,13 +183,18 @@ main::after{
 
 /*footer fr/en*/
 .footer button{
+    position: fixed; /* Le garde fixe par rapport à l'écran */
+    bottom: 12px;    /* 12px du bas */
+    left: 12px;      /* 12px de la gauche */
+    z-index: 1000;   /* S'assure qu'il passe au-dessus du reste */
+    
+    /* Ton style habituel */
     display: flex;
     height: 24px;
     background: none;
     border: none;
     font-weight: 700;
-    margin-left: 8px;
-    margin-top: 18px;
+    margin: 0;       /* On enlève les marges pour qu'il soit bien collé */
     cursor: pointer;
 }
 
