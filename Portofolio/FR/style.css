@@ -5,9 +5,11 @@
 }
 
 html, body {
-  overflow-x: hidden; /* prevent horizontal page movement */
-  overflow-y: scroll; /* keep vertical scrollbar stable to avoid layout shift */
+  /* On cache les barres de défilement pour un rendu 'app' fixe */
+  overflow: hidden;
+  height: 100%;
   overscroll-behavior-x: contain; /* avoid scroll chaining on horizontal gestures */
+  margin: 0;
 }
 
 /* header général*/
@@ -81,6 +83,7 @@ main {
   padding: 12px;
   margin-top: 28px;
   position: relative;
+  height: calc(100% - 140px); /* Ajustement pour prendre la hauteur restante */
 }
 
 /* Subtle right-edge gradient to hint more content */
@@ -168,18 +171,18 @@ main::after {
   display: flex;
 }
 
-/*footer fr/en*/
+/*footer fr/en - FIXE EN BAS A GAUCHE */
 .footer button {
-  position: fixed; /* Le garde fixe par rapport à l'écran */
-  bottom: 12px; /* 12px du bas */
-  left: 12px; /* 12px de la gauche */
-  z-index: 1000; /* S'assure qu'il passe au-dessus du reste */
-  /* Ton style habituel */
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 1000;
   display: flex;
   height: 24px;
   background: none;
   border: none;
   font-weight: 700;
-  margin: 0; /* On enlève les marges pour qu'il soit bien collé */
+  margin: 0;
+  margin-left: 8px; /* Petit ajustement pour aligner avec le texte */
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
