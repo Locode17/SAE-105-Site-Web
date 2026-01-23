@@ -1,0 +1,105 @@
+* {
+  background-color: #D6E6D4;
+  color: #A20C0C;
+}
+
+.projects {
+  display: flex;
+  margin-left: 132px;
+}
+
+.titre {
+  display: flex;
+  width: 516px;
+  height: 122px;
+  margin-top: 38px;
+  font-size: 5em;
+  font-weight: 300;
+}
+
+/* Images layout */
+main {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  margin-top: 28px;
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: calc(100% - 26px);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.image span {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.image.big {
+  flex: 0 0 32%;
+  height: 660px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex: 1;
+  display: inline-flex;
+  margin-top: 144px;
+}
+
+.image.wide {
+  height: 360px;
+  flex: 1.2;
+  opacity: 0.6;
+  transition: opacity 0.4s ease-in-out;
+}
+.image.wide:hover {
+  opacity: 1;
+}
+
+.grid > .image:not(.wide) {
+  height: 360px;
+  flex: 1.2;
+  opacity: 0.6;
+  transition: opacity 0.4s ease-in-out;
+}
+.grid > .image:not(.wide):hover {
+  opacity: 1;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: calc(100% - 26px);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.image span {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+}
+
+.footer button {
+  display: flex;
+  height: 24px;
+  background: none;
+  border: none;
+  font-weight: 700;
+  margin-left: 8px;
+  margin-top: 18px;
+}/*# sourceMappingURL=projets.css.map */

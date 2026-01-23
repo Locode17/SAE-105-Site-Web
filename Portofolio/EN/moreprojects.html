@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loïc Teste – Webdesigner</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  /* Minimal transition helpers for the slide effect */
+  .image,
+  .image img {
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.45s cubic-bezier(.2,.8,.2,1), width 0.6s ease, height 0.6s ease;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+  .slide-btn {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    padding: 12px 14px;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 999;
+  }
+  </style>
+  <script src="chargement.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="header-left">
+    <a href="index.html">
+      <p class="name">loïc teste</p>
+      <p>—</p>
+      <p>webdesigner</p>
+    </a>
+    </div>
+
+    <nav class="header-center">
+      <a href="projects.html">projects</a>
+      <a href="about.html">about</a>
+    </nav>
+
+    <div class="header-right">
+      <strong>contact</strong>
+      <p class="email">loicteste79@gmail.com</p>
+      <p class="insta">Insta : loic.tst</p>
+    </div>
+
+  </header>
+
+  <div class="titre2">
+    <p class="name2"> [ 1 ] project</p>
+    <p class="date"> from [16.05.26] to [26.06.26]</p>
+    <p class="next project"> > next project </p>
+  </div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <button>fr ▼</button>
+
+</body>
+<script src="langue.js"></script>
+</footer>
