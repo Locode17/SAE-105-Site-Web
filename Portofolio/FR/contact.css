@@ -10,74 +10,7 @@ body {
   font-family: "General Sans Variable", "Arial", sans-serif;
 }
 
-/* header général */
-.header {
-  font-weight: bold;
-  font-size: 16px;
-  justify-content: space-between;
-  display: flex;
-  width: 100%;
-  padding: 12px;
-}
-
-/*nom + baseline*/
-.header .header-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 160px;
-  height: 78px;
-  line-height: 24px;
-}
-.header .header-left p {
-  margin: 0;
-  margin-left: 12px;
-}
-.header .header-left a {
-  text-decoration: none;
-}
-
-/*projet, about*/
-.header .header-center {
-  display: flex;
-  justify-content: center;
-  gap: 54px;
-  flex: 1;
-}
-.header .header-center a {
-  text-decoration: none;
-  font-weight: bold;
-  transition: opacity 0.2s ease;
-}
-.header .header-center a:hover {
-  opacity: 0.6;
-}
-
-/*contact*/
-.header .header-right {
-  display: flex;
-  flex-direction: column;
-  width: 80px;
-}
-.header .header-right strong {
-  font-weight: bold;
-  margin-bottom: 2px;
-}
-.header .header-right p {
-  font-weight: 500;
-  font-size: 14px;
-  margin: 0;
-  line-height: 24px;
-}
-.header .header-right a {
-  text-decoration: none;
-  font-weight: bold;
-  transition: opacity 0.2s ease;
-}
-.header .header-right a:hover {
-  opacity: 0.6;
-}
-
+/* === STYLE DE LA PAGE CONTACT === */
 .main-contact {
   display: flex;
   flex-direction: column;
@@ -88,6 +21,9 @@ body {
   max-width: 1600px;
 }
 
+.titre-container {
+  margin-bottom: 50px;
+}
 .titre-container .titre {
   font-size: 5em;
   font-weight: 300;
@@ -120,7 +56,7 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 /* Infos Gauche */
@@ -152,16 +88,14 @@ body {
 
 .reseaux-box {
   margin-top: auto;
-  /* === RESPONSIVE (Tablette & Mobile) === */
 }
 .reseaux-box .réseaux {
   display: flex;
   gap: 20px;
-  row-gap: 30px;
 }
 .reseaux-box .réseaux svg {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   fill: #A20C0C;
   transition: opacity 0.2s;
   cursor: pointer;
@@ -169,15 +103,26 @@ body {
 .reseaux-box .réseaux svg:hover {
   opacity: 0.6;
 }
-.reseaux-box .input-group {
+
+/* Formulaire Droite */
+.formulaire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  row-gap: 30px;
+}
+
+.input-group {
+  display: flex;
   flex-direction: column;
 }
-.reseaux-box .input-group label {
+.input-group label {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
 }
-.reseaux-box .input-group input, .reseaux-box .input-group textarea {
+.input-group input, .input-group textarea {
   background-color: transparent;
   border: 2px solid #A20C0C;
   padding: 12px;
@@ -188,27 +133,24 @@ body {
   width: 100%;
   max-width: 100%; /* Sécurité responsive */
 }
-.reseaux-box .input-group input .footer button, .reseaux-box .input-group textarea .footer button {
-  position: fixed;
-  bottom: 24px;
-  left: 22px;
-  z-index: 1000;
-}
-.reseaux-box .input-group input:focus, .reseaux-box .input-group textarea:focus {
+.input-group input:focus, .input-group textarea:focus {
   background-color: rgba(162, 12, 12, 0.05);
 }
-.reseaux-box .input-group textarea {
+.input-group textarea {
   resize: none;
   height: 180px;
 }
-.reseaux-box .full-width {
+
+.full-width {
   grid-column: span 2;
 }
-.reseaux-box .submit-box {
+
+.submit-box {
   grid-column: span 2;
   margin-top: 10px;
 }
-.reseaux-box .btn-submit {
+
+.btn-submit {
   background-color: transparent;
   color: #A20C0C;
   border: 2px solid #A20C0C;
@@ -219,29 +161,31 @@ body {
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
-.reseaux-box .btn-submit:hover {
+.btn-submit:hover {
   background-color: #A20C0C;
   color: #D6E6D4;
 }
+
+/* === RESPONSIVE (Tablette & Mobile) === */
 @media screen and (max-width: 1024px) {
-  .reseaux-box .main-contact {
+  .main-contact {
     padding: 0 20px;
   }
-  .reseaux-box .titre-container .titre {
+  .titre-container .titre {
     font-size: 3.5em;
   }
-  .reseaux-box .contact-wrapper {
+  .contact-wrapper {
     flex-direction: column; /* On passe en colonne */
     gap: 30px;
   }
-  .reseaux-box .cadre-left, .reseaux-box .cadre-right {
+  .cadre-left, .cadre-right {
     width: 100%;
     padding: 25px;
   }
-  .reseaux-box .formulaire-grid {
+  .formulaire-grid {
     grid-template-columns: 1fr; /* Une seule colonne pour les champs */
   }
-  .reseaux-box .full-width, .reseaux-box .submit-box {
+  .full-width, .submit-box {
     grid-column: span 1;
   }
 }/*# sourceMappingURL=contact.css.map */

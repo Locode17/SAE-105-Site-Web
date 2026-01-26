@@ -11,83 +11,7 @@ $foreground : #A20C0C;
 
 body { margin: 0; font-family: $police; }
 
-/* header général */
-.header{
-    font-weight: bold;
-    font-size: 16px;
-    justify-content: space-between;
-    display: flex;
-    width: 100%;
-    padding: 12px;
-}
-
-/*nom + baseline*/
-.header{
-    .header-left{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 160px;
-        height: 78px;
-        line-height: 24px;
-        p{
-            margin:0;
-            margin-left: 12px;
-        }
-        a{
-            text-decoration: none;
-        }
-    }
-}
-
-/*projet, about*/
-.header{
-    .header-center{
-        display: flex;
-        justify-content: center;
-        gap: 54px;
-        flex: 1;
-        
-        a{
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s ease;
-            &:hover{
-                opacity: 0.6;
-            }
-        }
-    }
-}
-
-/*contact*/
-.header{
-    .header-right{
-        display: flex;
-        flex-direction: column;
-        width: 80px;
-        
-        strong{
-            font-weight: bold;
-            margin-bottom: 2px;
-        }
-        p{
-            font-weight: 500;
-            font-size: 14px;
-            margin: 0;
-            line-height: 24px;
-        }
-        a{
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s ease;
-            &:hover{
-                opacity: 0.6;
-            }
-        }
-    }
-}
-
-// === STYLE DE LA PAGE CONTACT ===
+/* === STYLE DE LA PAGE CONTACT === */
 
 .main-contact {
     display: flex;
@@ -100,11 +24,12 @@ body { margin: 0; font-family: $police; }
 }
 
 .titre-container {
+    margin-bottom: 50px;
     .titre {
-    font-size: 5em;
-    font-weight: 300;
-    margin: 0;
-    word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
+        font-size: 5em;
+        font-weight: 300;
+        margin: 0;
+        word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
     }
 }
 
@@ -133,7 +58,7 @@ body { margin: 0; font-family: $police; }
     font-weight: 800;
     text-transform: uppercase;
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* Infos Gauche */
@@ -170,17 +95,26 @@ body { margin: 0; font-family: $police; }
         gap: 20px;
         
         svg {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             fill: $foreground;
             transition: opacity 0.2s;
             cursor: pointer;
             &:hover { opacity: 0.6; }
         }
+    }
+}
+
+/* Formulaire Droite */
+.formulaire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
     row-gap: 30px;
 }
 
 .input-group {
+    display: flex;
     flex-direction: column;
 
     label {
@@ -200,14 +134,6 @@ body { margin: 0; font-family: $police; }
         width: 100%;
         max-width: 100%; /* Sécurité responsive */
         
-
-// FOOTER
-.footer button{
-    position: fixed;
-    bottom: 24px;
-    left: 22px;
-    z-index: 1000;
-}
         &:focus { background-color: rgba($foreground, 0.05); }
     }
     textarea { resize: none; height: 180px; }
@@ -251,5 +177,4 @@ body { margin: 0; font-family: $police; }
     .full-width, .submit-box {
         grid-column: span 1;
     }
-}
 }
