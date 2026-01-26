@@ -11,7 +11,6 @@ $foreground : #A20C0C;
 
 body { margin: 0; font-family: $police; }
 
-<<<<<<< HEAD
 /* header général */
 .header{
     font-weight: bold;
@@ -84,26 +83,16 @@ body { margin: 0; font-family: $police; }
             &:hover{
                 opacity: 0.6;
             }
-            a{
-            text-decoration: none;
-        }
         }
     }
 }
 
 // === STYLE DE LA PAGE CONTACT ===
-=======
-/* === STYLE DE LA PAGE CONTACT === */
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
 
 .main-contact {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    padding: 0 24px; /* Marges sur les côtés */
-=======
     padding: 0 40px;
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
     width: 100%;
     margin: 0 auto;
     margin-top: 40px;
@@ -112,23 +101,10 @@ body { margin: 0; font-family: $police; }
 
 .titre-container {
     .titre {
-<<<<<<< HEAD
-        display: flex;
-        margin-left: 80px;
-        margin-top: 20px;
-        width: 490px;
-        height: 122px;
-        font-size: 90px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        text-transform: uppercase;
-=======
-        font-size: 5em;
-        font-weight: 300;
-        margin: 0;
-        word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
+    font-size: 5em;
+    font-weight: 300;
+    margin: 0;
+    word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
     }
 }
 
@@ -137,24 +113,12 @@ body { margin: 0; font-family: $police; }
     display: flex;
     flex-direction: row; 
     justify-content: space-between;
-<<<<<<< HEAD
-    align-items: stretch; /* Même hauteur */
-    gap: 40px; /* Espace entre les deux cadres */
-=======
     align-items: stretch; 
     gap: 50px; 
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
     width: 100%;
     margin-bottom: 80px;
 }
 
-<<<<<<< HEAD
-
-
-.sous-titre {
-    font-size: 24px; /* Titre du cadre en GROS et GRAS */
-    font-weight: 600;
-=======
 .cadre-left, .cadre-right {
     border: 2px solid $foreground;
     padding: 40px;
@@ -167,7 +131,6 @@ body { margin: 0; font-family: $police; }
 .sous-titre {
     font-size: 24px;
     font-weight: 800;
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
     text-transform: uppercase;
     margin-top: 0;
     margin-bottom: 20px;
@@ -177,13 +140,8 @@ body { margin: 0; font-family: $police; }
 .info-content {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    gap: 16px; /* Espace entre Email, Tel, Adresse */
-    margin-bottom: 25px;
-=======
     gap: 30px;
     margin-bottom: 40px;
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
 
     .info-item {
         display: flex;
@@ -219,19 +177,10 @@ body { margin: 0; font-family: $police; }
             cursor: pointer;
             &:hover { opacity: 0.6; }
         }
-    }
-}
-
-/* Formulaire Droite */
-.formulaire-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 30px;
     row-gap: 30px;
 }
 
 .input-group {
-    display: flex;
     flex-direction: column;
 
     label {
@@ -251,6 +200,14 @@ body { margin: 0; font-family: $police; }
         width: 100%;
         max-width: 100%; /* Sécurité responsive */
         
+
+// FOOTER
+.footer button{
+    position: fixed;
+    bottom: 24px;
+    left: 22px;
+    z-index: 1000;
+}
         &:focus { background-color: rgba($foreground, 0.05); }
     }
     textarea { resize: none; height: 180px; }
@@ -272,19 +229,10 @@ body { margin: 0; font-family: $police; }
     &:hover { background-color: $foreground; color: $background; }
 }
 
-<<<<<<< HEAD
-// FOOTER
-.footer button{
-    position: fixed;
-    bottom: 24px;
-    left: 22px;
-    z-index: 1000;
-=======
 /* === RESPONSIVE (Tablette & Mobile) === */
 @media screen and (max-width: 1024px) {
     .main-contact { padding: 0 20px; }
     .titre-container .titre { font-size: 3.5em; }
->>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
     
     .contact-wrapper {
         flex-direction: column; /* On passe en colonne */
@@ -303,4 +251,5 @@ body { margin: 0; font-family: $police; }
     .full-width, .submit-box {
         grid-column: span 1;
     }
+}
 }
