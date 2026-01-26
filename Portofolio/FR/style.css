@@ -3,37 +3,44 @@
   background-color: #D6E6D4;
   color: #A20C0C;
   box-sizing: border-box;
-  /* Amélioration du rendu des polices sur tous les navigateurs */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
   margin: 0;
   padding: 0;
   font-family: "General Sans Variable", "Arial", sans-serif;
-  overflow-x: hidden; /* Empêche le scroll horizontal global indésirable */
-  overflow-y: auto;
-  height: 100%;
+  overflow-x: hidden; /* On garde juste ça pour éviter le dépassement horizontal */
   width: 100%;
+  /* On a supprimé height: 100% et overflow-y: auto ici pour réparer le scroll JS */
 }
 
-/* SPÉCIFIQUE ACCUEIL : On bloque le scroll uniquement ici */
+/* On ajoute un padding-top au body pour compenser le header fixe */
+body {
+  padding-top: 110px;
+}
+
+/* SPÉCIFIQUE ACCUEIL */
 body.home-page {
-  overflow: hidden;
+  overflow: hidden; /* Ici on bloque le scroll car c'est le slide horizontal */
+  height: 100%; /* Ici on a besoin de la hauteur 100% */
   overscroll-behavior-x: contain;
+  padding-top: 0;
 }
 
-/* === HEADER GÉNÉRAL RESPONSIVE === */
+/* === HEADER FIXE === */
 .header {
   font-weight: bold;
   font-size: 16px;
   justify-content: space-between;
   display: flex;
   width: 100%;
-  padding: 12px;
-  position: relative;
-  z-index: 100;
+  padding: 12px 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: #D6E6D4;
 }
 .header .header-left {
   display: flex;
@@ -70,65 +77,59 @@ body.home-page {
   flex-direction: column;
   justify-content: center;
   width: 185px;
-  text-align: right; /* Aligner le contact à droite */
-}
-.header .header-right strong {
-  font-weight: bold;
-  margin-bottom: 2px;
-}
-.header .header-right p {
-  font-weight: 500;
-  font-size: 14px;
-  margin: 0;
-  line-height: 24px;
+  text-align: right;
 }
 .header .header-right a {
   text-decoration: none;
   font-weight: bold;
 }
 
-/* MEDIA QUERY : TABLETTES ET MOBILES (max-width 900px) */
 @media screen and (max-width: 900px) {
+  body {
+    padding-top: 180px;
+  }
+  body.home-page {
+    padding-top: 0;
+  }
   .header {
-    flex-direction: column; /* On empile les éléments */
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    padding-bottom: 20px;
     height: auto;
   }
   .header .header-left, .header .header-center, .header .header-right {
-    width: 100%; /* Prend toute la largeur */
-    text-align: center; /* Tout centrer */
+    width: 100%;
+    text-align: center;
     align-items: center;
-    height: auto;
-    margin: 0;
-  }
-  .header .header-left p {
-    margin-left: 0;
   }
   .header .header-center {
-    margin-left: 0;
     gap: 30px;
   }
-  .header .header-right {
-    align-items: center;
-    text-align: center;
-  }
 }
-/* === STYLE SPÉCIFIQUE ACCUEIL (GALLERY TRACK) === */
+/* === GALERIE ACCUEIL === */
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
 .gallery-track {
   display: flex;
   flex-direction: row;
   gap: 40px;
   align-items: center;
-  margin-left: -190px; /* Effet coupé à gauche */
+  margin-left: -190px;
   padding-left: 0;
   width: 100%;
   height: 600px;
   overflow: visible;
-  margin-top: 4vh;
 }
 
-/* On cible .image SEULEMENT si elle est dans .gallery-track */
 .gallery-track .image {
   position: relative;
   flex: 0 0 auto;
@@ -156,16 +157,42 @@ body.home-page {
   font-size: 16px;
 }
 
-/* RESPONSIVE ACCUEIL (MOBILE) */
+.image-clone {
+  position: relative;
+  flex: 0 0 auto;
+  width: 380px !important;
+  height: 520px !important;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+}
+.image-clone:hover {
+  opacity: 1;
+}
+
+.image-clone img {
+  display: block;
+  width: 100%;
+  height: calc(100% - 30px) !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.image-clone span {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
 @media screen and (max-width: 768px) {
   .gallery-track {
-    margin-left: -50px; /* Moins décalé sur mobile */
+    margin-left: -50px;
     gap: 20px;
-    height: auto;
-    margin-top: 20px;
   }
-  .gallery-track .image {
-    width: 280px !important; /* Images plus petites sur mobile */
+  .gallery-track .image, .image-clone {
+    width: 280px !important;
     height: 400px !important;
   }
 }
@@ -183,8 +210,8 @@ body.home-page {
 
 @media screen and (max-width: 768px) {
   .progress-container {
-    width: 200px;
     bottom: 80px;
+    width: 200px;
   }
 }
 .progress-bar {
@@ -195,12 +222,12 @@ body.home-page {
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Footer fixe */
+/* FOOTER FIXE */
 .footer button {
   position: fixed;
   bottom: 24px;
   left: 24px;
-  z-index: 1000;
+  z-index: 3000;
   display: flex;
   height: 24px;
   background: none;
@@ -208,40 +235,4 @@ body.home-page {
   font-weight: 700;
   margin: 0;
   cursor: pointer;
-}
-
-/* Clones animés JS */
-.image-clone {
-  position: relative;
-  flex: 0 0 auto;
-  width: 380px !important;
-  height: 520px !important;
-  opacity: 0.6;
-  transition: opacity 0.4s ease;
-  cursor: pointer;
-}
-.image-clone:hover {
-  opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-  .image-clone {
-    width: 280px !important;
-    height: 400px !important;
-  }
-}
-.image-clone img {
-  display: block;
-  width: 100%;
-  height: calc(100% - 30px) !important;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.image-clone span {
-  display: block;
-  text-align: left;
-  margin-top: 10px;
-  font-weight: 500;
-  font-size: 16px;
 }/*# sourceMappingURL=style.css.map */
