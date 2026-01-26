@@ -220,7 +220,7 @@ body.home-page {
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* FOOTER FIXE */
+/* FOOTER FIXE  */
 .footer button {
   position: fixed;
   bottom: 12px;
