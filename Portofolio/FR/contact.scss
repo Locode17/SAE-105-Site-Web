@@ -9,115 +9,63 @@ $foreground : #A20C0C;
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: $police;
-}
+body { margin: 0; font-family: $police; }
 
-// HEADER (Standard)
-.header{
-    font-weight: bold;
-    font-size: 16px;
-    justify-content: space-between;
-    display: flex;
-    width: 100%;
-    padding: 12px;
-
-    .header-left{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 160px;
-        height: 78px;
-        line-height: 24px;
-        p{
-            margin:0;
-            margin-left: 12px;
-        }
-        a{ text-decoration: none; }
-    }
-
-    .header-center{
-        display: flex;
-        justify-content: center;
-        gap: 54px;
-        flex: 1;
-        align-items: center;
-        
-        a{
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s ease;
-            &:hover{ opacity: 0.6; }
-        }
-    }
-
-    .header-right{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 185px;
-        
-        a{
-            text-decoration: none;
-            font-weight: bold;
-        }
-    }
-}
-
-// === STYLE DE LA PAGE CONTACT ===
+/* === STYLE DE LA PAGE CONTACT === */
 
 .main-contact {
     display: flex;
     flex-direction: column;
-    padding: 0 40px; /* Marges sur les côtés */
+    padding: 0 40px;
     width: 100%;
     margin: 0 auto;
     margin-top: 40px;
+    max-width: 1600px;
 }
 
 .titre-container {
     margin-bottom: 50px;
     .titre {
-        font-size: 5em; /* Gros titre [CONTACT] */
+        font-size: 5em;
         font-weight: 300;
         margin: 0;
+        word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
     }
 }
 
-// LE CONTENEUR PRINCIPAL QUI MET CÔTE À CÔTE
+/* Conteneur Flex (Desktop : Ligne / Mobile : Colonne) */
 .contact-wrapper {
     display: flex;
-    flex-direction: row; /* Force l'alignement horizontal */
+    flex-direction: row; 
     justify-content: space-between;
-    align-items: stretch; /* Même hauteur */
-    gap: 50px; /* Espace entre les deux cadres */
+    align-items: stretch; 
+    gap: 50px; 
     width: 100%;
     margin-bottom: 80px;
 }
 
-// STYLE COMMUN POUR LES CADRES (BORDURE ROUGE)
 .cadre-left, .cadre-right {
-    border: 2px solid $foreground; /* LE CADRE ROUGE */
+    border: 2px solid $foreground;
     padding: 40px;
-    flex: 1; /* Chaque cadre prend 50% */
+    flex: 1;
     display: flex;
     flex-direction: column;
+    min-width: 0; /* Important pour le responsive flex */
 }
 
 .sous-titre {
-    font-size: 24px; /* Titre du cadre en GROS et GRAS */
+    font-size: 24px;
     font-weight: 800;
     text-transform: uppercase;
     margin-top: 0;
     margin-bottom: 30px;
 }
 
-// === GAUCHE : INFOS ===
+/* Infos Gauche */
 .info-content {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espace entre Email, Tel, Adresse */
+    gap: 30px;
     margin-bottom: 40px;
 
     .info-item {
@@ -141,7 +89,7 @@ body {
 }
 
 .reseaux-box {
-    margin-top: auto; /* Pousse les réseaux vers le bas si besoin */
+    margin-top: auto;
     .réseaux {
         display: flex;
         gap: 20px;
@@ -157,10 +105,10 @@ body {
     }
 }
 
-// === DROITE : FORMULAIRE ===
+/* Formulaire Droite */
 .formulaire-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colonnes pour Nom/Prénom */
+    grid-template-columns: 1fr 1fr;
     column-gap: 30px;
     row-gap: 30px;
 }
@@ -177,35 +125,23 @@ body {
 
     input, textarea {
         background-color: transparent;
-        border: 2px solid $foreground; /* Bordure des champs */
+        border: 2px solid $foreground;
         padding: 12px;
         font-family: $police;
         font-size: 16px;
         color: $foreground;
         outline: none;
         width: 100%;
+        max-width: 100%; /* Sécurité responsive */
         
-        &:focus {
-            background-color: rgba($foreground, 0.05);
-        }
+        &:focus { background-color: rgba($foreground, 0.05); }
     }
-
-    textarea {
-        resize: none;
-        height: 180px;
-    }
+    textarea { resize: none; height: 180px; }
 }
 
-.full-width {
-    grid-column: span 2; /* Email et Message prennent toute la largeur */
-}
+.full-width { grid-column: span 2; }
+.submit-box { grid-column: span 2; margin-top: 10px; }
 
-.submit-box {
-    grid-column: span 2;
-    margin-top: 10px;
-}
-
-/* Bouton Envoyer */
 .btn-submit {
     background-color: transparent;
     color: $foreground;
@@ -216,25 +152,29 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
-
-    &:hover {
-        background-color: $foreground;
-        color: $background;
-    }
+    &:hover { background-color: $foreground; color: $background; }
 }
 
-// FOOTER
-.footer button{
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    z-index: 1000;
+/* === RESPONSIVE (Tablette & Mobile) === */
+@media screen and (max-width: 1024px) {
+    .main-contact { padding: 0 20px; }
+    .titre-container .titre { font-size: 3.5em; }
     
-    display: flex;
-    height: 24px;
-    background: none;
-    border: none;
-    font-weight: 700;
-    margin: 0;
-    cursor: pointer;
+    .contact-wrapper {
+        flex-direction: column; /* On passe en colonne */
+        gap: 30px;
+    }
+    
+    .cadre-left, .cadre-right {
+        width: 100%;
+        padding: 25px;
+    }
+    
+    .formulaire-grid {
+        grid-template-columns: 1fr; /* Une seule colonne pour les champs */
+    }
+    
+    .full-width, .submit-box {
+        grid-column: span 1;
+    }
 }

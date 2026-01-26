@@ -3,15 +3,19 @@
   background-color: #D6E6D4;
   color: #A20C0C;
   box-sizing: border-box;
+  /* Amélioration du rendu des polices sur tous les navigateurs */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html, body {
   margin: 0;
-  font-family: "General Sans Variable", " Arial", " sans-serif";
-  /* PAR DÉFAUT : On autorise le scroll vertical (pour la page projets) */
-  overflow-x: hidden;
+  padding: 0;
+  font-family: "General Sans Variable", "Arial", sans-serif;
+  overflow-x: hidden; /* Empêche le scroll horizontal global indésirable */
   overflow-y: auto;
   height: 100%;
+  width: 100%;
 }
 
 /* SPÉCIFIQUE ACCUEIL : On bloque le scroll uniquement ici */
@@ -20,7 +24,7 @@ body.home-page {
   overscroll-behavior-x: contain;
 }
 
-/* header général */
+/* === HEADER GÉNÉRAL RESPONSIVE === */
 .header {
   font-weight: bold;
   font-size: 16px;
@@ -28,9 +32,9 @@ body.home-page {
   display: flex;
   width: 100%;
   padding: 12px;
+  position: relative;
+  z-index: 100;
 }
-
-/*nom + baseline*/
 .header .header-left {
   display: flex;
   flex-direction: column;
@@ -46,13 +50,12 @@ body.home-page {
 .header .header-left a {
   text-decoration: none;
 }
-
-/*projet, about*/
 .header .header-center {
   display: flex;
   justify-content: center;
   gap: 54px;
   flex: 1;
+  align-items: center;
 }
 .header .header-center a {
   text-decoration: none;
@@ -62,12 +65,12 @@ body.home-page {
 .header .header-center a:hover {
   opacity: 0.6;
 }
-
-/*contact*/
 .header .header-right {
   display: flex;
   flex-direction: column;
-  width: 80px;
+  justify-content: center;
+  width: 185px;
+  text-align: right; /* Aligner le contact à droite */
 }
 .header .header-right strong {
   font-weight: bold;
@@ -82,18 +85,36 @@ body.home-page {
 .header .header-right a {
   text-decoration: none;
   font-weight: bold;
-  transition: opacity 0.2s ease;
-}
-.header .header-right a:hover {
-  opacity: 0.6;
-}
-.header .header-right a a {
-  text-decoration: none;
 }
 
+/* MEDIA QUERY : TABLETTES ET MOBILES (max-width 900px) */
+@media screen and (max-width: 900px) {
+  .header {
+    flex-direction: column; /* On empile les éléments */
+    align-items: center;
+    gap: 20px;
+    height: auto;
+  }
+  .header .header-left, .header .header-center, .header .header-right {
+    width: 100%; /* Prend toute la largeur */
+    text-align: center; /* Tout centrer */
+    align-items: center;
+    height: auto;
+    margin: 0;
+  }
+  .header .header-left p {
+    margin-left: 0;
+  }
+  .header .header-center {
+    margin-left: 0;
+    gap: 30px;
+  }
+  .header .header-right {
+    align-items: center;
+    text-align: center;
+  }
+}
 /* === STYLE SPÉCIFIQUE ACCUEIL (GALLERY TRACK) === */
-/* Ces règles ne s'appliqueront QUE sur la page d'accueil */
-/* La piste qui contient les images */
 .gallery-track {
   display: flex;
   flex-direction: row;
@@ -104,7 +125,7 @@ body.home-page {
   width: 100%;
   height: 600px;
   overflow: visible;
-  margin-top: 4vh; /* Centrage vertical approximatif */
+  margin-top: 4vh;
 }
 
 /* On cible .image SEULEMENT si elle est dans .gallery-track */
@@ -112,7 +133,7 @@ body.home-page {
   position: relative;
   flex: 0 0 auto;
   width: 380px !important;
-  height: 380px !important;
+  height: 520px !important;
   opacity: 0.6;
   transition: opacity 0.4s ease;
   cursor: pointer;
@@ -135,10 +156,23 @@ body.home-page {
   font-size: 16px;
 }
 
-/* BARRE DE PROGRESSION (Uniquement visible si présente dans le HTML) */
+/* RESPONSIVE ACCUEIL (MOBILE) */
+@media screen and (max-width: 768px) {
+  .gallery-track {
+    margin-left: -50px; /* Moins décalé sur mobile */
+    gap: 20px;
+    height: auto;
+    margin-top: 20px;
+  }
+  .gallery-track .image {
+    width: 280px !important; /* Images plus petites sur mobile */
+    height: 400px !important;
+  }
+}
+/* BARRE DE PROGRESSION */
 .progress-container {
   position: absolute;
-  bottom: 160px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
@@ -147,6 +181,12 @@ body.home-page {
   border-radius: 2px;
 }
 
+@media screen and (max-width: 768px) {
+  .progress-container {
+    width: 200px;
+    bottom: 80px;
+  }
+}
 .progress-bar {
   height: 100%;
   background-color: #A20C0C;
@@ -155,7 +195,7 @@ body.home-page {
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Footer fixe en bas à gauche (Global) */
+/* Footer fixe */
 .footer button {
   position: fixed;
   bottom: 24px;
@@ -170,12 +210,12 @@ body.home-page {
   cursor: pointer;
 }
 
-/* Clones animés: conserver 380x380 et le même rendering */
+/* Clones animés JS */
 .image-clone {
   position: relative;
   flex: 0 0 auto;
   width: 380px !important;
-  height: 380px !important;
+  height: 520px !important;
   opacity: 0.6;
   transition: opacity 0.4s ease;
   cursor: pointer;
@@ -184,6 +224,12 @@ body.home-page {
   opacity: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .image-clone {
+    width: 280px !important;
+    height: 400px !important;
+  }
+}
 .image-clone img {
   display: block;
   width: 100%;
