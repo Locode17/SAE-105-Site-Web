@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- CONDITION DE SÉCURITÉ ---
+    // Si on n'est pas sur la page d'accueil (pas de .gallery-track), on arrête le script ici.
+    // Cela permet de retrouver le scroll vertical normal sur les autres pages.
+    const track = document.querySelector('.gallery-track');
+    if (!track) return; 
+
     // Sélectionne toutes les images de la galerie
     const placeholders = () => Array.from(document.querySelectorAll('.gallery-track .image'));
     const progressBar = document.querySelector('.progress-bar');
@@ -44,14 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
             ? current.slice(1).concat(current.slice(0,1))
             : current.slice(-1).concat(current.slice(0,-1));
 
-        // Pendant l'animation, on force l'opacité sur les éléments fixes pour éviter les clignotements
         places.forEach(p => p.style.opacity = '0.6');
 
         const animations = [];
         places.forEach((p, i) => {
             const rect = p.getBoundingClientRect();
             
-            // Clone sortant
             const outClone = p.cloneNode(true);
             Object.assign(outClone.style, {
                 position: 'fixed',
@@ -67,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: '0.6' 
             });
 
-            // Clone entrant
             const inClone = outClone.cloneNode(true);
             inClone.innerHTML = rotated[i];
             
@@ -110,11 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const places = placeholders();
             places.forEach((p, i) => {
                 p.innerHTML = rotated[i];
-                
-                // --- CORRECTION ICI ---
-                // On supprime le style "opacity" inline pour rendre la main au CSS.
-                // Ainsi, le CSS .image { opacity: 0.6 } s'applique,
-                // et le .image:hover { opacity: 1 } refonctionne !
                 p.style.opacity = ''; 
                 p.style.removeProperty('opacity');
             });
@@ -133,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mainEl) {
         mainEl.addEventListener('wheel', (e) => {
+            // IMPORTANT : On preventDefault SEULEMENT si on est sur la home
+            // (La condition au début du fichier gère ça, mais par sécurité :)
             e.preventDefault();
+            
             const now = Date.now();
             if (now - lastWheelTime < WHEEL_THROTTLE_MS) return;
 

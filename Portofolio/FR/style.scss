@@ -10,11 +10,18 @@ $foreground : #A20C0C;
 }
 
 html, body{
-    overflow: hidden; 
-    height: 100%;
-    overscroll-behavior-x: contain; 
     margin: 0;
     font-family: $police;
+    /* PAR DÉFAUT : On autorise le scroll vertical (pour la page projets) */
+    overflow-x: hidden;
+    overflow-y: auto; 
+    height: 100%;
+}
+
+/* SPÉCIFIQUE ACCUEIL : On bloque le scroll uniquement ici */
+body.home-page {
+    overflow: hidden;
+    overscroll-behavior-x: contain;
 }
 
 /* header général */
@@ -87,34 +94,25 @@ html, body{
     }
 }
 
-/* MAIN LAYOUT */
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    height: calc(100% - 120px);
-    position: relative;
-    padding-bottom: 40px;
-}
+/* === STYLE SPÉCIFIQUE ACCUEIL (GALLERY TRACK) === */
+/* Ces règles ne s'appliqueront QUE sur la page d'accueil */
 
 /* La piste qui contient les images */
 .gallery-track {
     display: flex;
     flex-direction: row;
-    gap: 48px; /* Espace entre les images */
+    gap: 48px; 
     align-items: center;
-    
-    /* MODIFICATION ICI : On tire la piste vers la gauche */
-    margin-left: -190px; /* Décale la piste de la moitié d'une image vers la gauche */
-    padding-left: 0; /* On enlève le padding qui créait le trou */
-    
+    margin-left: -190px; /* Effet coupé à gauche */
+    padding-left: 0;
     width: 100%;
     height: 600px;
     overflow: visible; 
+    margin-top: 10vh; /* Centrage vertical approximatif */
 }
 
-/* Style UNIFORME des images */
-.image {
+/* On cible .image SEULEMENT si elle est dans .gallery-track */
+.gallery-track .image {
     position: relative;
     flex: 0 0 auto; 
     width: 380px;   
@@ -123,7 +121,6 @@ main {
     transition: opacity 0.4s ease;
     cursor: pointer;
 
-    /* Quand on passe la souris dessus */
     &:hover {
         opacity: 1;
     }
@@ -144,7 +141,7 @@ main {
     }
 }
 
-/* BARRE DE PROGRESSION */
+/* BARRE DE PROGRESSION (Uniquement visible si présente dans le HTML) */
 .progress-container {
     position: absolute;
     bottom: 40px; 
@@ -165,7 +162,7 @@ main {
 }
 
 
-/* Footer fixe en bas à gauche */
+/* Footer fixe en bas à gauche (Global) */
 .footer button{
     position: fixed;
     bottom: 24px;
