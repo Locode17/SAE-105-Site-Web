@@ -63,7 +63,6 @@ body.home-page {
         justify-content: center;
         gap: 54px;
         flex: 1;
-        align-items: center;
         
         a{
             text-decoration: none;
@@ -76,7 +75,6 @@ body.home-page {
     .header-right{
         display: flex;
         flex-direction: column;
-        justify-content: center;
         width: 185px;
         text-align: right;
         a{ text-decoration: none; font-weight: bold; }
@@ -210,7 +208,7 @@ body.home-page {
 /* FOOTER FIXE */
 .footer button{
     position: fixed;
-    bottom: 24px;
+    bottom: 12px;
     left: 24px;
     z-index: 3000;
     display: flex;

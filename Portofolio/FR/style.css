@@ -62,7 +62,6 @@ body.home-page {
   justify-content: center;
   gap: 54px;
   flex: 1;
-  align-items: center;
 }
 .header .header-center a {
   text-decoration: none;
@@ -75,9 +74,19 @@ body.home-page {
 .header .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 185px;
-  text-align: right;
+  margin-right: 14px;
+  text-align: right; /* Aligner le contact à droite */
+}
+.header .header-right strong {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.header .header-right p {
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0;
+  line-height: 24px;
 }
 .header .header-right a {
   text-decoration: none;
@@ -225,7 +234,7 @@ body.home-page {
 /* FOOTER FIXE */
 .footer button {
   position: fixed;
-  bottom: 24px;
+  bottom: 12px;
   left: 24px;
   z-index: 3000;
   display: flex;
