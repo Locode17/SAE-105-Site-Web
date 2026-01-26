@@ -9,14 +9,68 @@ $foreground : #A20C0C;
     box-sizing: border-box;
 }
 
-body { margin: 0; font-family: $police; }
+body {
+    margin: 0;
+    font-family: $police;
+}
 
-/* === STYLE DE LA PAGE CONTACT === */
+// HEADER (Inchangé)
+.header{
+    font-weight: bold;
+    font-size: 16px;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    padding: 12px;
+
+    .header-left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 160px;
+        height: 78px;
+        line-height: 24px;
+        p{
+            margin:0;
+            margin-left: 12px;
+        }
+        a{ text-decoration: none; }
+    }
+
+    .header-center{
+        display: flex;
+        justify-content: center;
+        gap: 54px;
+        flex: 1;
+        align-items: center;
+        
+        a{
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s ease;
+            &:hover{ opacity: 0.6; }
+        }
+    }
+
+    .header-right{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 185px;
+        
+        a{
+            text-decoration: none;
+            font-weight: bold;
+        }
+    }
+}
+
+// === STYLE DE LA PAGE CONTACT ===
 
 .main-contact {
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0 40px; /* Marges sur les côtés */
     width: 100%;
     margin: 0 auto;
     margin-top: 40px;
@@ -26,31 +80,32 @@ body { margin: 0; font-family: $police; }
 .titre-container {
     margin-bottom: 50px;
     .titre {
-        font-size: 5em;
+        font-size: 5em; /* Gros titre [CONTACT] */
         font-weight: 300;
         margin: 0;
-        word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
+        word-wrap: break-word;
     }
 }
 
-/* Conteneur Flex (Desktop : Ligne / Mobile : Colonne) */
+// LE CONTENEUR PRINCIPAL QUI MET CÔTE À CÔTE
 .contact-wrapper {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row; /* Force l'alignement horizontal */
     justify-content: space-between;
-    align-items: stretch; 
-    gap: 50px; 
+    align-items: flex-start; /* Aligne en haut */
+    gap: 50px; /* Espace entre les deux blocs */
     width: 100%;
     margin-bottom: 80px;
 }
 
+// STYLE COMMUN POUR LES BLOCS (SANS BORDURE)
 .cadre-left, .cadre-right {
-    border: 2px solid $foreground;
-    padding: 40px;
-    flex: 1;
+    /* border: 2px solid $foreground;  <-- BORDURE SUPPRIMÉE */
+    padding: 20px 0; /* On réduit un peu le padding vu qu'il n'y a plus de cadre */
+    flex: 1; /* Chaque bloc prend 50% */
     display: flex;
     flex-direction: column;
-    min-width: 0; /* Important pour le responsive flex */
+    min-width: 0;
 }
 
 .sous-titre {
@@ -61,7 +116,7 @@ body { margin: 0; font-family: $police; }
     margin-bottom: 30px;
 }
 
-/* Infos Gauche */
+// === GAUCHE : INFOS ===
 .info-content {
     display: flex;
     flex-direction: column;
@@ -89,7 +144,7 @@ body { margin: 0; font-family: $police; }
 }
 
 .reseaux-box {
-    margin-top: auto;
+    margin-top: auto; 
     .réseaux {
         display: flex;
         gap: 20px;
@@ -105,10 +160,10 @@ body { margin: 0; font-family: $police; }
     }
 }
 
-/* Formulaire Droite */
+// === DROITE : FORMULAIRE ===
 .formulaire-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* 2 colonnes pour Nom/Prénom */
     column-gap: 30px;
     row-gap: 30px;
 }
@@ -125,23 +180,36 @@ body { margin: 0; font-family: $police; }
 
     input, textarea {
         background-color: transparent;
-        border: 2px solid $foreground;
+        border: 2px solid $foreground; /* On garde la bordure des CHAMPS (input) */
         padding: 12px;
         font-family: $police;
         font-size: 16px;
         color: $foreground;
         outline: none;
         width: 100%;
-        max-width: 100%; /* Sécurité responsive */
+        max-width: 100%;
         
-        &:focus { background-color: rgba($foreground, 0.05); }
+        &:focus {
+            background-color: rgba($foreground, 0.05);
+        }
     }
-    textarea { resize: none; height: 180px; }
+
+    textarea {
+        resize: none;
+        height: 180px;
+    }
 }
 
-.full-width { grid-column: span 2; }
-.submit-box { grid-column: span 2; margin-top: 10px; }
+.full-width {
+    grid-column: span 2; 
+}
 
+.submit-box {
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+/* Bouton Envoyer */
 .btn-submit {
     background-color: transparent;
     color: $foreground;
@@ -152,7 +220,27 @@ body { margin: 0; font-family: $police; }
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    &:hover { background-color: $foreground; color: $background; }
+
+    &:hover {
+        background-color: $foreground;
+        color: $background;
+    }
+}
+
+// FOOTER
+.footer button{
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1000;
+    
+    display: flex;
+    height: 24px;
+    background: none;
+    border: none;
+    font-weight: 700;
+    margin: 0;
+    cursor: pointer;
 }
 
 /* === RESPONSIVE (Tablette & Mobile) === */
@@ -162,12 +250,12 @@ body { margin: 0; font-family: $police; }
     
     .contact-wrapper {
         flex-direction: column; /* On passe en colonne */
-        gap: 30px;
+        gap: 50px;
     }
     
     .cadre-left, .cadre-right {
         width: 100%;
-        padding: 25px;
+        padding: 0; /* Pas de padding nécessaire sans bordure */
     }
     
     .formulaire-grid {
