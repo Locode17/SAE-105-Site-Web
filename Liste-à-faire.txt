@@ -1,8 +1,8 @@
 TO DO LIST :
-    - normes taille écran
+    - normes taille écran 
     - accesibilité
     - faire page  Formulaire Contact
     - faire page à propos
     - faire la page détail projet
     - régler le carrousel
-
+    
