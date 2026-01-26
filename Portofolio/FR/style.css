@@ -104,7 +104,7 @@ main {
   position: relative;
   flex: 0 0 auto;
   width: 380px;
-  height: 520px;
+  height: 380px;
   opacity: 0.6;
   transition: opacity 0.4s ease;
   cursor: pointer;
@@ -131,7 +131,7 @@ main {
 /* BARRE DE PROGRESSION */
 .progress-container {
   position: absolute;
-  bottom: 40px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
