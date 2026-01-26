@@ -1,21 +1,25 @@
 //constante
-$police : "General Sans Variable"," Arial"," sans-serif";
+$police : "General Sans Variable", "Arial", sans-serif;
 $background : #D6E6D4;
 $foreground : #A20C0C;
 
 *{
     background-color: $background;
-    color: #A20C0C;
+    color: $foreground;
     box-sizing: border-box; 
+    /* Amélioration du rendu des polices sur tous les navigateurs */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html, body{
     margin: 0;
+    padding: 0;
     font-family: $police;
-    /* PAR DÉFAUT : On autorise le scroll vertical (pour la page projets) */
-    overflow-x: hidden;
+    overflow-x: hidden; /* Empêche le scroll horizontal global indésirable */
     overflow-y: auto; 
     height: 100%;
+    width: 100%;
 }
 
 /* SPÉCIFIQUE ACCUEIL : On bloque le scroll uniquement ici */
@@ -24,8 +28,7 @@ body.home-page {
     overscroll-behavior-x: contain;
 }
 
-
-/* header général */
+/* === HEADER GÉNÉRAL RESPONSIVE === */
 .header{
     font-weight: bold;
     font-size: 16px;
@@ -33,10 +36,9 @@ body.home-page {
     display: flex;
     width: 100%;
     padding: 12px;
-}
+    position: relative;
+    z-index: 100;
 
-/*nom + baseline*/
-.header{
     .header-left{
         display: flex;
         flex-direction: column;
@@ -48,66 +50,60 @@ body.home-page {
             margin:0;
             margin-left: 12px;
         }
-        a{
-            text-decoration: none;
-        }
+        a{ text-decoration: none; }
     }
-}
 
-/*projet, about*/
-.header{
     .header-center{
         display: flex;
         justify-content: center;
         gap: 54px;
         flex: 1;
+        align-items: center;
         
         a{
             text-decoration: none;
             font-weight: bold;
             transition: opacity 0.2s ease;
-            &:hover{
-                opacity: 0.6;
-            }
+            &:hover{ opacity: 0.6; }
         }
     }
-}
 
-/*contact*/
-.header{
     .header-right{
         display: flex;
         flex-direction: column;
-        width: 80px;
+        justify-content: center;
+        width: 185px;
+        text-align: right; /* Aligner le contact à droite */
         
-        strong{
-            font-weight: bold;
-            margin-bottom: 2px;
-        }
-        p{
-            font-weight: 500;
-            font-size: 14px;
+        strong { font-weight: bold; margin-bottom: 2px; }
+        p { font-weight: 500; font-size: 14px; margin: 0; line-height: 24px; }
+        a { text-decoration: none; font-weight: bold; }
+    }
+}
+
+/* MEDIA QUERY : TABLETTES ET MOBILES (max-width 900px) */
+@media screen and (max-width: 900px) {
+    .header {
+        flex-direction: column; /* On empile les éléments */
+        align-items: center;
+        gap: 20px;
+        height: auto;
+        
+        .header-left, .header-center, .header-right {
+            width: 100%; /* Prend toute la largeur */
+            text-align: center; /* Tout centrer */
+            align-items: center;
+            height: auto;
             margin: 0;
-            line-height: 24px;
         }
-        a{
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.2s ease;
-            &:hover{
-                opacity: 0.6;
-            }
-            a{
-            text-decoration: none;
-        }
-        }
+
+        .header-left p { margin-left: 0; }
+        .header-center { margin-left: 0; gap: 30px; }
+        .header-right { align-items: center; text-align: center; }
     }
 }
 
 /* === STYLE SPÉCIFIQUE ACCUEIL (GALLERY TRACK) === */
-/* Ces règles ne s'appliqueront QUE sur la page d'accueil */
-
-/* La piste qui contient les images */
 .gallery-track {
     display: flex;
     flex-direction: row;
@@ -118,7 +114,7 @@ body.home-page {
     width: 100%;
     height: 600px;
     overflow: visible; 
-    margin-top: 4vh; /* Centrage vertical approximatif */
+    margin-top: 4vh; 
 }
 
 /* On cible .image SEULEMENT si elle est dans .gallery-track */
@@ -126,14 +122,12 @@ body.home-page {
     position: relative;
     flex: 0 0 auto; 
     width: 380px !important;   
-    height: 380px !important;  
+    height: 520px !important;  
     opacity: 0.6;   
     transition: opacity 0.4s ease;
     cursor: pointer;
 
-    &:hover {
-        opacity: 1;
-    }
+    &:hover { opacity: 1; }
 
     img {
         display: block;
@@ -151,10 +145,25 @@ body.home-page {
     }
 }
 
-/* BARRE DE PROGRESSION (Uniquement visible si présente dans le HTML) */
+/* RESPONSIVE ACCUEIL (MOBILE) */
+@media screen and (max-width: 768px) {
+    .gallery-track {
+        margin-left: -50px; /* Moins décalé sur mobile */
+        gap: 20px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .gallery-track .image {
+        width: 280px !important; /* Images plus petites sur mobile */
+        height: 400px !important;
+    }
+}
+
+/* BARRE DE PROGRESSION */
 .progress-container {
     position: absolute;
-    bottom: 160px; 
+    bottom: 120px; 
     left: 50%;
     transform: translateX(-50%);
     width: 300px; 
@@ -163,22 +172,27 @@ body.home-page {
     border-radius: 2px;
 }
 
+@media screen and (max-width: 768px) {
+    .progress-container {
+        width: 200px;
+        bottom: 80px;
+    }
+}
+
 .progress-bar {
     height: 100%;
-    background-color: #A20C0C; 
+    background-color: $foreground; 
     width: 0%; 
     border-radius: 2px;
     transition: width 0.4s cubic-bezier(.2,.8,.2,1);
 }
 
-
-/* Footer fixe en bas à gauche (Global) */
+/* Footer fixe */
 .footer button{
     position: fixed;
     bottom: 24px;
     left: 24px;
     z-index: 1000;
-    
     display: flex;
     height: 24px;
     background: none;
@@ -188,16 +202,23 @@ body.home-page {
     cursor: pointer;
 }
 
-/* Clones animés: conserver 380x380 et le même rendering */
+/* Clones animés JS */
 .image-clone {
     position: relative;
     flex: 0 0 auto;
     width: 380px !important;
-    height: 380px !important;
+    height: 520px !important;
     opacity: 0.6;
     transition: opacity 0.4s ease;
     cursor: pointer;
     &:hover { opacity: 1; }
+}
+
+@media screen and (max-width: 768px) {
+    .image-clone {
+        width: 280px !important;
+        height: 400px !important;
+    }
 }
 
 .image-clone img {

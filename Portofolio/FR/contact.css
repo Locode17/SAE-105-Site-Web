@@ -10,6 +10,7 @@ body {
   font-family: "General Sans Variable", "Arial", sans-serif;
 }
 
+<<<<<<< HEAD
 /* header général */
 .header {
   font-weight: bold;
@@ -85,12 +86,21 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 24px; /* Marges sur les côtés */
+=======
+/* === STYLE DE LA PAGE CONTACT === */
+.main-contact {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px;
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
   width: 100%;
   margin: 0 auto;
   margin-top: 40px;
+  max-width: 1600px;
 }
 
 .titre-container .titre {
+<<<<<<< HEAD
   display: flex;
   margin-left: 80px;
   margin-top: 20px;
@@ -101,31 +111,64 @@ body {
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
+=======
+  font-size: 5em;
+  font-weight: 300;
+  margin: 0;
+  word-wrap: break-word; /* Évite que le titre sorte de l'écran sur très petit mobile */
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
 }
 
+/* Conteneur Flex (Desktop : Ligne / Mobile : Colonne) */
 .contact-wrapper {
   display: flex;
-  flex-direction: row; /* Force l'alignement horizontal */
+  flex-direction: row;
   justify-content: space-between;
+<<<<<<< HEAD
   align-items: stretch; /* Même hauteur */
   gap: 40px; /* Espace entre les deux cadres */
+=======
+  align-items: stretch;
+  gap: 50px;
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
   width: 100%;
   margin-bottom: 80px;
 }
 
+<<<<<<< HEAD
 .sous-titre {
   font-size: 24px; /* Titre du cadre en GROS et GRAS */
   font-weight: 600;
+=======
+.cadre-left, .cadre-right {
+  border: 2px solid #A20C0C;
+  padding: 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Important pour le responsive flex */
+}
+
+.sous-titre {
+  font-size: 24px;
+  font-weight: 800;
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 20px;
 }
 
+/* Infos Gauche */
 .info-content {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   gap: 16px; /* Espace entre Email, Tel, Adresse */
   margin-bottom: 25px;
+=======
+  gap: 30px;
+  margin-bottom: 40px;
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
 }
 .info-content .info-item {
   display: flex;
@@ -148,7 +191,7 @@ body {
 }
 
 .reseaux-box {
-  margin-top: auto; /* Pousse les réseaux vers le bas si besoin */
+  margin-top: auto;
 }
 .reseaux-box .réseaux {
   display: flex;
@@ -165,9 +208,10 @@ body {
   opacity: 0.6;
 }
 
+/* Formulaire Droite */
 .formulaire-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 colonnes pour Nom/Prénom */
+  grid-template-columns: 1fr 1fr;
   -moz-column-gap: 30px;
        column-gap: 30px;
   row-gap: 30px;
@@ -184,13 +228,14 @@ body {
 }
 .input-group input, .input-group textarea {
   background-color: transparent;
-  border: 2px solid #A20C0C; /* Bordure des champs */
+  border: 2px solid #A20C0C;
   padding: 12px;
   font-family: "General Sans Variable", "Arial", sans-serif;
   font-size: 16px;
   color: #A20C0C;
   outline: none;
   width: 100%;
+  max-width: 100%; /* Sécurité responsive */
 }
 .input-group input:focus, .input-group textarea:focus {
   background-color: rgba(162, 12, 12, 0.05);
@@ -201,7 +246,7 @@ body {
 }
 
 .full-width {
-  grid-column: span 2; /* Email et Message prennent toute la largeur */
+  grid-column: span 2;
 }
 
 .submit-box {
@@ -209,7 +254,6 @@ body {
   margin-top: 10px;
 }
 
-/* Bouton Envoyer */
 .btn-submit {
   background-color: transparent;
   color: #A20C0C;
@@ -226,6 +270,7 @@ body {
   color: #D6E6D4;
 }
 
+<<<<<<< HEAD
 .footer button {
   position: fixed;
   bottom: 24px;
@@ -238,4 +283,28 @@ body {
   font-weight: 700;
   margin: 0;
   cursor: pointer;
+=======
+/* === RESPONSIVE (Tablette & Mobile) === */
+@media screen and (max-width: 1024px) {
+  .main-contact {
+    padding: 0 20px;
+  }
+  .titre-container .titre {
+    font-size: 3.5em;
+  }
+  .contact-wrapper {
+    flex-direction: column; /* On passe en colonne */
+    gap: 30px;
+  }
+  .cadre-left, .cadre-right {
+    width: 100%;
+    padding: 25px;
+  }
+  .formulaire-grid {
+    grid-template-columns: 1fr; /* Une seule colonne pour les champs */
+  }
+  .full-width, .submit-box {
+    grid-column: span 1;
+  }
+>>>>>>> c23d194c89f9a10b45f1c0046d0a9811627dbd7a
 }/*# sourceMappingURL=contact.css.map */

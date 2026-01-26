@@ -2,16 +2,17 @@
 * {
   background-color: #D6E6D4;
   color: #A20C0C;
+  box-sizing: border-box;
 }
 
 .projects {
   display: flex;
-  margin-left: 132px;
+  margin-left: 132px; /* Marge desktop */
 }
 
 .titre {
   display: flex;
-  width: 516px;
+  width: auto;
   height: 122px;
   margin-top: 38px;
   font-size: 5em;
@@ -19,15 +20,15 @@
 }
 
 /* Layout spécifique à la page PROJETS */
-/* On utilise .main comme parent pour être sûr */
 .main {
-  /* Remet le flux normal pour cette page */
   display: flex;
   gap: 12px;
   align-items: flex-start;
   padding: 12px;
   margin-top: 28px;
-  flex-direction: row; /* Important pour remettre cote a cote */
+  flex-direction: row;
+  flex-wrap: wrap; /* Permet le passage à la ligne si besoin */
+  justify-content: center;
 }
 
 /* Grande image gauche */
@@ -53,7 +54,7 @@
 
 /* Style des images dans la grille */
 .grid .image {
-  width: 345px; /* Largeur par défaut des images de grille */
+  width: 345px;
   position: relative;
 }
 
@@ -64,20 +65,17 @@
      object-fit: cover;
 }
 
-/* Ciblage spécifique (nth-child) pour l'effet décalé */
-/* Première image de la grille (image wide) */
+/* Effets décalés Desktop */
 .grid .image:nth-child(1) {
   height: 280px;
   transform: translateY(-160px);
 }
 
-/* Deuxième image de la grille */
 .grid .image:nth-child(2) {
   height: 440px;
   transform: translateY(-124px);
 }
 
-/* Troisième image de la grille */
 .grid .image:nth-child(3) {
   height: 240px;
   transform: translateY(-200px);
@@ -88,4 +86,46 @@
   font-weight: 300;
   display: flex;
   margin-top: 8px;
+}
+
+/* === RESPONSIVE PROJETS === */
+@media screen and (max-width: 1024px) {
+  .projects {
+    margin-left: 20px;
+    justify-content: center;
+  }
+  .titre {
+    font-size: 3em;
+    height: auto;
+    text-align: center;
+  }
+  .main {
+    flex-direction: column; /* Tout en colonne */
+    align-items: center;
+    gap: 40px;
+  }
+  .image.big {
+    width: 100%; /* Pleine largeur */
+    max-width: 500px;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+  .grid {
+    display: flex;
+    flex-direction: column; /* Images les unes sous les autres */
+    margin-top: 0;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+  }
+  /* On annule les transformations bizarres sur mobile */
+  .grid .image:nth-child(1),
+  .grid .image:nth-child(2),
+  .grid .image:nth-child(3) {
+    transform: none; /* Reset position */
+    height: auto;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+  }
 }/*# sourceMappingURL=projects.css.map */
