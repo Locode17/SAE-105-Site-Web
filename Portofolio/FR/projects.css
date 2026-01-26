@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   background-color: #D6E6D4;
   color: #A20C0C;
@@ -17,11 +18,29 @@
   font-weight: 300;
 }
 
-/* Images layout */
+/* Layout spécifique à la page PROJETS */
+/* On utilise .main comme parent pour être sûr */
+.main {
+  /* Remet le flux normal pour cette page */
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  margin-top: 28px;
+  flex-direction: row; /* Important pour remettre cote a cote */
+}
+
 /* Grande image gauche */
 .image.big {
+  flex: 0 0 auto;
   width: 345px;
   height: 320px;
+}
+.image.big img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* Bloc droite */
@@ -29,21 +48,36 @@
   display: flex;
   gap: 12px;
   margin-top: 90px;
+  flex-wrap: nowrap;
 }
 
-/* 3e image */
-.image.wide {
+/* Style des images dans la grille */
+.grid .image {
+  width: 345px; /* Largeur par défaut des images de grille */
+  position: relative;
+}
+
+.grid .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Ciblage spécifique (nth-child) pour l'effet décalé */
+/* Première image de la grille (image wide) */
+.grid .image:nth-child(1) {
   height: 280px;
   transform: translateY(-160px);
 }
 
-/* 3e image */
+/* Deuxième image de la grille */
 .grid .image:nth-child(2) {
   height: 440px;
   transform: translateY(-124px);
 }
 
-/* 4e image */
+/* Troisième image de la grille */
 .grid .image:nth-child(3) {
   height: 240px;
   transform: translateY(-200px);
@@ -53,12 +87,5 @@
   font-size: 16px;
   font-weight: 300;
   display: flex;
-}
-
-.footer button {
-  position: fixed;
-  bottom: 12px;
-  left: 12px;
-  margin: 0;
-  z-index: 10;
+  margin-top: 8px;
 }/*# sourceMappingURL=projects.css.map */
