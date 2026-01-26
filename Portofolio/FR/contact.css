@@ -38,7 +38,6 @@ body {
   justify-content: center;
   gap: 54px;
   flex: 1;
-  align-items: center;
 }
 .header .header-center a {
   text-decoration: none;
@@ -51,7 +50,6 @@ body {
 .header .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 185px;
 }
 .header .header-right a {
@@ -214,7 +212,7 @@ body {
 
 .footer button {
   position: fixed;
-  bottom: 24px;
+  bottom: 12px;
   left: 24px;
   z-index: 1000;
   display: flex;
