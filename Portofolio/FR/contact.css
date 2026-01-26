@@ -1,9 +1,10 @@
+@charset "UTF-8";
 * {
   background-color: #D6E6D4;
   color: #A20C0C;
 }
 
-.about {
+.contact {
   display: flex;
   margin-left: 132px;
 }
@@ -15,6 +16,127 @@
   margin-top: 38px;
   font-size: 5em;
   font-weight: 300;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 24px;
+  line-height: 1.3;
+  gap: 16px;
+}
+
+.info > * {
+  margin: 4px 0;
+}
+
+.info .mail {
+  width: 194px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+  text-transform: lowercase;
+}
+.info .num {
+  width: 116px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+.info .adresse {
+  width: 243px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: lowercase;
+}
+
+.réseaux {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 16px;
+  line-height: 1.3;
+  gap: 16px;
+  margin-top: 26px;
+  margin: 24px;
+}
+
+.formulaire {
+  background-color: #D6E6D4;
+  display: flex;
+  font-family: "General Sans Variable", Arial, sans-serif;
+  color: #A20C0C;
+  width: 100%;
+  max-width: 900px;
+  padding: 60px 20px;
+  width: 703px;
+  height: 415px;
+  /* Champs pleine largeur */
+  /* Bouton */
+}
+.formulaire div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -moz-column-gap: 60px;
+       column-gap: 60px;
+  row-gap: 50px;
+}
+.formulaire p {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  text-transform: none;
+}
+.formulaire input,
+.formulaire textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #A20C0C;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #A20C0C;
+  outline: none;
+  font-family: "General Sans Variable", Arial, sans-serif;
+}
+.formulaire textarea {
+  resize: none;
+  height: 120px;
+}
+.formulaire .email,
+.formulaire .message {
+  grid-column: span 2;
+}
+.formulaire .envoyer {
+  grid-column: span 2;
+  margin-top: 20px;
+}
+.formulaire .envoyer input {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 6px 14px;
+  border: 2px solid;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.contact-right {
+  display: block;
 }
 
 .footer button {
