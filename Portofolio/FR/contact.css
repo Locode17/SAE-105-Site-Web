@@ -163,13 +163,15 @@ body {
 }
 .input-group label {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 .input-group input, .input-group textarea {
   background-color: transparent;
-  border: 2px solid #A20C0C; /* On garde la bordure des CHAMPS (input) */
-  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #A20C0C; /* Ligne unique en dessous */
+  border-radius: 0;
+  padding: 10px 0;
   font-family: "General Sans Variable", "Arial", sans-serif;
   font-size: 18px;
   color: #A20C0C;

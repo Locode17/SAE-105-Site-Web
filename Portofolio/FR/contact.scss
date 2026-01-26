@@ -175,14 +175,16 @@ body {
 
     label {
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 6px;
     }
 
     input, textarea {
         background-color: transparent;
-        border: 2px solid $foreground; /* On garde la bordure des CHAMPS (input) */
-        padding: 10px;
+        border: none;
+        border-bottom: 2px solid $foreground; /* Ligne unique en dessous */
+        border-radius: 0;
+        padding: 10px 0;
         font-family: $police;
         font-size: 18px;
         color: $foreground;
