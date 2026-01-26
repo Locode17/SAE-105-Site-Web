@@ -2,23 +2,25 @@
 * {
   background-color: #D6E6D4;
   color: #A20C0C;
+  box-sizing: border-box;
 }
 
 html, body {
-  /* On cache les barres de défilement pour un rendu 'app' fixe */
   overflow: hidden;
   height: 100%;
-  overscroll-behavior-x: contain; /* avoid scroll chaining on horizontal gestures */
+  overscroll-behavior-x: contain;
   margin: 0;
+  font-family: "General Sans Variable", " Arial", " sans-serif";
 }
 
-/* header général*/
+/* header général */
 .header {
   font-weight: bold;
   font-size: 16px;
   justify-content: space-between;
   display: flex;
   width: 100%;
+  padding: 12px;
 }
 
 /*nom + baseline*/
@@ -44,8 +46,7 @@ html, body {
   justify-content: center;
   gap: 54px;
   flex: 1;
-  margin: 4px;
-  margin-left: 580px;
+  align-items: center;
 }
 .header .header-center a {
   text-decoration: none;
@@ -62,7 +63,6 @@ html, body {
   flex-direction: column;
   justify-content: center;
   width: 185px;
-  margin: 4px;
 }
 .header .header-right strong {
   font-weight: bold;
@@ -75,107 +75,84 @@ html, body {
   line-height: 24px;
 }
 
-/* Images layout */
+/* MAIN LAYOUT */
 main {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 12px;
-  margin-top: 28px;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 120px);
   position: relative;
-  height: calc(100% - 140px); /* Ajustement pour prendre la hauteur restante */
+  padding-bottom: 40px;
 }
 
-/* Subtle right-edge gradient to hint more content */
-main::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 64px;
-  height: 100%;
-  pointer-events: none;
+/* La piste qui contient les images */
+.gallery-track {
+  display: flex;
+  flex-direction: row;
+  gap: 48px; /* Espace entre les images */
+  align-items: center;
+  /* MODIFICATION ICI : On tire la piste vers la gauche */
+  margin-left: -190px; /* Décale la piste de la moitié d'une image vers la gauche */
+  padding-left: 0; /* On enlève le padding qui créait le trou */
+  width: 100%;
+  height: 600px;
+  overflow: visible;
 }
 
+/* Style UNIFORME des images */
 .image {
   position: relative;
-  overflow: hidden;
+  flex: 0 0 auto;
+  width: 380px;
+  height: 520px;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+  /* Quand on passe la souris dessus */
 }
-
+.image:hover {
+  opacity: 1;
+}
 .image img {
   display: block;
   width: 100%;
-  height: calc(100% - 26px);
+  height: calc(100% - 30px);
   -o-object-fit: cover;
      object-fit: cover;
 }
-
 .image span {
   display: block;
   text-align: center;
-  margin-top: 6px;
+  margin-top: 10px;
   font-weight: 500;
-}
-
-.image.big {
-  flex: 0 0 32%;
-  height: 660px;
-}
-
-.grid {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  flex: 1;
-  display: inline-flex;
-  margin-top: 144px;
-  flex-wrap: nowrap;
-  /* allow upcoming images to slightly peek on the right */
-  overflow: visible;
-  padding-right: 64px;
-  margin-right: -64px;
-}
-
-.image.wide {
-  height: 360px;
-  flex: 1.2;
-  opacity: 0.6;
-  transition: opacity 0.4s ease-in-out;
-}
-.image.wide:hover {
-  opacity: 1;
-}
-
-.grid > .image:not(.wide) {
-  width: 360px;
-  height: 360px;
-  flex: 1.2;
-  opacity: 0.6;
-  transition: opacity 0.4s ease-in-out;
-}
-.grid > .image:not(.wide):hover {
-  opacity: 1;
-}
-
-.image img {
-  display: block;
-  width: 100%;
-  height: calc(100% - 26px);
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.image span {
   font-size: 16px;
-  font-weight: 700;
-  display: flex;
 }
 
-/*footer fr/en - FIXE EN BAS A GAUCHE */
+/* BARRE DE PROGRESSION */
+.progress-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 4px;
+  background-color: rgba(162, 12, 12, 0.2);
+  border-radius: 2px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #A20C0C;
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Footer fixe en bas à gauche */
 .footer button {
   position: fixed;
-  bottom: 12px;
-  left: 12px;
+  bottom: 24px;
+  left: 24px;
   z-index: 1000;
   display: flex;
   height: 24px;
@@ -183,6 +160,5 @@ main::after {
   border: none;
   font-weight: 700;
   margin: 0;
-  margin-left: 8px; /* Petit ajustement pour aligner avec le texte */
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

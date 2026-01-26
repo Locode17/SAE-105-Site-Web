@@ -1,34 +1,57 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const bigElem = () => document.querySelector('.image.big');
-    const gridElems = () => Array.from(document.querySelectorAll('.grid .image'));
-    const placeholders = () => [bigElem(), ...gridElems()];
+    // Sélectionne toutes les images de la galerie
+    const placeholders = () => Array.from(document.querySelectorAll('.gallery-track .image'));
+    const progressBar = document.querySelector('.progress-bar');
+    
     let busy = false;
+    let currentIndex = 0; 
 
-    function rotate(contents, direction) {
-        // direction: 'right' means user slides right; content shifts left
-        // direction: 'left' means user slides left; content shifts right
+    // Initialisation de la barre de progression au chargement
+    updateProgress();
+
+    function updateProgress() {
+        const items = placeholders();
+        const total = items.length;
+        const percentage = ((currentIndex + 1) / total) * 100;
+        if (progressBar) {
+            progressBar.style.width = percentage + '%';
+        }
+    }
+
+    function rotate(direction) {
         if (busy) return;
         busy = true;
+
         const places = placeholders();
         if (places.length < 2) {
             busy = false;
             return;
         }
+
+        // --- Mise à jour index barre de progression ---
+        if (direction === 'right') {
+            currentIndex++;
+            if (currentIndex >= places.length) currentIndex = 0;
+        } else {
+            currentIndex--;
+            if (currentIndex < 0) currentIndex = places.length - 1;
+        }
+        updateProgress();
+
+        // --- Logique de rotation ---
         const current = places.map(p => p.innerHTML);
         const rotated = direction === 'right'
-            ? current.slice(1).concat(current.slice(0,1))   // shift left
-            : current.slice(-1).concat(current.slice(0,-1)); // shift right
+            ? current.slice(1).concat(current.slice(0,1))
+            : current.slice(-1).concat(current.slice(0,-1));
 
-        // Set target opacity immediately per slot
-        places.forEach((p, i) => {
-            const targetOpacity = (i === 0 ? '1' : '0.6');
-            p.style.opacity = targetOpacity;
-        });
+        // Pendant l'animation, on force l'opacité sur les éléments fixes pour éviter les clignotements
+        places.forEach(p => p.style.opacity = '0.6');
 
-        // Animate with fixed clones; translate direction varies
         const animations = [];
         places.forEach((p, i) => {
             const rect = p.getBoundingClientRect();
+            
+            // Clone sortant
             const outClone = p.cloneNode(true);
             Object.assign(outClone.style, {
                 position: 'fixed',
@@ -41,25 +64,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 zIndex: 9999,
                 pointerEvents: 'none',
                 willChange: 'transform, opacity',
+                opacity: '0.6' 
             });
+
+            // Clone entrant
             const inClone = outClone.cloneNode(true);
             inClone.innerHTML = rotated[i];
-            const targetOpacity = (i === 0 ? '1' : '0.6');
+            
             Object.assign(inClone.style, {
-                transform: direction === 'right' ? 'translateX(20px)' : 'translateX(-20px)',
+                transform: direction === 'right' ? 'translateX(40px)' : 'translateX(-40px)',
                 opacity: '0',
             });
+
             document.body.appendChild(outClone);
             document.body.appendChild(inClone);
 
             void outClone.offsetWidth;
+
             setTimeout(() => {
                 outClone.style.transform = direction === 'right'
-                    ? 'translateX(-20px) scale(0.98)'
-                    : 'translateX(20px) scale(0.98)';
+                    ? 'translateX(-40px) scale(0.95)'
+                    : 'translateX(40px) scale(0.95)';
                 outClone.style.opacity = '0';
+
                 inClone.style.transform = 'translateX(0)';
-                inClone.style.opacity = targetOpacity;
+                inClone.style.opacity = '0.6'; 
             }, 20);
 
             animations.push(new Promise(res => {
@@ -80,25 +109,23 @@ document.addEventListener('DOMContentLoaded', () => {
         Promise.all(animations).then(() => {
             const places = placeholders();
             places.forEach((p, i) => {
-                const targetOpacity = (i === 0 ? '1' : '0.6');
                 p.innerHTML = rotated[i];
-                p.classList.remove('big', 'wide');
-                if (i === 0) p.classList.add('big');
-                else if (i === 1) p.classList.add('wide');
-                p.style.transform = '';
-                p.style.opacity = targetOpacity;
+                
+                // --- CORRECTION ICI ---
+                // On supprime le style "opacity" inline pour rendre la main au CSS.
+                // Ainsi, le CSS .image { opacity: 0.6 } s'applique,
+                // et le .image:hover { opacity: 1 } refonctionne !
+                p.style.opacity = ''; 
+                p.style.removeProperty('opacity');
             });
-            setTimeout(() => {
-                places.forEach(p => p.style.removeProperty('opacity'));
-                busy = false;
-            }, 40);
+            busy = false;
         });
     }
 
-    const rotateContentsRight = () => rotate(placeholders(), 'right');
-    const rotateContentsLeft = () => rotate(placeholders(), 'left');
+    const rotateContentsRight = () => rotate('right');
+    const rotateContentsLeft = () => rotate('left');
 
-    // Touchpad horizontal swipe AND Mouse vertical scroll support
+    // --- Gestion du Scroll et Swipe ---
     let lastWheelTime = 0;
     const WHEEL_THROTTLE_MS = 600;
     const WHEEL_THRESHOLD = 30;
@@ -106,18 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mainEl) {
         mainEl.addEventListener('wheel', (e) => {
-            // Prevent default vertical scrolling to lock the page
             e.preventDefault();
-
             const now = Date.now();
             if (now - lastWheelTime < WHEEL_THROTTLE_MS) return;
 
-            // Check for Scroll Down (Y > 0) OR Scroll Right (X > 0)
             if (e.deltaY > WHEEL_THRESHOLD || e.deltaX > WHEEL_THRESHOLD) {
                 lastWheelTime = now;
                 rotateContentsRight();
             } 
-            // Check for Scroll Up (Y < 0) OR Scroll Left (X < 0)
             else if (e.deltaY < -WHEEL_THRESHOLD || e.deltaX < -WHEEL_THRESHOLD) {
                 lastWheelTime = now;
                 rotateContentsLeft();
@@ -125,57 +148,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }, {passive: false});
     }
 
-    // Touch swipe support: swipe right -> rotate right, swipe left -> rotate left
+    // Touch swipe support
     let startX = null;
-    const main = document.querySelector('.main');
-    if (main) {
-        main.addEventListener('touchstart', (e) => {
+    if (mainEl) {
+        mainEl.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         }, {passive: true});
 
-        main.addEventListener('touchend', (e) => {
+        mainEl.addEventListener('touchend', (e) => {
             if (startX === null) return;
             const endX = e.changedTouches[0].clientX;
             const dx = endX - startX;
-            if (dx > 50) {
-                rotateContentsRight();
-            } else if (dx < -50) {
-                rotateContentsLeft();
-            }
+            if (dx > 50) rotateContentsRight(); 
+            else if (dx < -50) rotateContentsLeft();
             startX = null;
         });
     }
 
-    // Keyboard arrows
+    // Clavier
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') rotateContentsRight();
         if (e.key === 'ArrowLeft') rotateContentsLeft();
     });
-
-    // Hover behaviour unchanged
-    (function addHoverOpacity() {
-        const bigEl = document.querySelector('.image.big');
-        if (!bigEl) return;
-        const imgs = Array.from(document.querySelectorAll('.image'));
-        const bigSpan = bigEl.querySelector('span');
-        imgs.forEach(img => {
-            img.addEventListener('mouseenter', () => {
-                if (img === bigEl) return;
-                bigEl.style.transition = 'opacity 0.4s ease-in-out';
-                bigEl.style.opacity = '0.6';
-                if (bigSpan) {
-                    bigSpan.style.transition = 'opacity 160ms ease';
-                    bigSpan.style.opacity = '0';
-                }
-            }, {passive: true});
-
-            img.addEventListener('mouseleave', () => {
-                if (img === bigEl) return;
-                bigEl.style.opacity = '';
-                if (bigSpan) {
-                    bigSpan.style.opacity = '';
-                }
-            }, {passive: true});
-        });
-    })();
 });
