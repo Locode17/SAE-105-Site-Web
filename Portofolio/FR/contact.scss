@@ -1,0 +1,40 @@
+//constante
+$police : "General Sans Variable";
+$background : #D6E6D4;
+$foreground : #A20C0C;
+
+*{
+    background-color: $background;
+    color: #A20C0C;
+}
+
+.about{
+    display: flex;
+    margin-left: 132px;
+
+}
+.titre{
+    display: flex;
+    width: 516px;
+    height: 122px;
+    margin-top: 38px;
+    font-size: 5em;
+    font-weight: 300;
+}
+
+.footer button{
+    display: flex;
+    height: 24px;
+    background: none;
+    border: none;
+    font-weight: 700;
+}
+
+/*footer fr/en*/
+.footer button{
+    display: flex;
+    height: 24px;
+    background: none;
+    border: none;
+    font-weight: 700;
+}

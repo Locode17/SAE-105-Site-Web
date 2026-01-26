@@ -45,80 +45,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateProgress();
 
-        // --- Logique de rotation ---
+        // --- Logique de rotation SANS CLONES (transform uniquement, timers) ---
         const current = places.map(p => p.innerHTML);
         const rotated = direction === 'right'
             ? current.slice(1).concat(current.slice(0,1))
             : current.slice(-1).concat(current.slice(0,-1));
 
-        places.forEach(p => p.style.opacity = '0.6');
+        const DURATION_MS = 20;
+        const EASING = 'cubic-bezier(.2,.8,.2,1)';
+        const OFFSET = 10;
 
-        const animations = [];
-        places.forEach((p, i) => {
-            const rect = p.getBoundingClientRect();
-            
-            const outClone = p.cloneNode(true);
-            Object.assign(outClone.style, {
-                position: 'fixed',
-                left: rect.left + 'px',
-                top: rect.top + 'px',
-                width: rect.width + 'px',
-                height: rect.height + 'px',
-                margin: '0',
-                transition: 'transform 520ms cubic-bezier(.2,.8,.2,1), opacity 420ms ease',
-                zIndex: 9999,
-                pointerEvents: 'none',
-                willChange: 'transform, opacity',
-                opacity: '0.6' 
-            });
-
-            const inClone = outClone.cloneNode(true);
-            inClone.innerHTML = rotated[i];
-            
-            Object.assign(inClone.style, {
-                transform: direction === 'right' ? 'translateX(40px)' : 'translateX(-40px)',
-                opacity: '0',
-            });
-
-            document.body.appendChild(outClone);
-            document.body.appendChild(inClone);
-
-            void outClone.offsetWidth;
-
-            setTimeout(() => {
-                outClone.style.transform = direction === 'right'
-                    ? 'translateX(-40px) scale(0.95)'
-                    : 'translateX(40px) scale(0.95)';
-                outClone.style.opacity = '0';
-
-                inClone.style.transform = 'translateX(0)';
-                inClone.style.opacity = '0.6'; 
-            }, 20);
-
-            animations.push(new Promise(res => {
-                let removed = 0;
-                const clean = () => {
-                    removed += 1;
-                    if (removed === 2) {
-                        outClone.remove();
-                        inClone.remove();
-                        res();
-                    }
-                };
-                outClone.addEventListener('transitionend', clean, {once: true});
-                inClone.addEventListener('transitionend', clean, {once: true});
-            }));
+        // Phase 1: décaler légèrement
+        places.forEach(p => {
+            p.style.transition = `transform ${DURATION_MS}ms ${EASING}`;
+            p.style.willChange = 'transform';
+            p.style.transform = direction === 'right' ? `translate3d(-${OFFSET}px,0,0)` : `translate3d(${OFFSET}px,0,0)`;
         });
 
-        Promise.all(animations).then(() => {
-            const places = placeholders();
+        // Après le décalage, swap le contenu
+        setTimeout(() => {
             places.forEach((p, i) => {
                 p.innerHTML = rotated[i];
-                p.style.opacity = ''; 
-                p.style.removeProperty('opacity');
             });
-            busy = false;
-        });
+
+            // Phase 2: revenir à 0
+            places.forEach(p => {
+                p.style.transform = 'translate3d(0,0,0)';
+            });
+
+            // Fin: nettoyer, débloquer
+            setTimeout(() => {
+                places.forEach(p => {
+                    p.style.transition = '';
+                    p.style.willChange = '';
+                });
+                busy = false;
+            }, DURATION_MS);
+        }, DURATION_MS);
     }
 
     const rotateContentsRight = () => rotate('right');
@@ -126,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Gestion du Scroll et Swipe ---
     let lastWheelTime = 0;
-    const WHEEL_THROTTLE_MS = 600;
+    const WHEEL_THROTTLE_MS = 100;
     const WHEEL_THRESHOLD = 30;
     const mainEl = document.querySelector('.main');
     

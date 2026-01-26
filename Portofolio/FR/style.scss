@@ -24,6 +24,7 @@ body.home-page {
     overscroll-behavior-x: contain;
 }
 
+
 /* header général */
 .header{
     font-weight: bold;
@@ -60,7 +61,6 @@ body.home-page {
         justify-content: center;
         gap: 54px;
         flex: 1;
-        align-items: center;
         
         a{
             text-decoration: none;
@@ -78,8 +78,7 @@ body.home-page {
     .header-right{
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        width: 185px;
+        width: 80px;
         
         strong{
             font-weight: bold;
@@ -91,6 +90,17 @@ body.home-page {
             margin: 0;
             line-height: 24px;
         }
+        a{
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s ease;
+            &:hover{
+                opacity: 0.6;
+            }
+            a{
+            text-decoration: none;
+        }
+        }
     }
 }
 
@@ -101,22 +111,22 @@ body.home-page {
 .gallery-track {
     display: flex;
     flex-direction: row;
-    gap: 48px; 
+    gap: 40px; 
     align-items: center;
     margin-left: -190px; /* Effet coupé à gauche */
     padding-left: 0;
     width: 100%;
     height: 600px;
     overflow: visible; 
-    margin-top: 10vh; /* Centrage vertical approximatif */
+    margin-top: 4vh; /* Centrage vertical approximatif */
 }
 
 /* On cible .image SEULEMENT si elle est dans .gallery-track */
 .gallery-track .image {
     position: relative;
     flex: 0 0 auto; 
-    width: 380px;   
-    height: 380px;  
+    width: 380px !important;   
+    height: 380px !important;  
     opacity: 0.6;   
     transition: opacity 0.4s ease;
     cursor: pointer;
@@ -128,13 +138,13 @@ body.home-page {
     img {
         display: block;
         width: 100%;
-        height: calc(100% - 30px);
+        height: calc(100% - 30px) !important;
         object-fit: cover;
     }
 
     span {
         display: block;
-        text-align: center;
+        text-align: left;
         margin-top: 10px;
         font-weight: 500;
         font-size: 16px;
@@ -144,7 +154,7 @@ body.home-page {
 /* BARRE DE PROGRESSION (Uniquement visible si présente dans le HTML) */
 .progress-container {
     position: absolute;
-    bottom: 80px; 
+    bottom: 160px; 
     left: 50%;
     transform: translateX(-50%);
     width: 300px; 
@@ -176,4 +186,31 @@ body.home-page {
     font-weight: 700;
     margin: 0;
     cursor: pointer;
+}
+
+/* Clones animés: conserver 380x380 et le même rendering */
+.image-clone {
+    position: relative;
+    flex: 0 0 auto;
+    width: 380px !important;
+    height: 380px !important;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+    cursor: pointer;
+    &:hover { opacity: 1; }
+}
+
+.image-clone img {
+    display: block;
+    width: 100%;
+    height: calc(100% - 30px) !important;
+    object-fit: cover;
+}
+
+.image-clone span {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 16px;
 }
