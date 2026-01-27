@@ -21,7 +21,13 @@ body {
     justify-content: space-between;
     display: flex;
     width: 100%;
-    padding: 12px;
+    padding: 12px 24px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000; 
+    background-color: $background; 
 
     .header-left{
         display: flex;
@@ -55,11 +61,28 @@ body {
         display: flex;
         flex-direction: column;
         width: 185px;
+        text-align: right;
+        a{ text-decoration: none; font-weight: bold; }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body { padding-top: 180px; }
+    body.home-page { padding-top: 0; }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 20px;
+        height: auto;
         
-        a{
-            text-decoration: none;
-            font-weight: bold;
+        .header-left, .header-center, .header-right {
+            width: 100%;
+            text-align: center;
+            align-items: center;
         }
+        .header-center { gap: 30px; }
     }
 }
 

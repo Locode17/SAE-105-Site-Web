@@ -6,7 +6,7 @@
 
 .about {
   display: flex;
-  margin-left: 132px;
+  margin-left: 116px;
 }
 
 .titre {
@@ -14,8 +14,39 @@
   width: 516px;
   height: 122px;
   margin-top: 38px;
-  font-size: 5em;
-  font-weight: 300;
+  font-size: 90px;
+  font-weight: 400;
+}
+
+.nom_prenom {
+  margin-left: 118px;
+}
+.nom_prenom .nom_prenom1 {
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: -40px;
+}
+
+.info {
+  text-align: justify;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 583px;
+  margin-left: 250px;
+  margin-top: -60px;
+}
+
+.rectangle {
+  width: 560px;
+  height: 400px;
+  background: #D9D9D9;
+  margin-left: 840px;
+  margin-top: -340px;
 }
 
 /* === RESPONSIVE ABOUT === */
