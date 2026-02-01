@@ -39,6 +39,7 @@ body {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
+  /* Z-Index très haut pour s'assurer qu'il est cliquable */
   z-index: 9999;
   width: 60px;
   height: 60px;
@@ -47,8 +48,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  pointer-events: auto;
+  cursor: pointer; /* Le curseur devient une main */
+  pointer-events: auto; /* Force la détection du clic */
   background-color: #D6E6D4;
   transition: background-color 0.3s ease, transform 0.3s ease;
   animation: bounce 2s infinite;
@@ -181,6 +182,7 @@ body {
   opacity: 0.8;
 }
 
+/* RESPONSIVE MOBILE */
 @media screen and (max-width: 900px) {
   .main-projects {
     padding: 0 20px;
@@ -202,6 +204,7 @@ body {
   .card-top-info .project-title {
     font-size: 2.5em;
   }
+  /* Sur mobile, on cache la flèche car on scrolle facilement au doigt */
   .scroll-down-btn {
     display: none;
   }

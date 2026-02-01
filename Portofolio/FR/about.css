@@ -17,6 +17,11 @@ body {
   display: flex;
   width: 100%;
   padding: 12px;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
 }
 .header .header-left, .header .header-right {
   display: flex;
@@ -48,7 +53,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   margin-bottom: 150px;
-  margin-top: 40px; /* Espace sous le header */
+  margin-top: 40px;
 }
 
 .page-header {

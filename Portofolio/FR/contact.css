@@ -17,6 +17,11 @@ body {
   display: flex;
   width: 100%;
   padding: 12px;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
 }
 .header .header-left {
   display: flex;
@@ -60,40 +65,40 @@ body {
 .main-contact {
   display: flex;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 40px; /* Marges sur les côtés */
   width: 100%;
   margin: 0 auto;
   margin-top: 20px;
   max-width: 1600px;
 }
 
-/* === NOUVEAU STYLE TITRE === */
 .titre-container {
   margin-bottom: 32px;
 }
 .titre-container .titre {
-  font-size: 8rem; /* Massive */
-  font-weight: 600;
-  letter-spacing: -4px;
-  line-height: 1;
+  font-size: 90px;
+  font-weight: 500;
+  line-height: normal;
   text-transform: uppercase;
   margin: 0;
-  margin-left: 48px; /* On garde la marge que tu avais, ou on l'enlève pour centrer */
+  word-wrap: break-word;
+  margin-left: 48px;
 }
 
 .contact-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Force l'alignement horizontal */
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
+  align-items: flex-start; /* Aligne en haut */
+  gap: 24px; /* Espace entre les deux blocs */
   width: 100%;
   margin-bottom: 32px;
 }
 
 .cadre-left, .cadre-right {
-  padding: 0;
-  flex: 1;
+  /* border: 2px solid $foreground;  <-- BORDURE SUPPRIMÉE */
+  padding: 0; /* On réduit un peu le padding vu qu'il n'y a plus de cadre */
+  flex: 1; /* Chaque bloc prend 50% */
   display: flex;
   flex-direction: column;
   margin: 8px;
@@ -151,7 +156,7 @@ body {
 
 .formulaire-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* 2 colonnes pour Nom/Prénom */
   -moz-column-gap: 24px;
        column-gap: 24px;
   row-gap: 24px;
@@ -168,7 +173,7 @@ body {
 }
 .input-group input, .input-group textarea {
   background-color: transparent;
-  border: 2px solid #A20C0C;
+  border: 2px solid #A20C0C; /* On garde la bordure des CHAMPS (input) */
   padding: 10px;
   font-family: "General Sans Variable", "Arial", sans-serif;
   font-size: 18px;
@@ -194,6 +199,7 @@ body {
   margin-top: 6px;
 }
 
+/* Bouton Envoyer */
 .btn-submit {
   background-color: transparent;
   color: #A20C0C;
@@ -210,36 +216,30 @@ body {
   color: #D6E6D4;
 }
 
-/* === RESPONSIVE === */
+/* === RESPONSIVE (Tablette & Mobile) === */
 @media screen and (max-width: 1024px) {
   .main-contact {
     padding: 0 20px;
   }
-  /* TITRE RESPONSIVE */
   .titre-container .titre {
-    font-size: 4rem;
-    letter-spacing: -2px;
-    margin-left: 0;
-    text-align: center;
+    font-size: 3.5em;
   }
   .contact-wrapper {
-    flex-direction: column;
+    flex-direction: column; /* On passe en colonne */
     gap: 50px;
   }
   .cadre-left, .cadre-right {
     width: 100%;
-    padding: 0;
-    margin-top: 20px;
-    margin-left: 0;
+    padding: 0; /* Pas de padding nécessaire sans bordure */
   }
   .formulaire-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Une seule colonne pour les champs */
   }
   .full-width, .submit-box {
     grid-column: span 1;
   }
 }
-/* Compact modes */
+/* === Compact mode based on viewport height to avoid scrolling === */
 @media screen and (max-height: 850px) {
   .titre-container {
     margin-bottom: 24px;

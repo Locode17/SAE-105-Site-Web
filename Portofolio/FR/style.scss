@@ -45,7 +45,9 @@ body.home-page {
     top: 0;
     left: 0;
     z-index: 2000; 
-    background-color: $background; 
+    
+    /* MODIFICATION : On met transparent pour que le projet passe dessous sans coupure */
+    background-color: transparent; 
     
     .header-left{
         display: flex;
