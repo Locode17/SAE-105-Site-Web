@@ -21,13 +21,7 @@ body {
     justify-content: space-between;
     display: flex;
     width: 100%;
-    padding: 12px 24px;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2000; 
-    background-color: $background; 
+    padding: 12px;
 
     .header-left{
         display: flex;
@@ -61,28 +55,11 @@ body {
         display: flex;
         flex-direction: column;
         width: 185px;
-        text-align: right;
-        a{ text-decoration: none; font-weight: bold; }
-    }
-}
-
-@media screen and (max-width: 900px) {
-    body { padding-top: 180px; }
-    body.home-page { padding-top: 0; }
-
-    .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding-bottom: 20px;
-        height: auto;
         
-        .header-left, .header-center, .header-right {
-            width: 100%;
-            text-align: center;
-            align-items: center;
+        a{
+            text-decoration: none;
+            font-weight: bold;
         }
-        .header-center { gap: 30px; }
     }
 }
 
@@ -198,16 +175,14 @@ body {
 
     label {
         font-size: 20px;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 6px;
     }
 
     input, textarea {
         background-color: transparent;
-        border: none;
-        border-bottom: 2px solid $foreground; /* Ligne unique en dessous */
-        border-radius: 0;
-        padding: 10px 0;
+        border: 2px solid $foreground;
+        padding: 10px;
         font-family: $police;
         font-size: 18px;
         color: $foreground;

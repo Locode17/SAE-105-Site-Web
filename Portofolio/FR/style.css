@@ -40,7 +40,7 @@ body.home-page {
   top: 0;
   left: 0;
   z-index: 2000;
-  background-color: transparent;
+  background-color: #D6E6D4;
 }
 .header .header-left {
   display: flex;

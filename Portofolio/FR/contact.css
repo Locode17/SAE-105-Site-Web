@@ -16,12 +16,7 @@ body {
   justify-content: space-between;
   display: flex;
   width: 100%;
-  padding: 12px 24px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-  background-color: #D6E6D4;
+  padding: 12px;
 }
 .header .header-left {
   display: flex;
@@ -56,36 +51,12 @@ body {
   display: flex;
   flex-direction: column;
   width: 185px;
-  text-align: right;
 }
 .header .header-right a {
   text-decoration: none;
   font-weight: bold;
 }
 
-@media screen and (max-width: 900px) {
-  body {
-    padding-top: 180px;
-  }
-  body.home-page {
-    padding-top: 0;
-  }
-  .header {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 20px;
-    height: auto;
-  }
-  .header .header-left, .header .header-center, .header .header-right {
-    width: 100%;
-    text-align: center;
-    align-items: center;
-  }
-  .header .header-center {
-    gap: 30px;
-  }
-}
 .main-contact {
   display: flex;
   flex-direction: column;
@@ -192,15 +163,13 @@ body {
 }
 .input-group label {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
 }
 .input-group input, .input-group textarea {
   background-color: transparent;
-  border: none;
-  border-bottom: 2px solid #A20C0C; /* Ligne unique en dessous */
-  border-radius: 0;
-  padding: 10px 0;
+  border: 2px solid #A20C0C;
+  padding: 10px;
   font-family: "General Sans Variable", "Arial", sans-serif;
   font-size: 18px;
   color: #A20C0C;
