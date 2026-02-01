@@ -1,47 +1,36 @@
 <?php
-// On vérifie que le formulaire a bien été soumis
+// On initialise les variables pour éviter les erreurs d'affichage
+$titre = "";
+$texte = "";
+
+// On vérifie que le formulaire a bien été soumis via la méthode POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // 1. Nettoyage des données
+    // 1. Récupération et nettoyage des données (Sécurité XSS)
+    // On utilise htmlspecialchars pour empêcher d'injecter du code dans la page
     $prenom = htmlspecialchars(trim($_POST['prenom']));
     $nom = htmlspecialchars(trim($_POST['nom']));
-    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $email = htmlspecialchars(trim($_POST['email']));
     $message = htmlspecialchars(trim($_POST['message']));
 
-    // 2. Vérification
-    if (!empty($prenom) && !empty($nom) && !empty($email) && !empty($message) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // 2. Vérification simple : est-ce que les champs sont remplis ?
+    if (!empty($prenom) && !empty($nom) && !empty($email) && !empty($message)) {
 
-        // Configuration de l'email
-        $destinataire = "loicteste79@gmail.com";
-        $sujet = "Nouveau message Portfolio de $prenom $nom";
-
-        $contenu_mail = "Nom : $nom $prenom\n";
-        $contenu_mail .= "Email : $email\n\n";
-        $contenu_mail .= "Message :\n$message\n";
-
-        $headers = "From: $email\r\n";
-        $headers .= "Reply-To: $email\r\n";
-        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-        // Envoi
-        if (mail($destinataire, $sujet, $contenu_mail, $headers)) {
-            // SUCCÈS : Le message que tu voulais
-            $titre = "MERCI !";
-            $texte = "Votre demande a bien été prise en compte.<br>Merci pour votre confiance.";
-        } else {
-            // ERREUR SERVEUR
-            $titre = "OUPS...";
-            $texte = "Une erreur technique est survenue lors de l'envoi.";
-        }
+        // SUCCÈS : On construit le message personnalisé
+        // strtoupper met le nom en majuscules, ucfirst met la 1ère lettre du prénom en majuscule
+        $titre = "MERCI " . strtoupper($prenom) . " !";
+        $texte = "Bonjour <strong>" . ucfirst($prenom) . " " . strtoupper($nom) . "</strong>,<br><br>";
+        $texte .= "Votre demande a bien été prise en compte.<br>";
+        $texte .= "Nous avons bien noté votre email : <em>" . $email . "</em>";
 
     } else {
-        // ERREUR CHAMP VIDE
+        // ERREUR : Champs vides
         $titre = "ERREUR";
-        $texte = "Veuillez remplir tous les champs correctement.";
+        $texte = "Veuillez remplir tous les champs du formulaire.";
     }
 
 } else {
-    // Si on arrive ici sans passer par le formulaire, on redirige vers contact
+    // Si quelqu'un essaie d'ouvrir la page sans passer par le formulaire
     header("Location: contact.html");
     exit;
 }
@@ -64,24 +53,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           height: 100vh; /* Prend toute la hauteur de l'écran */
           text-align: center;
           overflow: hidden; /* Pas de scroll */
+          padding: 20px;
       }
       
       .message-box {
-          margin-top: -50px; /* Petit ajustement optique */
+          margin-top: -50px;
+          max-width: 800px;
       }
 
       h1 {
-          font-size: 5em; /* Comme tes titres de pages */
+          font-size: 5em; 
           font-weight: 300;
           margin-bottom: 24px;
           text-transform: uppercase;
+          line-height: 1;
       }
 
       p {
-          font-size: 1.2em;
+          font-size: 1.4em;
           font-weight: 500;
           margin-bottom: 48px;
-          line-height: 1.5;
+          line-height: 1.6;
       }
 
       /* Style du bouton retour */
@@ -93,11 +85,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           padding: 12px 32px;
           transition: all 0.3s ease;
           display: inline-block;
+          text-transform: uppercase;
       }
 
       .btn-retour:hover {
           background-color: #A20C0C;
-          color: #D6E6D4; /* Le texte devient vert (couleur de fond) */
+          color: #D6E6D4; 
+      }
+
+      /* Responsive pour le message */
+      @media (max-width: 768px) {
+          h1 { font-size: 3em; }
+          p { font-size: 1.1em; }
       }
   </style>
 </head>
@@ -109,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <p><?php echo $texte; ?></p>
             
-            <a href="index.html" class="btn-retour">Retourner à mon site</a>
+            <a href="index.html" class="btn-retour">Retour au site</a>
         </div>
     </div>
 

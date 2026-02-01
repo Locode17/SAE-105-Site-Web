@@ -60,40 +60,40 @@ body {
 .main-contact {
   display: flex;
   flex-direction: column;
-  padding: 0 40px; /* Marges sur les côtés */
+  padding: 0 40px;
   width: 100%;
   margin: 0 auto;
   margin-top: 20px;
   max-width: 1600px;
 }
 
+/* === NOUVEAU STYLE TITRE === */
 .titre-container {
   margin-bottom: 32px;
 }
 .titre-container .titre {
-  font-size: 90px;
-  font-weight: 5 0;
-  line-height: normal;
+  font-size: 8rem; /* Massive */
+  font-weight: 600;
+  letter-spacing: -4px;
+  line-height: 1;
   text-transform: uppercase;
   margin: 0;
-  word-wrap: break-word;
-  margin-left: 48px;
+  margin-left: 48px; /* On garde la marge que tu avais, ou on l'enlève pour centrer */
 }
 
 .contact-wrapper {
   display: flex;
-  flex-direction: row; /* Force l'alignement horizontal */
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start; /* Aligne en haut */
-  gap: 24px; /* Espace entre les deux blocs */
+  align-items: flex-start;
+  gap: 24px;
   width: 100%;
   margin-bottom: 32px;
 }
 
 .cadre-left, .cadre-right {
-  /* border: 2px solid $foreground;  <-- BORDURE SUPPRIMÉE */
-  padding: 0; /* On réduit un peu le padding vu qu'il n'y a plus de cadre */
-  flex: 1; /* Chaque bloc prend 50% */
+  padding: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin: 8px;
@@ -151,7 +151,7 @@ body {
 
 .formulaire-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 colonnes pour Nom/Prénom */
+  grid-template-columns: 1fr 1fr;
   -moz-column-gap: 24px;
        column-gap: 24px;
   row-gap: 24px;
@@ -168,7 +168,7 @@ body {
 }
 .input-group input, .input-group textarea {
   background-color: transparent;
-  border: 2px solid #A20C0C; /* On garde la bordure des CHAMPS (input) */
+  border: 2px solid #A20C0C;
   padding: 10px;
   font-family: "General Sans Variable", "Arial", sans-serif;
   font-size: 18px;
@@ -194,7 +194,6 @@ body {
   margin-top: 6px;
 }
 
-/* Bouton Envoyer */
 .btn-submit {
   background-color: transparent;
   color: #A20C0C;
@@ -211,30 +210,36 @@ body {
   color: #D6E6D4;
 }
 
-/* === RESPONSIVE (Tablette & Mobile) === */
+/* === RESPONSIVE === */
 @media screen and (max-width: 1024px) {
   .main-contact {
     padding: 0 20px;
   }
+  /* TITRE RESPONSIVE */
   .titre-container .titre {
-    font-size: 3.5em;
+    font-size: 4rem;
+    letter-spacing: -2px;
+    margin-left: 0;
+    text-align: center;
   }
   .contact-wrapper {
-    flex-direction: column; /* On passe en colonne */
+    flex-direction: column;
     gap: 50px;
   }
   .cadre-left, .cadre-right {
     width: 100%;
-    padding: 0; /* Pas de padding nécessaire sans bordure */
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 0;
   }
   .formulaire-grid {
-    grid-template-columns: 1fr; /* Une seule colonne pour les champs */
+    grid-template-columns: 1fr;
   }
   .full-width, .submit-box {
     grid-column: span 1;
   }
 }
-/* === Compact mode based on viewport height to avoid scrolling === */
+/* Compact modes */
 @media screen and (max-height: 850px) {
   .titre-container {
     margin-bottom: 24px;

@@ -1,5 +1,5 @@
 //constante
-$police : "General Sans Variable";
+$police : "General Sans Variable", "Arial", sans-serif;
 $background : #D6E6D4;
 $foreground : #A20C0C;
 
@@ -9,32 +9,203 @@ $foreground : #A20C0C;
     box-sizing: border-box;
 }
 
-.about{
-    display: flex;
-    margin-left: 132px;
+body {
+    margin: 0;
+    font-family: $police;
 }
 
-.titre{
+// HEADER (Inchangé)
+.header{
+    font-weight: bold;
+    font-size: 16px;
+    justify-content: space-between;
     display: flex;
-    width: 516px;
-    height: 122px;
-    margin-top: 38px;
-    font-size: 5em;
-    font-weight: 300;
+    width: 100%;
+    padding: 12px;
+    
+    // Si tu as le header fixe dans style.scss, ces lignes ne sont pas nécessaires ici
+    // mais je les laisse au cas où ce fichier serait chargé seul.
+    .header-left, .header-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 160px;
+    }
+    .header-center {
+        display: flex;
+        justify-content: center;
+        gap: 54px;
+        flex: 1;
+        align-items: center;
+        a { text-decoration: none; font-weight: bold; &:hover{ opacity: 0.6; } }
+    }
+    a { text-decoration: none; }
 }
 
-/* === RESPONSIVE ABOUT === */
-@media screen and (max-width: 900px) {
-    .about {
-        margin-left: 0;
-        justify-content: center; /* Centre le titre */
-        padding: 0 20px;
+// === LAYOUT PRINCIPAL ===
+.main-about {
+    padding: 0 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 150px;
+    margin-top: 40px; /* Espace sous le header */
+}
+
+// === TITRE PAGE ===
+.page-header {
+    margin-bottom: 80px;
+    .titre {
+        font-size: 8rem; /* Très gros titre */
+        font-weight: 600;
+        letter-spacing: -4px;
+        line-height: 1;
+        margin: 0;
+        text-transform: uppercase;
+    }
+}
+
+// === SECTION BIO ===
+.bio-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 120px;
+    gap: 60px;
+    
+    .subtitle {
+        flex: 1;
+        font-size: 3rem;
+        font-weight: 500;
+        line-height: 1.1;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: -1px;
     }
     
-    .titre {
-        font-size: 3em; /* Titre plus petit */
-        width: auto;
-        height: auto;
-        text-align: center;
+    .bio-text {
+        flex: 1;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        font-weight: 400;
+        
+        p {
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
     }
+}
+
+// === SECTION COMPÉTENCES ===
+.skills-section {
+    border-top: 2px solid $foreground; /* Ligne de séparation élégante */
+    padding-top: 40px;
+    margin-bottom: 100px;
+
+    .skills-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 60px;
+        display: block;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 Colonnes égales */
+        gap: 40px;
+    }
+
+    .skill-col {
+        h4 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba($foreground, 0.3); /* Soulignement fin */
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        ul {
+            list-style: none; /* Pas de puces */
+            padding: 0;
+            margin: 0;
+            
+            li {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+                font-weight: 400;
+                opacity: 0.9;
+                transition: transform 0.2s, opacity 0.2s;
+                cursor: default;
+                
+                &:hover {
+                    transform: translateX(10px); /* Petit mouvement au survol */
+                    opacity: 1;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+// === CTA (Appel à l'action) ===
+.cta-container {
+    display: flex;
+    justify-content: flex-end; /* Aligné à droite */
+    
+    .cta-link {
+        font-size: 4rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: $foreground;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+        line-height: 1;
+        letter-spacing: -2px;
+        
+        &:hover {
+            border-bottom: 3px solid $foreground;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+// === RESPONSIVE ===
+@media screen and (max-width: 1024px) {
+    .main-about { padding: 0 20px; }
+    
+    .page-header .titre { font-size: 4rem; text-align: center; margin-left: 0; }
+    
+    .bio-container {
+        flex-direction: column;
+        gap: 30px;
+        
+        .subtitle { font-size: 2.2rem; }
+        .bio-text { font-size: 1.2rem; }
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur tablette/mobile */
+        gap: 50px;
+    }
+    
+    .cta-link { font-size: 2.5rem; text-align: center; }
+    .cta-container { justify-content: center; }
+}
+
+// FOOTER
+.footer button{
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1000;
+    display: flex;
+    height: 24px;
+    background: none;
+    border: none;
+    font-weight: 700;
+    margin: 0;
+    cursor: pointer;
 }

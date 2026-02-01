@@ -19,15 +19,18 @@ body {
   margin-bottom: 150px;
 }
 
-/* TITRE [PROJETS] */
+/* === NOUVEAU STYLE TITRE === */
 .page-header {
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
 }
 .page-header .titre {
-  font-size: 5em;
-  font-weight: 300;
+  font-size: 8rem; /* Taille massive */
+  font-weight: 600; /* Gras pour l'impact */
+  letter-spacing: -4px; /* Lettres serrées pour le style moderne */
   margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 /* === BOUTON SCROLL FIXE === */
@@ -36,7 +39,6 @@ body {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  /* Z-Index très haut pour s'assurer qu'il est cliquable */
   z-index: 9999;
   width: 60px;
   height: 60px;
@@ -45,8 +47,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* Le curseur devient une main */
-  pointer-events: auto; /* Force la détection du clic */
+  cursor: pointer;
+  pointer-events: auto;
   background-color: #D6E6D4;
   transition: background-color 0.3s ease, transform 0.3s ease;
   animation: bounce 2s infinite;
@@ -102,7 +104,6 @@ body {
   transform: scale(1.03);
 }
 
-/* LOGIQUE ZIG-ZAG */
 @media screen and (min-width: 901px) {
   .project-card:nth-child(odd) {
     align-self: flex-start;
@@ -180,14 +181,15 @@ body {
   opacity: 0.8;
 }
 
-/* RESPONSIVE MOBILE */
 @media screen and (max-width: 900px) {
   .main-projects {
     padding: 0 20px;
     margin-bottom: 50px;
   }
+  /* TITRE RESPONSIVE */
   .page-header .titre {
-    font-size: 3.5em;
+    font-size: 4rem;
+    letter-spacing: -2px;
   }
   .projects-grid {
     gap: 40px;
@@ -200,7 +202,6 @@ body {
   .card-top-info .project-title {
     font-size: 2.5em;
   }
-  /* Sur mobile, on cache la flèche car on scrolle facilement au doigt */
   .scroll-down-btn {
     display: none;
   }

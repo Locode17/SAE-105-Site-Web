@@ -1,34 +1,200 @@
+@charset "UTF-8";
 * {
   background-color: #D6E6D4;
   color: #A20C0C;
   box-sizing: border-box;
 }
 
-.about {
-  display: flex;
-  margin-left: 132px;
+body {
+  margin: 0;
+  font-family: "General Sans Variable", "Arial", sans-serif;
 }
 
-.titre {
+.header {
+  font-weight: bold;
+  font-size: 16px;
+  justify-content: space-between;
   display: flex;
-  width: 516px;
-  height: 122px;
-  margin-top: 38px;
-  font-size: 5em;
-  font-weight: 300;
+  width: 100%;
+  padding: 12px;
+}
+.header .header-left, .header .header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 160px;
+}
+.header .header-center {
+  display: flex;
+  justify-content: center;
+  gap: 54px;
+  flex: 1;
+  align-items: center;
+}
+.header .header-center a {
+  text-decoration: none;
+  font-weight: bold;
+}
+.header .header-center a:hover {
+  opacity: 0.6;
+}
+.header a {
+  text-decoration: none;
 }
 
-/* === RESPONSIVE ABOUT === */
-@media screen and (max-width: 900px) {
-  .about {
-    margin-left: 0;
-    justify-content: center; /* Centre le titre */
+.main-about {
+  padding: 0 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 150px;
+  margin-top: 40px; /* Espace sous le header */
+}
+
+.page-header {
+  margin-bottom: 80px;
+}
+.page-header .titre {
+  font-size: 8rem; /* Très gros titre */
+  font-weight: 600;
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.bio-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 120px;
+  gap: 60px;
+}
+.bio-container .subtitle {
+  flex: 1;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.bio-container .bio-text {
+  flex: 1;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.bio-container .bio-text p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.skills-section {
+  border-top: 2px solid #A20C0C; /* Ligne de séparation élégante */
+  padding-top: 40px;
+  margin-bottom: 100px;
+}
+.skills-section .skills-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  display: block;
+}
+.skills-section .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 Colonnes égales */
+  gap: 40px;
+}
+.skills-section .skill-col h4 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(162, 12, 12, 0.3); /* Soulignement fin */
+  padding-bottom: 10px;
+  display: inline-block;
+}
+.skills-section .skill-col ul {
+  list-style: none; /* Pas de puces */
+  padding: 0;
+  margin: 0;
+}
+.skills-section .skill-col ul li {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 400;
+  opacity: 0.9;
+  transition: transform 0.2s, opacity 0.2s;
+  cursor: default;
+}
+.skills-section .skill-col ul li:hover {
+  transform: translateX(10px); /* Petit mouvement au survol */
+  opacity: 1;
+  font-weight: 500;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: flex-end; /* Aligné à droite */
+}
+.cta-container .cta-link {
+  font-size: 4rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #A20C0C;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.cta-container .cta-link:hover {
+  border-bottom: 3px solid #A20C0C;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-about {
     padding: 0 20px;
   }
-  .titre {
-    font-size: 3em; /* Titre plus petit */
-    width: auto;
-    height: auto;
+  .page-header .titre {
+    font-size: 4rem;
+    text-align: center;
+    margin-left: 0;
+  }
+  .bio-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .bio-container .subtitle {
+    font-size: 2.2rem;
+  }
+  .bio-container .bio-text {
+    font-size: 1.2rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr; /* Une seule colonne sur tablette/mobile */
+    gap: 50px;
+  }
+  .cta-link {
+    font-size: 2.5rem;
     text-align: center;
   }
+  .cta-container {
+    justify-content: center;
+  }
+}
+.footer button {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  display: flex;
+  height: 24px;
+  background: none;
+  border: none;
+  font-weight: 700;
+  margin: 0;
+  cursor: pointer;
 }/*# sourceMappingURL=about.css.map */
