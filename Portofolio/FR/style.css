@@ -10,9 +10,8 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: "General Sans Variable", "Arial", sans-serif;
-  overflow-x: hidden; /* On garde juste ça pour éviter le dépassement horizontal */
+  overflow-x: hidden;
   width: 100%;
-  /* On a supprimé height: 100% et overflow-y: auto ici pour réparer le scroll JS */
 }
 
 /* On ajoute un padding-top au body pour compenser le header fixe */
@@ -22,13 +21,13 @@ body {
 
 /* SPÉCIFIQUE ACCUEIL */
 body.home-page {
-  overflow: hidden; /* Ici on bloque le scroll car c'est le slide horizontal */
-  height: 100%; /* Ici on a besoin de la hauteur 100% */
+  overflow: hidden;
+  height: 100%;
   overscroll-behavior-x: contain;
   padding-top: 0;
 }
 
-/* === HEADER FIXE === */
+/* === HEADER FIXE (TRANSPARENT) === */
 .header {
   font-weight: bold;
   font-size: 16px;
@@ -40,7 +39,6 @@ body.home-page {
   top: 0;
   left: 0;
   z-index: 2000;
-  /* MODIFICATION : On met transparent pour que le projet passe dessous sans coupure */
   background-color: transparent;
 }
 .header .header-left {
@@ -96,6 +94,7 @@ body.home-page {
     gap: 10px;
     padding-bottom: 20px;
     height: auto;
+    background-color: transparent;
   }
   .header .header-left, .header .header-center, .header .header-right {
     width: 100%;
@@ -129,7 +128,7 @@ body.home-page {
   overflow: visible;
 }
 
-.gallery-track .image {
+.gallery-track .image, .image-clone {
   position: relative;
   flex: 0 0 auto;
   width: 380px !important;
@@ -138,46 +137,17 @@ body.home-page {
   transition: opacity 0.4s ease;
   cursor: pointer;
 }
-.gallery-track .image:hover {
+.gallery-track .image:hover, .image-clone:hover {
   opacity: 1;
 }
-.gallery-track .image img {
+.gallery-track .image img, .image-clone img {
   display: block;
   width: 100%;
   height: calc(100% - 30px) !important;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.gallery-track .image span {
-  display: block;
-  text-align: left;
-  margin-top: 10px;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.image-clone {
-  position: relative;
-  flex: 0 0 auto;
-  width: 380px !important;
-  height: 520px !important;
-  opacity: 0.6;
-  transition: opacity 0.4s ease;
-  cursor: pointer;
-}
-.image-clone:hover {
-  opacity: 1;
-}
-
-.image-clone img {
-  display: block;
-  width: 100%;
-  height: calc(100% - 30px) !important;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.image-clone span {
+.gallery-track .image span, .image-clone span {
   display: block;
   text-align: left;
   margin-top: 10px;
@@ -221,7 +191,7 @@ body.home-page {
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* FOOTER FIXE  */
+/* FOOTER FIXE */
 .footer button {
   position: fixed;
   bottom: 12px;

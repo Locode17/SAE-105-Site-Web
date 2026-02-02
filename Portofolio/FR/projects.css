@@ -19,15 +19,18 @@ body {
   margin-bottom: 150px;
 }
 
-/* === NOUVEAU STYLE TITRE === */
+/* === STYLE TITRE (MODIFIÉ POUR PASSER AU-DESSUS) === */
 .page-header {
   margin-top: 40px;
   margin-bottom: 60px;
+  /* AJOUT ICI : Pour passer devant le header (z-index 2000) */
+  position: relative;
+  z-index: 4001;
 }
 .page-header .titre {
-  font-size: 8rem; /* Taille massive */
-  font-weight: 600; /* Gras pour l'impact */
-  letter-spacing: -4px; /* Lettres serrées pour le style moderne */
+  font-size: 8rem;
+  font-weight: 600;
+  letter-spacing: -4px;
   margin: 0;
   line-height: 1;
   text-transform: uppercase;
@@ -39,7 +42,6 @@ body {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  /* Z-Index très haut pour s'assurer qu'il est cliquable */
   z-index: 9999;
   width: 60px;
   height: 60px;
@@ -48,8 +50,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* Le curseur devient une main */
-  pointer-events: auto; /* Force la détection du clic */
+  cursor: pointer;
+  pointer-events: auto;
   background-color: #D6E6D4;
   transition: background-color 0.3s ease, transform 0.3s ease;
   animation: bounce 2s infinite;
@@ -83,7 +85,7 @@ body {
   padding-top: 40px;
 }
 
-/* === LA CARTE PROJET === */
+/* === LA CARTE PROJET (PASSE DEVANT LE HEADER) === */
 .project-card {
   width: 45%;
   border: 2px solid #A20C0C;
@@ -93,18 +95,20 @@ body {
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  /* Z-Index élevé pour passer devant le header */
   position: relative;
-  z-index: 1;
+  z-index: 4000;
 }
 .project-card:hover {
   transform: translateY(-8px);
-  z-index: 10;
+  z-index: 5000;
   box-shadow: 0 10px 30px rgba(162, 12, 12, 0.1);
 }
 .project-card:hover .card-image img {
   transform: scale(1.03);
 }
 
+/* LOGIQUE ZIG-ZAG */
 @media screen and (min-width: 901px) {
   .project-card:nth-child(odd) {
     align-self: flex-start;
@@ -182,13 +186,11 @@ body {
   opacity: 0.8;
 }
 
-/* RESPONSIVE MOBILE */
 @media screen and (max-width: 900px) {
   .main-projects {
     padding: 0 20px;
     margin-bottom: 50px;
   }
-  /* TITRE RESPONSIVE */
   .page-header .titre {
     font-size: 4rem;
     letter-spacing: -2px;
@@ -204,7 +206,6 @@ body {
   .card-top-info .project-title {
     font-size: 2.5em;
   }
-  /* Sur mobile, on cache la flèche car on scrolle facilement au doigt */
   .scroll-down-btn {
     display: none;
   }

@@ -10,49 +10,17 @@ body {
   font-family: "General Sans Variable", "Arial", sans-serif;
 }
 
-.header {
-  font-weight: bold;
-  font-size: 16px;
-  justify-content: space-between;
-  display: flex;
-  width: 100%;
-  padding: 12px;
-  background-color: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-}
-.header .header-left, .header .header-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 160px;
-}
-.header .header-center {
-  display: flex;
-  justify-content: center;
-  gap: 54px;
-  flex: 1;
-  align-items: center;
-}
-.header .header-center a {
-  text-decoration: none;
-  font-weight: bold;
-}
-.header .header-center a:hover {
-  opacity: 0.6;
-}
-.header a {
-  text-decoration: none;
-}
-
+/* NOTE : J'ai supprimé le bloc .header ici.
+   La page va maintenant utiliser automatiquement le style du header défini 
+   dans style.scss, ce qui règle ton problème d'alignement (décalage).
+*/
 .main-about {
   padding: 0 40px;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   margin-bottom: 150px;
+  /* On garde un espace car le header est fixe */
   margin-top: 40px;
 }
 

@@ -14,38 +14,10 @@ body {
     font-family: $police;
 }
 
-// HEADER
-.header{
-    font-weight: bold;
-    font-size: 16px;
-    justify-content: space-between;
-    display: flex;
-    width: 100%;
-    padding: 12px;
-    
-    // MODIF : TRANSPARENT
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2000;
-    
-    .header-left, .header-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 160px;
-    }
-    .header-center {
-        display: flex;
-        justify-content: center;
-        gap: 54px;
-        flex: 1;
-        align-items: center;
-        a { text-decoration: none; font-weight: bold; &:hover{ opacity: 0.6; } }
-    }
-    a { text-decoration: none; }
-}
+/* NOTE : J'ai supprimé le bloc .header ici.
+   La page va maintenant utiliser automatiquement le style du header défini 
+   dans style.scss, ce qui règle ton problème d'alignement (décalage).
+*/
 
 // === LAYOUT PRINCIPAL ===
 .main-about {
@@ -54,7 +26,8 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     margin-bottom: 150px;
-    margin-top: 40px;
+    /* On garde un espace car le header est fixe */
+    margin-top: 40px; 
 }
 
 // === TITRE PAGE ===
