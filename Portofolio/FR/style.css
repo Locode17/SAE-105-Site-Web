@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* =========================================
-   VARIABLES (La palette de style)
+   VARIABLES
    ========================================= */
 /* =========================================
-   RÉINITIALISATION & BASES
+   BASES
    ========================================= */
 * {
   background-color: #D6E6D4;
@@ -21,7 +21,7 @@ html, body {
 }
 
 /* =========================================
-   HEADER FIXE & SCROLL
+   HEADER & SCROLL
    ========================================= */
 body {
   padding-top: 110px;
@@ -35,7 +35,7 @@ body.home-page {
 }
 
 /* =========================================
-   HEADER (MENU DE NAVIGATION)
+   HEADER NAV
    ========================================= */
 .header {
   font-weight: bold;
@@ -49,9 +49,6 @@ body.home-page {
   left: 0;
   z-index: 2000;
   background-color: #D6E6D4;
-  /* HEADER GAUCHE */
-  /* HEADER CENTRE (Desktop) */
-  /* HEADER DROITE (Desktop) */
 }
 .header .header-left {
   display: flex;
@@ -63,7 +60,6 @@ body.home-page {
 }
 .header .header-left p {
   margin: 0;
-  margin-left: 0px;
 }
 .header .header-left a {
   text-decoration: none;
@@ -77,7 +73,7 @@ body.home-page {
 .header .header-center a {
   text-decoration: none;
   font-weight: bold;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s;
 }
 .header .header-center a:hover {
   opacity: 0.6;
@@ -93,7 +89,7 @@ body.home-page {
   font-weight: bold;
 }
 
-/* BURGER MENU & OVERLAY (Cachés par défaut sur Desktop) */
+/* Éléments mobile cachés par défaut */
 .burger-menu {
   display: none;
 }
@@ -103,7 +99,7 @@ body.home-page {
 }
 
 /* =========================================
-   GALERIE D'IMAGES (ACCUEIL)
+   GALERIE (ACCUEIL)
    ========================================= */
 .main {
   display: flex;
@@ -111,7 +107,6 @@ body.home-page {
   justify-content: center;
   height: 100vh;
   position: relative;
-  padding-bottom: 0;
   margin-top: 0;
 }
 
@@ -121,7 +116,6 @@ body.home-page {
   gap: 40px;
   align-items: center;
   margin-left: -190px;
-  padding-left: 0;
   width: 100%;
   height: 600px;
   overflow: visible;
@@ -148,14 +142,13 @@ body.home-page {
 }
 .gallery-track .image span, .image-clone span {
   display: block;
-  text-align: left;
   margin-top: 10px;
   font-weight: 500;
   font-size: 16px;
 }
 
 /* =========================================
-   BARRE DE PROGRESSION
+   PROGRESS BAR & FOOTER
    ========================================= */
 .progress-container {
   position: absolute;
@@ -176,9 +169,6 @@ body.home-page {
   transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* =========================================
-   FOOTER (BOUTON FIXE)
-   ========================================= */
 .footer button {
   position: fixed;
   bottom: 12px;
@@ -189,7 +179,6 @@ body.home-page {
   background: none;
   border: none;
   font-weight: 700;
-  margin: 0;
   cursor: pointer;
 }
 
@@ -200,13 +189,12 @@ body.home-page {
   body {
     padding-top: 0;
   }
-  .main-about, .main-projects, .main-contact, .detail-container {
-    margin-top: 100px;
-  }
+  /* Header Mobile simplifié */
   .header {
     height: 80px;
     align-items: center;
     padding: 0 20px;
+    /* Cache le menu desktop */
   }
   .header .header-left {
     width: auto;
@@ -218,6 +206,7 @@ body.home-page {
   .header .header-center, .header .header-right {
     display: none !important;
   }
+  /* Bouton Burger */
   .burger-menu {
     display: flex;
     flex-direction: column;
@@ -225,7 +214,7 @@ body.home-page {
     width: 30px;
     height: 20px;
     cursor: pointer;
-    z-index: 4000; /* Toujours au-dessus de tout */
+    z-index: 4000;
     position: absolute;
     right: 24px;
     top: 30px;
@@ -237,6 +226,7 @@ body.home-page {
     background-color: #A20C0C;
     transition: all 0.3s ease;
   }
+  /* === LE MENU QUI S'OUVRE (MODIFIÉ POUR 50%) === */
   .mobile-nav-overlay {
     display: flex;
     flex-direction: column;
@@ -244,28 +234,34 @@ body.home-page {
     align-items: center;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100vw;
+    right: 0; /* Collé à droite */
+    left: auto; /* On désactive le collage à gauche */
+    width: 50%; /* PREND 50% DE LA LARGEUR */
     height: 100vh;
     background-color: #D6E6D4;
+    border-left: 2px solid #A20C0C; /* Petite ligne de séparation */
     z-index: 3500;
-    transform: translateX(100%); /* Caché à droite par défaut */
+    transform: translateX(100%); /* Caché vers la droite */
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    /* Liens du menu */
   }
   .mobile-nav-overlay .mobile-links {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     text-align: center;
+    width: 100%;
   }
   .mobile-nav-overlay .mobile-links a {
     font-family: "General Sans Variable", "Arial", sans-serif;
-    font-size: 2.5rem;
+    font-size: 1.8rem; /* Texte plus petit pour rentrer dans les 50% */
     font-weight: 700;
     text-decoration: none;
     color: #A20C0C;
     text-transform: uppercase;
+    word-wrap: break-word; /* Évite que les longs mots dépassent */
   }
+  /* État Ouvert */
   body.menu-open {
     overflow: hidden;
   }
@@ -281,6 +277,7 @@ body.home-page {
   body.menu-open .mobile-nav-overlay {
     transform: translateX(0);
   }
+  /* Ajustements Galerie Mobile */
   .gallery-track {
     margin-left: -50px;
     gap: 20px;

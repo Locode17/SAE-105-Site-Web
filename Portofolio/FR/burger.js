@@ -5,12 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (burger) {
         burger.addEventListener('click', () => {
-            // Active/Désactive la classe 'menu-open' sur le body
             body.classList.toggle('menu-open');
         });
     }
 
-    // Fermer le menu automatiquement quand on clique sur un lien
     links.forEach(link => {
         link.addEventListener('click', () => {
             body.classList.remove('menu-open');

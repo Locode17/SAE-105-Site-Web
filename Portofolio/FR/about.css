@@ -1,83 +1,67 @@
 @charset "UTF-8";
-* {
-  background-color: #D6E6D4; /* Applique le fond partout */
-  color: #A20C0C; /* Applique la couleur de texte partout */
-  box-sizing: border-box; /* ESSENTIEL : Inclut le padding et les bordures dans la largeur totale des éléments */
-}
-
-body {
-  margin: 0; /* Enlève les marges par défaut du navigateur */
-  font-family: "General Sans Variable", "Arial", sans-serif; /* Applique la police définie dans la variable plus haut */
-}
-
-/* NOTE : J'ai supprimé le bloc .header ici.
-   La page va maintenant utiliser automatiquement le style du header défini 
-   dans style.scss, ce qui règle ton problème d'alignement (décalage).
-*/
 .main-about {
-  padding: 0 40px; /* Marge intérieure : 0 haut/bas, 40px gauche/droite */
-  width: 100%; /* Prend toute la largeur disponible */
-  max-width: 1400px; /* Mais ne dépasse jamais 1400px (évite que ce soit trop large sur grands écrans) */
-  margin: 0 auto; /* Centre le bloc horizontalement */
-  margin-bottom: 150px; /* Espace vide en bas de page */
-  /* On garde un espace car le header est fixe (ou pour l'esthétique) */
+  padding: 0 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 150px;
   margin-top: 40px;
 }
 
 .page-header {
-  margin-bottom: 80px; /* Espace sous le titre avant la bio */
+  margin-bottom: 80px;
 }
 .page-header .titre {
-  font-size: 8rem; /* Taille énorme (8x la taille racine) */
-  font-weight: 600; /* Gras (semi-bold) */
-  letter-spacing: -4px; /* Rapproche les lettres (style serré) */
-  line-height: 1; /* Hauteur de ligne compacte */
-  margin: 0; /* Supprime les marges par défaut du h1 */
-  text-transform: uppercase; /* Force le texte en MAJUSCULES */
+  font-size: 8rem;
+  font-weight: 600;
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .bio-container {
-  display: flex; /* Active Flexbox : met les enfants côte à côte */
-  justify-content: space-between; /* Pousse les éléments aux extrémités gauche et droite */
-  align-items: flex-start; /* Aligne les éléments en haut (si hauteurs différentes) */
-  margin-bottom: 120px; /* Espace sous la bio avant les compétences */
-  gap: 60px; /* Espace vide de 60px entre le sous-titre et le texte */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 120px;
+  gap: 60px;
 }
 .bio-container .subtitle {
-  flex: 1; /* Prend 1 part de l'espace disponible (50% ici car 2 éléments) */
-  font-size: 3rem; /* Taille grande */
-  font-weight: 500; /* Graisse moyenne */
-  line-height: 1.1; /* Interligne serré */
-  margin: 0; /* Reset marge */
-  text-transform: uppercase; /* Majuscules */
-  letter-spacing: -1px; /* Lettres légèrement rapprochées */
+  flex: 1;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 .bio-container .bio-text {
-  flex: 1; /* Prend aussi 1 part (donc largeur égale au sous-titre) */
-  font-size: 1.4rem; /* Taille de lecture confortable */
-  line-height: 1.6; /* Interligne aéré pour la lisibilité */
-  font-weight: 400; /* Normal */
+  flex: 1;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-weight: 400;
 }
 .bio-container .bio-text p {
-  margin-top: 0; /* Pas de marge en haut */
-  margin-bottom: 24px; /* Espace entre les paragraphes */
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 .skills-section {
-  border-top: 2px solid #A20C0C; /* Crée la ligne horizontale de séparation */
-  padding-top: 40px; /* Espace entre la ligne et le contenu */
-  margin-bottom: 100px; /* Espace sous la section */
+  border-top: 2px solid #A20C0C;
+  padding-top: 40px;
+  margin-bottom: 100px;
 }
 .skills-section .skills-title {
-  font-size: 1.2rem; /* Petit titre discret */
-  font-weight: 700; /* Très gras */
-  margin-bottom: 60px; /* Espace avant la grille */
-  display: block; /* Force l'affichage en bloc (prend toute la largeur) */
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  display: block;
 }
 .skills-section .skills-grid {
-  display: grid; /* Active CSS Grid */
-  grid-template-columns: repeat(3, 1fr); /* Crée 3 colonnes de largeur égale (1fr) */
-  gap: 40px; /* Espace (gouttière) entre les colonnes et lignes */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur PC */
+  gap: 40px;
 }
 .skills-section .skill-col h4 {
   font-size: 2rem;
@@ -85,62 +69,61 @@ body {
   margin-top: 0;
   margin-bottom: 24px;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(162, 12, 12, 0.3); /* Ligne fine semi-transparente sous le titre */
-  padding-bottom: 10px; /* Espace entre texte et ligne */
-  display: inline-block; /* La ligne ne fait que la largeur du mot */
+  border-bottom: 1px solid rgba(162, 12, 12, 0.3);
+  padding-bottom: 10px;
+  display: inline-block;
 }
 .skills-section .skill-col ul {
-  list-style: none; /* Enlève les puces (points) par défaut */
-  padding: 0; /* Enlève le décalage à gauche */
+  list-style: none;
+  padding: 0;
   margin: 0;
 }
 .skills-section .skill-col ul li {
   font-size: 1.4rem;
   margin-bottom: 12px;
   font-weight: 400;
-  opacity: 0.9; /* Légèrement transparent au repos */
-  transition: transform 0.2s, opacity 0.2s; /* Animation fluide pour le hover */
-  cursor: default; /* Curseur normal (flèche) */
+  opacity: 0.9;
+  transition: transform 0.2s, opacity 0.2s;
+  cursor: default;
 }
 .skills-section .skill-col ul li:hover {
-  transform: translateX(10px); /* Déplace le texte de 10px vers la droite */
-  opacity: 1; /* Devient totalement opaque */
-  font-weight: 500; /* Devient un peu plus gras */
+  transform: translateX(10px);
+  opacity: 1;
+  font-weight: 500;
 }
 
 .cta-container {
   display: flex;
-  justify-content: flex-end; /* Aligne le contenu tout à droite */
+  justify-content: flex-end;
 }
 .cta-container .cta-link {
-  font-size: 4rem; /* Très gros texte cliquable */
+  font-size: 4rem;
   font-weight: 600;
-  text-decoration: none; /* Enlève le soulignement par défaut des liens */
+  text-decoration: none;
   color: #A20C0C;
-  border-bottom: 3px solid transparent; /* Bordure invisible pour préparer l'animation */
-  transition: all 0.3s ease; /* Transition douce de 0.3s */
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
   line-height: 1;
   letter-spacing: -2px;
 }
 .cta-container .cta-link:hover {
-  border-bottom: 3px solid #A20C0C; /* La bordure devient visible (rouge) */
-  padding-bottom: 10px; /* Ajoute un peu d'espace pour l'esthétique */
+  border-bottom: 3px solid #A20C0C;
+  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 1024px) {
   .main-about {
     padding: 0 20px;
-  }
+    margin-top: 100px;
+  } /* Plus de padding en haut */
   .page-header .titre {
     font-size: 4rem;
     text-align: center;
     margin-left: 0;
   }
   .bio-container {
-    flex-direction: column; /* Passe de horizontal (ligne) à vertical (colonne) */
-    gap: 30px; /* Réduit l'espace entre les éléments */
-    /* Réduit le sous-titre */
-    /* Réduit le texte */
+    flex-direction: column;
+    gap: 30px;
   }
   .bio-container .subtitle {
     font-size: 2.2rem;
@@ -149,27 +132,22 @@ body {
     font-size: 1.2rem;
   }
   .skills-grid {
-    grid-template-columns: 1fr; /* Passe de 3 colonnes à 1 seule colonne (tout empilé) */
-    gap: 50px; /* Augmente l'espace vertical entre les catégories */
+    display: flex; /* On passe en Flexbox vertical */
+    flex-direction: column; /* Empilement vertical */
+    gap: 50px; /* Espace entre les blocs */
+  }
+  .skill-col {
+    width: 100%; /* Prend toute la largeur */
+  }
+  .skill-col ul li {
+    font-size: 1.2rem; /* Texte un peu plus petit */
+    white-space: normal; /* Autorise le retour à la ligne si besoin */
   }
   .cta-link {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
   }
   .cta-container {
     justify-content: center;
-  } /* Centre le conteneur */
-}
-.footer button {
-  position: fixed; /* Fixe le bouton par rapport à l'écran (ne bouge pas au scroll) */
-  bottom: 12px; /* À 12px du bas */
-  left: 24px; /* À 24px de la gauche */
-  z-index: 3000; /* S'assure qu'il est au-dessus de tout le reste */
-  display: flex;
-  height: 24px;
-  background: none; /* Pas de fond */
-  border: none; /* Pas de bordure */
-  font-weight: 700; /* Gras */
-  margin: 0;
-  cursor: pointer; /* Curseur main au survol */
+  }
 }/*# sourceMappingURL=about.css.map */
