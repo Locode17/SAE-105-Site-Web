@@ -6,7 +6,6 @@
   <title>Loïc Teste – Webdesigner</title>
   <link rel="stylesheet" href="style.css">
   <style>
-  /* Transitions de base (inline pour éviter le flash au chargement) */
   .image, .image img {
     transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.4s ease;
     will-change: transform, opacity;
@@ -26,6 +25,7 @@
 <body class="home-page">
 
 <div class="container">
+  
   <header class="header">
     <div class="header-left">
       <p class="name">loïc teste</p>
@@ -33,68 +33,73 @@
       <p>webdesigner</p>
     </div>
 
+    <div class="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <nav class="header-center">
       <a href="projects.html">projets</a>
       <a href="about.html">à propos</a>
     </nav>
-
     <div class="header-right">
       <a href="contact.html"><strong>contact</strong></a>
+    </div>
+
+    <div class="mobile-nav-overlay">
+        <nav class="mobile-links">
+            <a href="index.html">Accueil</a>
+            <a href="projects.html">Projets</a>
+            <a href="about.html">À Propos</a>
+            <a href="contact.html">Contact</a>
+        </nav>
     </div>
   </header>
 
   <main class="main">
-    
     <div class="gallery-track">
-        
         <div class="image">
           <a class="image-link" href="project1.html" aria-label="Voir le projet">
             <img src="image1.png" alt="Projet 1">
             <span>[ 1 ] Moulin Neuf</span>
           </a>
         </div>
-
         <div class="image">
           <a class="image-link" href="project2.html" aria-label="Voir le projet">
             <img src="image2.png" alt="Projet 2">
             <span>[ 2 ] Identité Visuelle</span>
           </a>
         </div>
-
         <div class="image">
           <a class="image-link" href="project3.html" aria-label="Voir le projet">
             <img src="image3.png" alt="Projet 3">
             <span>[ 3 ] Application Mobile</span>
           </a>
         </div>
-
         <div class="image">
           <a class="image-link" href="project4.html" aria-label="Voir le projet">
             <img src="image4.png" alt="Projet 4">
             <span>[ 4 ] Site Vitrine</span>
           </a>
         </div>
-
         <div class="image">
           <a class="image-link" href="project5.html" aria-label="Voir le projet">
             <img src="image5.jpg" alt="Projet 5">
             <span>[ 5 ] Branding</span>
           </a>
         </div>
-
         <div class="image">
           <a class="image-link" href="project6.html" aria-label="Voir le projet">
             <img src="image6.jpg" alt="Projet 6">
             <span>[ 6 ] Photographie</span>
           </a>
         </div>
-
     </div>
 
     <div class="progress-container">
         <div class="progress-bar"></div>
     </div>
-
   </main>
 
   <footer class="footer">
@@ -105,5 +110,5 @@
 
 <script src="slidedroite.js"></script>
 <script src="langue.js"></script>
-</body>
+<script src="burger.js"></script> </body>
 </html>

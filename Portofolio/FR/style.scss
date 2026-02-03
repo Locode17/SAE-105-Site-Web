@@ -1,57 +1,39 @@
 /* =========================================
    VARIABLES (La palette de style)
-   Si tu changes une valeur ici, elle change partout sur le site.
    ========================================= */
-$police : "General Sans Variable", "Arial", sans-serif; /* Police principale, puis secours */
-$background : #D6E6D4; /* Vert pâle (Fond) */
-$foreground : #A20C0C; /* Rouge foncé (Texte et éléments) */
+$police : "General Sans Variable", "Arial", sans-serif;
+$background : #D6E6D4; 
+$foreground : #A20C0C; 
 
 /* =========================================
    RÉINITIALISATION & BASES
    ========================================= */
-
-/* Le sélecteur * cible TOUS les éléments de la page */
 *{
-    background-color: $background; /* Tout prend la couleur de fond par défaut */
-    color: $foreground;            /* Tout le texte prend la couleur rouge */
-    
-    /* box-sizing: border-box est essentiel : cela fait en sorte que les bordures 
-       et les paddings sont inclus dans la largeur (width) des éléments. 
-       Cela évite d'exploser la mise en page. */
+    background-color: $background; 
+    color: $foreground; 
     box-sizing: border-box; 
-    
-    /* Lissage des polices pour un rendu plus net sur Mac/iOS */
     -webkit-font-smoothing: antialiased; 
 }
 
 html, body {
-    margin: 0;      /* Enlève les marges par défaut du navigateur */
-    padding: 0;     /* Enlève les espaces internes par défaut */
-    font-family: $police; /* Applique la variable de police définie plus haut */
-    overflow-x: hidden;   /* Empêche le défilement horizontal involontaire sur tout le site */
+    margin: 0; padding: 0; 
+    font-family: $police; 
+    overflow-x: hidden; 
     width: 100%;
 }
 
 /* =========================================
-   GESTION DU HEADER FIXE & SCROLL
+   HEADER FIXE & SCROLL
    ========================================= */
-
-/* On ajoute un padding-top au body car le header est en "position: fixed".
-   Sans ça, le haut du contenu serait caché DERRIÈRE le header. */
 body {
     padding-top: 110px; 
 }
 
-/* SPÉCIFIQUE ACCUEIL (body.home-page) */
-/* Sur l'accueil, on veut souvent un effet "App" sans scroll vertical classique */
 body.home-page {
-    overflow: hidden; /* Coupe le scroll vertical (probablement pour un slider horizontal) */
-    height: 100%;     /* Prend toute la hauteur de la fenêtre */
-    
-    /* Empêche l'effet de rebond (rubber-banding) sur Mac/Mobile */
+    overflow: hidden; 
+    height: 100%; 
     overscroll-behavior-x: contain; 
-    
-    padding-top: 0; /* Pas besoin de marge interne sur l'accueil spécifique */
+    padding-top: 0; 
 }
 
 /* =========================================
@@ -60,147 +42,100 @@ body.home-page {
 .header{
     font-weight: bold;
     font-size: 16px;
-    
-    /* Flexbox permet d'aligner Gauche - Centre - Droite facilement */
     justify-content: space-between; 
     display: flex; 
-    
     width: 100%;
-    padding: 12px 24px; /* Espace interne : 12px haut/bas, 24px gauche/droite */
+    padding: 12px 24px; 
     
-    /* Le header reste collé en haut de l'écran quand on scroll */
     position: fixed; 
     top: 0;
     left: 0;
-    
-    /* Z-index très élevé pour passer au-dessus de tout le reste (images, textes) */
     z-index: 2000; 
-    
-    background-color: $background; /* Fond opaque pour cacher ce qui passe dessous */
-    
-    /* --- PARTIE GAUCHE DU HEADER --- */
+    background-color: $background; 
+
+    /* HEADER GAUCHE */
     .header-left{
         display: flex;
-        flex-direction: column; /* Les éléments s'empilent verticalement */
-        justify-content: center; /* Centré verticalement */
+        flex-direction: column; 
+        justify-content: center; 
         width: 160px;
         height: 78px;
-        line-height: 24px; /* Hauteur de ligne pour le texte */
-        
-        p{ margin:0; margin-left: 0px; } /* Enlève les marges par défaut des paragraphes */
-        a{ text-decoration: none; }      /* Enlève le soulignement des liens */
+        line-height: 24px; 
+        p{ margin:0; margin-left: 0px; }
+        a{ text-decoration: none; } 
     }
 
-    /* --- PARTIE CENTRALE DU HEADER (MENU) --- */
+    /* HEADER CENTRE (Desktop) */
     .header-center{
         display: flex;
-        justify-content: center; /* Centre le menu au milieu de la barre */
-        gap: 54px; /* Espace de 54px entre chaque lien du menu */
-        flex: 1;   /* Prend tout l'espace disponible restant */
-        
+        justify-content: center; 
+        gap: 54px; 
+        flex: 1; 
         a{
             text-decoration: none;
             font-weight: bold;
-            transition: opacity 0.2s ease; /* Animation douce pour le survol */
-            
-            /* Quand on passe la souris dessus, l'opacité baisse (effet visuel) */
+            transition: opacity 0.2s ease; 
             &:hover{ opacity: 0.6; } 
         }
     }
 
-    /* --- PARTIE DROITE DU HEADER --- */
+    /* HEADER DROITE (Desktop) */
     .header-right{
         display: flex;
         flex-direction: column;
         width: 185px;
-        text-align: right; /* Aligne le texte à droite */
+        text-align: right; 
         a{ text-decoration: none; font-weight: bold; }
     }
 }
 
-/* =========================================
-   RESPONSIVE (TABLETTES & MOBILES)
-   Quand l'écran fait moins de 900px de large
-   ========================================= */
-@media screen and (max-width: 900px) {
-    /* On augmente l'espace en haut car le header va devenir plus grand (empilé) */
-    body { padding-top: 180px; }
-    body.home-page { padding-top: 0; }
+/* BURGER MENU & OVERLAY (Cachés par défaut sur Desktop) */
+.burger-menu { display: none; }
+.mobile-nav-overlay { display: none; }
 
-    .header {
-        flex-direction: column; /* Le menu passe en vertical (empilé) au lieu d'horizontal */
-        align-items: center;    /* Tout est centré */
-        gap: 10px;              /* Petit espace entre les blocs */
-        padding-bottom: 20px;
-        height: auto;           /* La hauteur s'adapte au contenu */
-        background-color: $background;
-        
-        /* On force les blocs gauche/centre/droite à prendre toute la largeur */
-        .header-left, .header-center, .header-right {
-            width: 100%;
-            text-align: center;
-            align-items: center;
-        }
-        /* On réduit l'espacement entre les liens du menu sur mobile */
-        .header-center { gap: 30px; }
-    }
-}
 
 /* =========================================
    GALERIE D'IMAGES (ACCUEIL)
-   Probablement un carrousel horizontal (slider)
    ========================================= */
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre verticalement le contenu */
-    height: 100vh;           /* Prend 100% de la hauteur de l'écran */
+    justify-content: center; 
+    height: 100vh; 
     position: relative;
     padding-bottom: 0;
     margin-top: 0;
 }
 
-/* Le "rail" qui contient toutes les images alignées côte à côte */
 .gallery-track {
     display: flex;
-    flex-direction: row; /* Alignement horizontal */
-    gap: 40px;           /* Espace entre les images */
-    align-items: center; /* Centre les images verticalement dans le rail */
-    
-    /* Décalage vers la gauche pour créer un style visuel décentré au démarrage */
+    flex-direction: row; 
+    gap: 40px; 
+    align-items: center; 
     margin-left: -190px; 
     padding-left: 0;
     width: 100%;
     height: 600px;
-    overflow: visible; /* Laisse dépasser les images hors du conteneur */
+    overflow: visible; 
 }
 
-/* Style des cartes images individuelles */
 .gallery-track .image, .image-clone {
     position: relative;
-    flex: 0 0 auto; /* Empêche l'image de rétrécir, elle garde sa taille fixe */
-    
-    /* !important force ces dimensions même si une autre règle dit le contraire */
+    flex: 0 0 auto; 
     width: 380px !important; 
     height: 520px !important;  
+    opacity: 0.6; 
+    transition: opacity 0.4s ease; 
+    cursor: pointer; 
     
-    opacity: 0.6;   /* Semi-transparent par défaut */
-    transition: opacity 0.4s ease; /* Transition douce pour l'opacité */
-    cursor: pointer; /* Le curseur devient une main */
-    
-    /* Au survol, l'image devient totalement opaque (claire) */
     &:hover { opacity: 1; }
 
-    /* L'image elle-même à l'intérieur du bloc */
     img {
         display: block;
         width: 100%;
-        /* Hauteur moins 30px pour laisser la place au texte en dessous */
         height: calc(100% - 30px) !important; 
-        object-fit: cover; /* L'image remplit le bloc sans être déformée (zoomée/rognée) */
+        object-fit: cover; 
     }
-
-    /* Le texte (titre) sous l'image */
     span {
         display: block;
         text-align: left;
@@ -210,43 +145,24 @@ body.home-page {
     }
 }
 
-/* Responsive pour la galerie (Mobiles) */
-@media screen and (max-width: 768px) {
-    /* On ajuste le décalage et l'espacement */
-    .gallery-track { margin-left: -50px; gap: 20px; }
-    
-    /* On réduit la taille des images sur petit écran */
-    .gallery-track .image, .image-clone { width: 280px !important; height: 400px !important; }
-}
-
 /* =========================================
    BARRE DE PROGRESSION
-   Indicateur visuel en bas de page
    ========================================= */
 .progress-container {
-    position: absolute; /* Position libre par rapport au parent .main */
-    bottom: 120px;      /* À 120px du bas */
-    left: 50%;          /* Placé à 50% de la largeur */
-    transform: translateX(-50%); /* Recentré parfaitement sur son propre axe */
+    position: absolute; 
+    bottom: 120px; 
+    left: 50%; 
+    transform: translateX(-50%); 
     width: 300px; 
     height: 4px;
-    background-color: rgba(162, 12, 12, 0.2); /* Fond rouge très transparent */
-    border-radius: 2px; /* Bords arrondis */
+    background-color: rgba(162, 12, 12, 0.2); 
+    border-radius: 2px; 
 }
-
-/* Ajustement position barre sur mobile */
-@media screen and (max-width: 768px) {
-    .progress-container { bottom: 80px; width: 200px; }
-}
-
-/* La barre qui se remplit (animée surement via Javascript qui change le width %) */
 .progress-bar {
     height: 100%;
-    background-color: $foreground; /* Couleur rouge pleine */
-    width: 0%; /* Vide au départ */
-    border-radius: 2px;
-    
-    /* cubic-bezier donne une animation de vitesse fluide (rapide puis lent) */
+    background-color: $foreground; 
+    width: 0%; 
+    border-radius: 2px; 
     transition: width 0.4s cubic-bezier(.2,.8,.2,1); 
 }
 
@@ -254,15 +170,113 @@ body.home-page {
    FOOTER (BOUTON FIXE)
    ========================================= */
 .footer button{
-    position: fixed; /* Reste toujours visible en bas à gauche */
+    position: fixed; 
     bottom: 12px;
     left: 24px;
-    z-index: 3000;   /* Au-dessus de tout, même du header */
+    z-index: 3000; 
     display: flex;
     height: 24px;
-    background: none; /* Pas de fond */
-    border: none;     /* Pas de bordure */
+    background: none; 
+    border: none; 
     font-weight: 700;
     margin: 0;
     cursor: pointer;
+}
+
+/* =========================================
+   RESPONSIVE & MENU BURGER (< 900px)
+   ========================================= */
+@media screen and (max-width: 900px) {
+    
+    // 1. Ajustements généraux
+    body { padding-top: 0; } // Le header n'est plus "empilé", on gère différemment
+    .main-about, .main-projects, .main-contact, .detail-container { margin-top: 100px; } // Espace pour le contenu
+    
+    // 2. Header Mobile : On garde le Logo, on cache le reste
+    .header {
+        height: 80px;
+        align-items: center;
+        padding: 0 20px;
+        
+        .header-left { width: auto; height: auto; p { font-size: 1.1rem; } }
+        
+        // CACHER LA NAV DESKTOP
+        .header-center, .header-right { display: none !important; }
+    }
+
+    // 3. Bouton Burger (Apparaît maintenant)
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 4000; /* Toujours au-dessus de tout */
+        position: absolute;
+        right: 24px;
+        top: 30px; 
+
+        span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: $foreground;
+            transition: all 0.3s ease;
+        }
+    }
+
+    // 4. Overlay Menu (Le fond vert qui s'ouvre)
+    .mobile-nav-overlay {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $background;
+        z-index: 3500;
+        
+        transform: translateX(100%); /* Caché à droite par défaut */
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+            
+            a {
+                font-family: $police;
+                font-size: 2.5rem;
+                font-weight: 700;
+                text-decoration: none;
+                color: $foreground;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    // 5. État "OUVERT" (quand on clique sur le burger)
+    body.menu-open {
+        overflow: hidden; // Bloque le scroll
+
+        .burger-menu {
+            span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+            span:nth-child(2) { opacity: 0; }
+            span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+        }
+
+        .mobile-nav-overlay {
+            transform: translateX(0); // Le menu arrive
+        }
+    }
+
+    // Ajustements Galerie Mobile
+    .gallery-track { margin-left: -50px; gap: 20px; }
+    .gallery-track .image, .image-clone { width: 280px !important; height: 400px !important; }
+    .progress-container { bottom: 80px; width: 200px; }
 }
