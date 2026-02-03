@@ -3,97 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loïc Teste – Webdesigner</title>
+  <title>Loïc Teste – Projects</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="projects.css">
 </head>
 <body>
     <div class="container">
-  <!-- HEADER -->
-  <header class="header">
+      
+      <header class="header">
+        <div class="header-left">
+            <a href="index.html">
+                <p class="name">loïc teste</p>
+                <p>—</p>
+                <p>web designer</p>
+            </a>
+        </div>
+        <nav class="header-center">
+          <a href="projects.html">projects</a>
+          <a href="about.html">about</a>
+        </nav>
+        <div class="header-right">
+          <a href="contact.html"><strong>contact</strong></a>
+        </div>
+      </header>
 
-    <div class="header-left">
-    <a href="index.html">
-      <p class="name">loïc teste</p>
-      <p>—</p>
-      <p>webdesigner</p>
-    </a>
+      <main class="main-projects">
+          
+          <div class="page-header">
+            <h1 class="titre">[PROJECTS]</h1>
+          </div>
+
+          <div class="scroll-down-btn" id="bouton-fleche">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+          </div>
+
+          <div class="projects-grid" id="la-grille">
+
+              <article class="project-card">
+                  <a href="project1.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image1.png" alt="Project 1">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 1</h2>
+                              <span class="project-year">2026</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Coworking spaces,<br>offices</p>
+                              <span class="project-tag">Web Design</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+              <article class="project-card">
+                  <a href="project2.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image2.png" alt="Project 2">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 2</h2>
+                              <span class="project-year">2026</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Full visual<br>identity</p>
+                              <span class="project-tag">Branding</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+              <article class="project-card">
+                  <a href="project3.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image3.png" alt="Project 3">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 3</h2>
+                              <span class="project-year">2025</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Mobile<br>App</p>
+                              <span class="project-tag">UI/UX</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+              <article class="project-card">
+                  <a href="project4.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image4.png" alt="Project 4">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 4</h2>
+                              <span class="project-year">2025</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Showcase site<br>Architecture</p>
+                              <span class="project-tag">Dev</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+              <article class="project-card">
+                  <a href="project5.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image5.jpg" alt="Project 5">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 5</h2>
+                              <span class="project-year">2024</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Ad<br>Campaign</p>
+                              <span class="project-tag">Print</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+              <article class="project-card">
+                  <a href="project6.html" class="card-link">
+                      <div class="card-image">
+                          <img src="image6.jpg" alt="Project 6">
+                      </div>
+                      <div class="card-content">
+                          <div class="card-top-info">
+                              <h2 class="project-title">Project<br>Name 6</h2>
+                              <span class="project-year">2024</span>
+                          </div>
+                          <div class="card-bottom-info">
+                              <p class="project-role">Urban<br>Photography</p>
+                              <span class="project-tag">Photo</span>
+                          </div>
+                      </div>
+                  </a>
+              </article>
+
+          </div>
+      </main>
+
+      <footer class="footer">
+        <button>en ▼</button>
+      </footer>
     </div>
 
-    <nav class="header-center">
-      <a href="projects.html">projects</a>
-      <a href="about.html">about</a>
-    </nav>
-
-    <div class="header-right">
-      <strong>contact</strong>
-      <p class="email">loicteste79@gmail.com</p>
-      <p class="insta">Insta : loic.tst</p>
-    </div>
-
-  </header>
-
-  <div class="projects">
-    <p class="titre">[PROJECTS]</p>
-  </div>
-
- <!-- MAIN -->
-  <main class="main">
-
-    <!-- Grande image gauche -->
-    <div class="image big">
-      <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-        <img src="image1.png" alt="Portfolio image 1">
-        <span>[ 1 ] projet</span>
-      </a>
-    </div>
-
-    <!-- Grille droite -->
-    <div class="grid">
-
-      <div class="image wide">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image3.png" alt="Portfolio image 2">
-          <span>[ 2 ] projet</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image4.png" alt="Portfolio image 3">
-          <span>[ 3 ] projet</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image2.png" alt="Portfolio image 4">
-          <span>[ 4 ] projet</span>
-        </a>
-      </div>
-
-    <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image5.jpg" alt="Portfolio image 5">
-          <span>[ 5 ] projet</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image6.jpg" alt="Portfolio image 6">
-          <span>[ 6 ] projet</span>
-        </a>
-      </div>
-
-    </div>
-
-
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <button>fr ▼</button>
-
-</body>
+<script src="slidedroite.js"></script>
 <script src="langue.js"></script>
-  </footer>
+<script src="scroll.js"></script>
+</body>
+</html>

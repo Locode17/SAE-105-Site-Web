@@ -3,51 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loïc Teste – Webdesigner</title>
+  <title>Loïc Teste – Web Designer</title>
   <link rel="stylesheet" href="style.css">
   <style>
-  /* Minimal transition helpers for the slide effect */
-  .image,
-  .image img {
-    transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.45s cubic-bezier(.2,.8,.2,1), width 0.6s ease, height 0.6s ease;
+  /* Transitions de base */
+  .image, .image img {
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.4s ease;
     will-change: transform, opacity;
     backface-visibility: hidden;
   }
   .image-link {
     display: block;
     width: 100%;
+    height: 100%;
     color: inherit;
     text-decoration: none;
-    height: 100%;
   }
   .image-link img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .slide-btn {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    border: none;
-    padding: 12px 14px;
-    font-size: 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    z-index: 999;
-  }
   </style>
-  <script src="chargement.js"></script>
 </head>
-<body>
+
+<body class="home-page">
 
 <div class="container">
-  <!-- HEADER -->
   <header class="header">
-
     <div class="header-left">
       <p class="name">loïc teste</p>
       <p>—</p>
-      <p>webdesigner</p>
+      <p>web designer</p>
     </div>
 
     <nav class="header-center">
@@ -56,76 +39,71 @@
     </nav>
 
     <div class="header-right">
-      <strong>contact</strong>
-      <p class="email">loicteste79@gmail.com</p>
-      <p class="insta">Insta : loic.tst</p>
+      <a href="contact.html"><strong>contact</strong></a>
     </div>
-
   </header>
 
-
-  <!-- MAIN -->
   <main class="main">
-
-    <!-- Grande image gauche -->
-    <div class="image big">
-      <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-        <img src="image1.png" alt="Portfolio image 1">
-        <span>[ 1 ]</span>
-      </a>
-    </div>
-
-    <!-- Grille droite -->
-    <div class="grid">
-
-      <div class="image wide">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image2.png" alt="Portfolio image 2">
-          <span>[ 2 ]</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image3.png" alt="Portfolio image 3">
-          <span>[ 3 ]</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image4.png" alt="Portfolio image 4">
-          <span>[ 4 ]</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image5.jpg" alt="Portfolio image 5">
-          <span>[ 5 ]</span>
-        </a>
-      </div>
-
-      <div class="image">
-        <a class="image-link" href="moreprojects.html" aria-label="Voir plus de projets">
-          <img src="image6.jpg" alt="Portfolio image 6">
-          <span>[ 6 ]</span>
-        </a>
-      </div>
-
-    </div>
-
     
+    <div class="gallery-track">
+        
+        <div class="image">
+          <a class="image-link" href="project1.html" aria-label="View project">
+            <img src="image1.png" alt="Project 1">
+            <span>[ 1 ] Moulin Neuf</span>
+          </a>
+        </div>
+
+        <div class="image">
+          <a class="image-link" href="project2.html" aria-label="View project">
+            <img src="image2.png" alt="Project 2">
+            <span>[ 2 ] Visual Identity</span>
+          </a>
+        </div>
+
+        <div class="image">
+          <a class="image-link" href="project3.html" aria-label="View project">
+            <img src="image3.png" alt="Project 3">
+            <span>[ 3 ] Mobile App</span>
+          </a>
+        </div>
+
+        <div class="image">
+          <a class="image-link" href="project4.html" aria-label="View project">
+            <img src="image4.png" alt="Project 4">
+            <span>[ 4 ] Showcase Site</span>
+          </a>
+        </div>
+
+        <div class="image">
+          <a class="image-link" href="project5.html" aria-label="View project">
+            <img src="image5.jpg" alt="Project 5">
+            <span>[ 5 ] Branding</span>
+          </a>
+        </div>
+
+        <div class="image">
+          <a class="image-link" href="project6.html" aria-label="View project">
+            <img src="image6.jpg" alt="Project 6">
+            <span>[ 6 ] Photography</span>
+          </a>
+        </div>
+
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
 
   </main>
 
-
-  <!-- FOOTER -->
   <footer class="footer">
-    <button>fr ▼</button>
+    <button>en ▼</button>
   </footer>
 
-</body>
+</div>
+
 <script src="slidedroite.js"></script>
 <script src="langue.js"></script>
+</body>
 </html>

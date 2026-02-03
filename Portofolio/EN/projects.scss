@@ -1,73 +1,331 @@
-//constante
-$police : "General Sans Variable";
-$background : #D6E6D4;
-$foreground : #A20C0C;
+/* =========================================
+   VARIABLES GLOBALES
+   ========================================= */
+$police : "General Sans Variable", "Arial", sans-serif;
+$background : #D6E6D4; /* Vert pâle */
+$foreground : #A20C0C; /* Rouge foncé */
 
+/* =========================================
+   RESET & BASES
+   ========================================= */
 *{
     background-color: $background;
-    color: #A20C0C;
+    color: $foreground;
+    /* Important : inclut les bordures et paddings dans le calcul de la largeur totale */
+    box-sizing: border-box; 
 }
 
+body { 
+    margin: 0; 
+    font-family: $police; 
+}
 
-.projects{
+/* =========================================
+   LAYOUT PRINCIPAL (Conteneur)
+   ========================================= */
+.main-projects {
+    padding: 0 40px;      /* Espace sur les côtés */
+    width: 100%;
+    max-width: 1400px;    /* Empêche le contenu de s'étirer à l'infini sur les écrans géants */
+    margin: 0 auto;       /* Centre le bloc au milieu de la page */
+    margin-bottom: 150px; /* Espace en bas pour ne pas coller au footer */
+}
+
+/* =========================================
+   TITRE DE LA PAGE
+   ========================================= */
+.page-header {
+    margin-top: 40px;
+    margin-bottom: 60px; 
+    
+    /* GESTION DE LA SUPERPOSITION (Z-INDEX)
+       Position relative est nécessaire pour que z-index fonctionne.
+       z-index: 1000 place ce titre au-dessus des éléments standards (0),
+       mais en dessous du menu header fixe (qui était à 2000 dans le fichier précédent).
+    */
+    position: relative;
+    z-index: 1000; 
+    
+    .titre {
+        font-size: 8rem;      /* Titre immense */
+        font-weight: 600; 
+        letter-spacing: -4px; /* Resserre fortement les lettres pour un style compact */
+        margin: 0;
+        line-height: 1;       /* Hauteur de ligne minimale */
+        text-transform: uppercase;
+    }
+}
+
+/* =========================================
+   BOUTON DE SCROLL (Flèche qui rebondit)
+   ========================================= */
+.scroll-down-btn {
+    position: fixed;   /* Reste toujours visible même quand on scrolle (au début) */
+    bottom: 40px;      /* Collé en bas */
+    left: 50%;         /* Placé au milieu... */
+    transform: translateX(-50%); /* ...et recentré parfaitement sur son axe */
+    z-index: 9999;     /* Tout en haut de la pile, par-dessus tout */
+    
+    width: 60px;
+    height: 60px;
+    border: 2px solid $foreground;
+    border-radius: 50%; /* Rend le bouton parfaitement rond */
+    
     display: flex;
-    margin-left: 132px;
+    justify-content: center; /* Centre la flèche horizontalement */
+    align-items: center;     /* Centre la flèche verticalement */
+    
+    cursor: pointer;
+    pointer-events: auto;
+    background-color: $background; 
+    
+    /* Animation fluide pour la couleur et le mouvement */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+    /* Lance l'animation "bounce" définie plus bas, dure 2s, en boucle */
+    animation: bounce 2s infinite;
 
+    /* Style de l'icône SVG à l'intérieur */
+    svg { width: 24px; height: 24px; stroke: $foreground; }
+    
+    /* Au survol : fond légèrement coloré et on met l'animation en pause */
+    &:hover { 
+        background-color: rgba($foreground, 0.1); 
+        animation-play-state: paused; 
+    }
 }
-.titre{
+
+/* DÉFINITION DE L'ANIMATION DE REBOND */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} /* Position initiale */
+    40% {transform: translateX(-50%) translateY(-10px);} /* Monte de 10px */
+    60% {transform: translateX(-50%) translateY(-5px);}  /* Monte de 5px */
+}
+
+/* =========================================
+   GRILLE DES PROJETS
+   ========================================= */
+.projects-grid {
     display: flex;
-    width: 516px;
-    height: 122px;
-    margin-top: 38px;
-    font-size: 5em;
-    font-weight: 300;
+    flex-direction: column; /* Les projets s'empilent verticalement de base */
+    width: 100%;
+    padding-top: 40px;
 }
 
-/* Images layout */
-
-/* Grande image gauche */
-.image.big {
-  width: 345px;
-  height: 320px;
-}
-
-
-/* Bloc droite */
-.grid {
-  display: flex;
-  gap: 12px;
-  margin-top: 90px; 
-}
-
-/* 3e image */
-.image.wide {
-  height: 280px;
-  transform: translateY(-160px);
-}
-
-/* 3e image */
-.grid .image:nth-child(2) {
-  height: 440px;
-  transform: translateY(-124px);
-}
-
-/* 4e image */
-.grid .image:nth-child(3) {
-  height: 240px;
-  transform: translateY(-200px);
-}
-
-.image span{
-    font-size: 16px;
-    font-weight: 300;
+/* =========================================
+   CARTE PROJET INDIVIDUELLE
+   ========================================= */
+.project-card {
+    width: 45%; /* La carte prend un peu moins de la moitié de la largeur */
+    border: 2px solid $foreground;
+    padding: 30px;
+    background-color: $background;
+    
     display: flex;
+    flex-direction: column;
+    
+    /* Transition douce quand la carte bouge ou que l'ombre change */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    
+    /* Position relative pour gérer la superposition */
+    position: relative; 
+    z-index: 900; 
+
+    /* EFFET DE SURVOL (HOVER) */
+    &:hover {
+        transform: translateY(-8px); /* La carte remonte légèrement */
+        z-index: 1100; /* Elle passe au premier plan (devant les autres cartes si chevauchement) */
+        box-shadow: 0 10px 30px rgba(162, 12, 12, 0.1); /* Ombre portée */
+        
+        /* Zoom léger sur l'image à l'intérieur */
+        .card-image img { transform: scale(1.03); }
+    }
 }
 
+/* =========================================
+   LOGIQUE ZIG-ZAG (Desktop uniquement)
+   C'est ici que la magie opère pour le décalage
+   ========================================= */
+@media screen and (min-width: 901px) {
+    /* Les cartes impaires (1, 3, 5...) s'alignent à GAUCHE */
+    .project-card:nth-child(odd) { align-self: flex-start; }
+    
+    /* Les cartes paires (2, 4, 6...) s'alignent à DROITE */
+    .project-card:nth-child(even) { align-self: flex-end; }
+    
+    /* À partir de la 2ème carte, on ajoute une marge négative vers le haut.
+       Cela fait remonter la carte pour qu'elle chevauche celle du dessus */
+    .project-card:not(:first-child) { margin-top: -250px; }
+}
 
+/* Liens globaux de la carte */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* CONTENEUR IMAGE */
+.card-image {
+    width: 100%;
+    aspect-ratio: 4/5; /* Force un format vertical constant (Portrait) */
+    overflow: hidden;  /* Cache ce qui dépasse si on zoome */
+    margin-bottom: 30px;
+    
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Remplit tout l'espace sans déformation */
+        transition: transform 0.6s ease; /* Animation lente pour le zoom */
+    }
+}
+
+/* CONTENU TEXTE DE LA CARTE */
+.card-content { display: flex; flex-direction: column; gap: 30px; }
+
+.card-top-info {
+    display: flex;
+    justify-content: space-between; /* Titre à gauche, Année à droite */
+    align-items: flex-end;          /* Alignés sur le bas */
+    
+    .project-title { 
+        font-size: 3em; 
+        font-weight: 400; 
+        line-height: 0.9; 
+        margin: 0; 
+        letter-spacing: -1px; 
+    }
+    .project-year { font-size: 1.2em; font-weight: 700; margin-bottom: 6px; }
+}
+
+.card-bottom-info {
+    display: flex;
+    justify-content: space-between; /* Rôle à gauche, Tag à droite */
+    align-items: flex-end;
+    
+    .project-role { font-size: 1.1em; font-weight: 700; margin: 0; line-height: 1.3; max-width: 70%; }
+    .project-tag { font-size: 0.9em; font-weight: 400; text-transform: uppercase; opacity: 0.8; }
+}
+
+/* =========================================
+   RESPONSIVE (TABLETTES & MOBILES)
+   On annule le Zig-Zag pour une colonne simple
+   ========================================= */
+@media screen and (max-width: 900px) {
+    .main-projects { padding: 0 20px; margin-bottom: 50px; }
+    .page-header .titre { font-size: 4rem; letter-spacing: -2px; }
+    
+    .projects-grid { gap: 40px; } /* Espace simple entre les cartes */
+    
+    .project-card { 
+        width: 100%; /* La carte prend toute la largeur */
+        align-self: center !important; /* On annule le flex-start/end */
+        margin-top: 0 !important; /* On annule la marge négative (plus de chevauchement) */
+    }
+    
+    .card-top-info .project-title { font-size: 2.5em; }
+    
+    /* On cache le bouton de scroll sur mobile (souvent gênant) */
+    .scroll-down-btn { display: none; }
+}
+
+/* =========================================
+   FOOTER (BOUTON FIXE)
+   Identique au fichier précédent
+   ========================================= */
 .footer button{
     position: fixed;
     bottom: 12px;
-    left: 12px;
+    left: 24px;
+    z-index: 3000;
+    display: flex;
+    height: 24px;
+    background: none;
+    border: none;
+    font-weight: 700;
     margin: 0;
-    z-index: 10;
+    cursor: pointer;
+}
+
+/* =========================================
+   PAGE DÉTAIL D'UN PROJET
+   Style pour la page single.html
+   ========================================= */
+.detail-container { 
+    max-width: 1000px; 
+    margin: 0 auto;     /* Centré */
+    padding: 0 40px; 
+    margin-bottom: 100px; 
+    margin-top: 60px; 
+}
+
+/* Navigation retour */
+.back-nav { margin-bottom: 60px; }
+.back-link { 
+    font-size: 1.2em; 
+    font-weight: 700; 
+    text-decoration: none; 
+    border-bottom: 1px solid transparent; /* Bordure invisible par défaut */
+    transition: border 0.3s; 
+    
+    /* Soulignement au survol */
+    &:hover { border-bottom: 1px solid $foreground; } 
+}
+
+/* En-tête du projet (Titre + Infos) */
+.project-hero { margin-bottom: 60px; margin-top: 20px; }
+
+.hero-title { 
+    font-size: 5em; 
+    font-weight: 300; 
+    margin: 0 0 30px 0; 
+    line-height: 1; 
+    text-transform: uppercase; 
+}
+
+/* Barre d'infos (Client, Année, Rôle...) */
+.hero-meta { 
+    display: flex; 
+    justify-content: space-between; 
+    border-top: 2px solid $foreground;    /* Ligne au-dessus */
+    border-bottom: 2px solid $foreground; /* Ligne en-dessous */
+    padding: 24px 0; 
+    font-weight: 700; 
+    font-size: 1.1em; 
+    flex-wrap: wrap; /* Permet aux infos de passer à la ligne si pas de place */
+    gap: 20px; 
+    text-transform: uppercase; 
+}
+
+/* Grande image de présentation */
+.main-image { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 60px 0; 
+    border: 2px solid $foreground; 
+}
+
+/* Texte descriptif */
+.project-text { 
+    font-size: 1.4em; 
+    line-height: 1.6; 
+    max-width: 800px; /* Limite la largeur pour que la lecture soit agréable */
+    font-weight: 400; 
+    p { margin-bottom: 24px; } 
+}
+
+/* Responsive pour la page détail */
+@media (max-width: 900px) {
+    .detail-container { padding: 0 20px; margin-top: 40px; }
+    .hero-title { font-size: 3em; }
+    
+    /* Les métadonnées passent en colonne */
+    .hero-meta { flex-direction: column; gap: 12px; padding: 20px 0; }
+    
+    .project-text { font-size: 1.2em; }
 }

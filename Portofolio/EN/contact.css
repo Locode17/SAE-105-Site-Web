@@ -1,0 +1,351 @@
+@charset "UTF-8";
+* {
+  background-color: #D6E6D4;
+  color: #A20C0C;
+  box-sizing: border-box; /* Inclut bordures et padding dans la taille des éléments */
+}
+
+body {
+  margin: 0;
+  font-family: "General Sans Variable", "Arial", sans-serif;
+  /* IMPORTANT : Le header étant "fixed" (fixe), il sort du flux du document.
+     Sans ce padding-top, le haut de ta page serait caché DERRIÈRE le header. */
+  padding-top: 110px;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 16px;
+  justify-content: space-between; /* Espace max entre gauche, centre et droite */
+  display: flex;
+  width: 100%;
+  padding: 12px 24px;
+  /* POSITIONNEMENT FIXE */
+  position: fixed; /* Le menu reste collé en haut même quand on scrolle */
+  top: 0;
+  left: 0;
+  z-index: 2000; /* S'assure que le menu passe AU-DESSUS de tout le reste */
+  background-color: #D6E6D4;
+}
+.header .header-left {
+  display: flex;
+  flex-direction: column; /* Les textes s'empilent verticalement */
+  justify-content: center;
+  width: 160px;
+  height: 78px;
+  line-height: 24px;
+  /* Enlève le soulignement du lien */
+}
+.header .header-left p {
+  margin: 0;
+  margin-left: 0px;
+}
+.header .header-left a {
+  text-decoration: none;
+}
+.header .header-center {
+  display: flex;
+  justify-content: center; /* Centre les liens horizontalement */
+  gap: 54px; /* Espace entre "projets" et "à propos" */
+  flex: 1; /* Prend tout l'espace disponible au milieu */
+}
+.header .header-center a {
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+  /* Légère transparence au survol */
+}
+.header .header-center a:hover {
+  opacity: 0.6;
+}
+.header .header-right {
+  display: flex;
+  flex-direction: column;
+  width: 185px;
+  text-align: right; /* Aligne le texte à droite */
+}
+.header .header-right a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+  /* On augmente le padding du body car le header va devenir plus haut sur mobile (empilé) */
+  body {
+    padding-top: 180px;
+  }
+  /* Exception pour la page d'accueil si elle a une classe spécifique */
+  body.home-page {
+    padding-top: 0;
+  }
+  .header {
+    flex-direction: column; /* Tout s'empile verticalement */
+    align-items: center; /* Tout est centré */
+    gap: 10px;
+    padding-bottom: 20px;
+    height: auto; /* La hauteur s'adapte au contenu */
+    background-color: #D6E6D4;
+  }
+  .header .header-left, .header .header-center, .header .header-right {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .header .header-center {
+    gap: 30px;
+  }
+}
+.main-contact {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px; /* Marges latérales */
+  width: 100%;
+  margin: 0 auto; /* Centre le conteneur */
+  margin-top: 40px;
+  max-width: 1400px; /* Largeur max pour grands écrans */
+}
+
+/* === STYLE DU GROS TITRE === */
+.titre-container {
+  margin-top: 0;
+  margin-bottom: 80px;
+}
+.titre-container .titre {
+  font-size: 8rem; /* Très gros titre */
+  font-weight: 600;
+  letter-spacing: -4px; /* Lettres serrées */
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.contact-wrapper {
+  display: flex;
+  flex-direction: row; /* Côte à côte par défaut */
+  justify-content: space-between;
+  align-items: flex-start; /* Aligné en haut */
+  gap: 24px; /* Espace entre la colonne info et la colonne form */
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.cadre-left, .cadre-right {
+  padding: 0;
+  flex: 1; /* Chacun prend 50% de l'espace (1 part chacun) */
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.cadre-left {
+  display: flex;
+  margin-left: -16px; /* Astuce visuelle : décale légèrement à gauche pour s'aligner optiquement avec le header */
+  margin-top: 140px; /* Descend le bloc d'infos pour le centrer verticalement par rapport au formulaire */
+}
+
+.cadre-right {
+  display: flex;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espace entre chaque bloc d'info */
+  margin-bottom: 24px;
+}
+.info-content .info-item {
+  display: flex;
+  flex-direction: column;
+  /* Souligne les liens au survol */
+}
+.info-content .info-item .label {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.info-content .info-item .value {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.info-content .info-item a.value:hover {
+  text-decoration: underline;
+}
+
+.reseaux-box {
+  margin-top: auto; /* Pousse ce bloc tout en bas du conteneur parent */
+}
+.reseaux-box .réseaux {
+  display: flex;
+  gap: 16px;
+  /* Colorie le SVG en rouge */
+}
+.reseaux-box .réseaux svg {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+.reseaux-box .réseaux svg path {
+  fill: #A20C0C;
+}
+.reseaux-box .réseaux svg:hover path {
+  opacity: 0.7;
+}
+
+.formulaire-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colonnes égales (Nom / Prénom par ex) */
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+  row-gap: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  /* Style "Matériel" : Pas de boite, juste une ligne en bas */
+}
+.input-group label {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.input-group input, .input-group textarea {
+  background-color: transparent; /* Fond invisible */
+  border: none;
+  border-bottom: 2px solid #A20C0C; /* Ligne rouge en bas */
+  border-radius: 0;
+  padding: 10px 0;
+  font-family: "General Sans Variable", "Arial", sans-serif;
+  font-size: 18px;
+  color: #A20C0C;
+  outline: none; /* Enlève le contour bleu par défaut du navigateur */
+  width: 100%;
+  max-width: 100%;
+  /* Quand on clique dans le champ */
+}
+.input-group input:focus, .input-group textarea:focus {
+  background-color: rgba(162, 12, 12, 0.05); /* Fond très légèrement teinté */
+}
+.input-group textarea {
+  resize: none; /* Empêche l'utilisateur de redimensionner le bloc */
+  height: 140px;
+}
+
+/* Classe utilitaire pour que le message prenne toute la largeur (2 colonnes) */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Le bouton submit prend aussi toute la largeur */
+.submit-box {
+  grid-column: span 2;
+  margin-top: 6px;
+}
+
+.btn-submit {
+  background-color: transparent;
+  color: #A20C0C;
+  border: 2px solid #A20C0C; /* Bordure rouge */
+  padding: 8px 28px;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.btn-submit:hover {
+  background-color: #A20C0C; /* Devient rouge plein au survol */
+  color: #D6E6D4; /* Texte devient clair */
+}
+
+/* === RESPONSIVE (Adaptation Mobile/Tablette) === */
+@media screen and (max-width: 1024px) {
+  .main-contact {
+    padding: 0 20px;
+  }
+  /* TITRE RESPONSIVE : plus petit et centré */
+  .titre-container .titre {
+    font-size: 4rem;
+    letter-spacing: -2px;
+    margin-left: 0;
+    text-align: center;
+  }
+  /* Passe les colonnes Info et Formulaire l'une sous l'autre */
+  .contact-wrapper {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .cadre-left, .cadre-right {
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+    margin-left: 0; /* Annule le décalage négatif du desktop */
+  }
+  /* Le formulaire passe en 1 seule colonne au lieu de 2 */
+  .formulaire-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Annule le "span 2" car il n'y a plus qu'une colonne */
+  .full-width, .submit-box {
+    grid-column: span 1;
+  }
+}
+/* === MODE COMPACT (Pour les petits écrans en hauteur, ex: laptops) === */
+@media screen and (max-height: 850px) {
+  /* Réduit toutes les marges verticales pour que tout rentre sans scroller */
+  .titre-container {
+    margin-bottom: 24px;
+  }
+  .titre-container .titre {
+    margin-left: 0;
+  }
+  .info-content {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .formulaire-grid {
+    row-gap: 16px;
+    -moz-column-gap: 16px;
+         column-gap: 16px;
+  }
+  .input-group label {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .input-group input, .input-group textarea {
+    padding: 8px;
+  }
+  .input-group textarea {
+    height: 120px;
+  }
+  .btn-submit {
+    padding: 8px 24px;
+    font-size: 15px;
+  }
+}
+@media screen and (max-height: 700px) {
+  /* Encore plus compact pour les très petits écrans hauteur */
+  .main-contact {
+    margin-top: 12px;
+  }
+  .titre-container {
+    margin-bottom: 16px;
+  }
+  .titre-container .titre {
+    margin-left: 0;
+  }
+  .contact-wrapper {
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .info-content {
+    gap: 10px;
+  }
+  .input-group textarea {
+    height: 100px;
+  }
+}/*# sourceMappingURL=contact.css.map */

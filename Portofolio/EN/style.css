@@ -1,181 +1,268 @@
 @charset "UTF-8";
+/* =========================================
+   VARIABLES (La palette de style)
+   Si tu changes une valeur ici, elle change partout sur le site.
+   ========================================= */
+/* Police principale, puis secours */
+/* Vert pâle (Fond) */
+/* Rouge foncé (Texte et éléments) */
+/* =========================================
+   RÉINITIALISATION & BASES
+   ========================================= */
+/* Le sélecteur * cible TOUS les éléments de la page */
 * {
-  background-color: #D6E6D4;
-  color: #A20C0C;
+  background-color: #D6E6D4; /* Tout prend la couleur de fond par défaut */
+  color: #A20C0C; /* Tout le texte prend la couleur rouge */
+  /* box-sizing: border-box est essentiel : cela fait en sorte que les bordures 
+     et les paddings sont inclus dans la largeur (width) des éléments. 
+     Cela évite d'exploser la mise en page. */
+  box-sizing: border-box;
+  /* Lissage des polices pour un rendu plus net sur Mac/iOS */
+  -webkit-font-smoothing: antialiased;
 }
 
 html, body {
-  overflow-x: hidden; /* prevent horizontal page movement */
-  overflow-y: scroll; /* keep vertical scrollbar stable to avoid layout shift */
-  overscroll-behavior-x: contain; /* avoid scroll chaining on horizontal gestures */
-}
-
-/* header général*/
-.header {
-  font-weight: bold;
-  font-size: 16px;
-  justify-content: space-between;
-  display: flex;
+  margin: 0; /* Enlève les marges par défaut du navigateur */
+  padding: 0; /* Enlève les espaces internes par défaut */
+  font-family: "General Sans Variable", "Arial", sans-serif; /* Applique la variable de police définie plus haut */
+  overflow-x: hidden; /* Empêche le défilement horizontal involontaire sur tout le site */
   width: 100%;
 }
 
-/*nom + baseline*/
+/* =========================================
+   GESTION DU HEADER FIXE & SCROLL
+   ========================================= */
+/* On ajoute un padding-top au body car le header est en "position: fixed".
+   Sans ça, le haut du contenu serait caché DERRIÈRE le header. */
+body {
+  padding-top: 110px;
+}
+
+/* SPÉCIFIQUE ACCUEIL (body.home-page) */
+/* Sur l'accueil, on veut souvent un effet "App" sans scroll vertical classique */
+body.home-page {
+  overflow: hidden; /* Coupe le scroll vertical (probablement pour un slider horizontal) */
+  height: 100%; /* Prend toute la hauteur de la fenêtre */
+  /* Empêche l'effet de rebond (rubber-banding) sur Mac/Mobile */
+  overscroll-behavior-x: contain;
+  padding-top: 0; /* Pas besoin de marge interne sur l'accueil spécifique */
+}
+
+/* =========================================
+   HEADER (MENU DE NAVIGATION)
+   ========================================= */
+.header {
+  font-weight: bold;
+  font-size: 16px;
+  /* Flexbox permet d'aligner Gauche - Centre - Droite facilement */
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  padding: 12px 24px; /* Espace interne : 12px haut/bas, 24px gauche/droite */
+  /* Le header reste collé en haut de l'écran quand on scroll */
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Z-index très élevé pour passer au-dessus de tout le reste (images, textes) */
+  z-index: 2000;
+  background-color: #D6E6D4; /* Fond opaque pour cacher ce qui passe dessous */
+  /* --- PARTIE GAUCHE DU HEADER --- */
+  /* --- PARTIE CENTRALE DU HEADER (MENU) --- */
+  /* --- PARTIE DROITE DU HEADER --- */
+}
 .header .header-left {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column; /* Les éléments s'empilent verticalement */
+  justify-content: center; /* Centré verticalement */
   width: 160px;
   height: 78px;
-  line-height: 24px;
+  line-height: 24px; /* Hauteur de ligne pour le texte */
+  /* Enlève les marges par défaut des paragraphes */
+  /* Enlève le soulignement des liens */
 }
 .header .header-left p {
   margin: 0;
-  margin-left: 12px;
+  margin-left: 0px;
 }
 .header .header-left a {
   text-decoration: none;
 }
-
-/*projet, about*/
 .header .header-center {
   display: flex;
-  justify-content: center;
-  gap: 54px;
-  flex: 1;
-  margin: 4px;
-  margin-left: 580px;
+  justify-content: center; /* Centre le menu au milieu de la barre */
+  gap: 54px; /* Espace de 54px entre chaque lien du menu */
+  flex: 1; /* Prend tout l'espace disponible restant */
 }
 .header .header-center a {
   text-decoration: none;
   font-weight: bold;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease; /* Animation douce pour le survol */
+  /* Quand on passe la souris dessus, l'opacité baisse (effet visuel) */
 }
 .header .header-center a:hover {
   opacity: 0.6;
 }
-
-/*contact*/
 .header .header-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 185px;
-  margin: 4px;
+  text-align: right; /* Aligne le texte à droite */
 }
-.header .header-right strong {
+.header .header-right a {
+  text-decoration: none;
   font-weight: bold;
-  margin-bottom: 2px;
-}
-.header .header-right p {
-  font-weight: 500;
-  font-size: 14px;
-  margin: 0;
-  line-height: 24px;
 }
 
-/* Images layout */
-main {
+/* =========================================
+   RESPONSIVE (TABLETTES & MOBILES)
+   Quand l'écran fait moins de 900px de large
+   ========================================= */
+@media screen and (max-width: 900px) {
+  /* On augmente l'espace en haut car le header va devenir plus grand (empilé) */
+  body {
+    padding-top: 180px;
+  }
+  body.home-page {
+    padding-top: 0;
+  }
+  .header {
+    flex-direction: column; /* Le menu passe en vertical (empilé) au lieu d'horizontal */
+    align-items: center; /* Tout est centré */
+    gap: 10px; /* Petit espace entre les blocs */
+    padding-bottom: 20px;
+    height: auto; /* La hauteur s'adapte au contenu */
+    background-color: #D6E6D4;
+    /* On force les blocs gauche/centre/droite à prendre toute la largeur */
+    /* On réduit l'espacement entre les liens du menu sur mobile */
+  }
+  .header .header-left, .header .header-center, .header .header-right {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .header .header-center {
+    gap: 30px;
+  }
+}
+/* =========================================
+   GALERIE D'IMAGES (ACCUEIL)
+   Probablement un carrousel horizontal (slider)
+   ========================================= */
+.main {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 12px;
-  margin-top: 28px;
+  flex-direction: column;
+  justify-content: center; /* Centre verticalement le contenu */
+  height: 100vh; /* Prend 100% de la hauteur de l'écran */
   position: relative;
+  padding-bottom: 0;
+  margin-top: 0;
 }
 
-/* Subtle right-edge gradient to hint more content */
-main::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 64px;
-  height: 100%;
-  pointer-events: none;
-}
-
-.image {
-  position: relative;
-  overflow: hidden;
-}
-
-.image img {
-  display: block;
+/* Le "rail" qui contient toutes les images alignées côte à côte */
+.gallery-track {
+  display: flex;
+  flex-direction: row; /* Alignement horizontal */
+  gap: 40px; /* Espace entre les images */
+  align-items: center; /* Centre les images verticalement dans le rail */
+  /* Décalage vers la gauche pour créer un style visuel décentré au démarrage */
+  margin-left: -190px;
+  padding-left: 0;
   width: 100%;
-  height: calc(100% - 26px);
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: 600px;
+  overflow: visible; /* Laisse dépasser les images hors du conteneur */
 }
 
-.image span {
-  display: block;
-  text-align: center;
-  margin-top: 6px;
-  font-weight: 500;
+/* Style des cartes images individuelles */
+.gallery-track .image, .image-clone {
+  position: relative;
+  flex: 0 0 auto; /* Empêche l'image de rétrécir, elle garde sa taille fixe */
+  /* !important force ces dimensions même si une autre règle dit le contraire */
+  width: 380px !important;
+  height: 520px !important;
+  opacity: 0.6; /* Semi-transparent par défaut */
+  transition: opacity 0.4s ease; /* Transition douce pour l'opacité */
+  cursor: pointer; /* Le curseur devient une main */
+  /* Au survol, l'image devient totalement opaque (claire) */
+  /* L'image elle-même à l'intérieur du bloc */
+  /* Le texte (titre) sous l'image */
 }
-
-.image.big {
-  flex: 0 0 32%;
-  height: 660px;
-}
-
-.grid {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  flex: 1;
-  display: inline-flex;
-  margin-top: 144px;
-  flex-wrap: nowrap;
-  /* allow upcoming images to slightly peek on the right */
-  overflow: visible;
-  padding-right: 64px;
-  margin-right: -64px;
-}
-
-.image.wide {
-  height: 360px;
-  flex: 1.2;
-  opacity: 0.6;
-  transition: opacity 0.4s ease-in-out;
-}
-.image.wide:hover {
+.gallery-track .image:hover, .image-clone:hover {
   opacity: 1;
 }
-
-.grid > .image:not(.wide) {
-  width: 360px;
-  height: 360px;
-  flex: 1.2;
-  opacity: 0.6;
-  transition: opacity 0.4s ease-in-out;
-}
-.grid > .image:not(.wide):hover {
-  opacity: 1;
-}
-
-.image img {
+.gallery-track .image img, .image-clone img {
   display: block;
   width: 100%;
-  height: calc(100% - 26px);
+  /* Hauteur moins 30px pour laisser la place au texte en dessous */
+  height: calc(100% - 30px) !important;
   -o-object-fit: cover;
-     object-fit: cover;
+     object-fit: cover; /* L'image remplit le bloc sans être déformée (zoomée/rognée) */
 }
-
-.image span {
+.gallery-track .image span, .image-clone span {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-weight: 500;
   font-size: 16px;
-  font-weight: 700;
-  display: flex;
 }
 
-/*footer fr/en*/
+/* Responsive pour la galerie (Mobiles) */
+@media screen and (max-width: 768px) {
+  /* On ajuste le décalage et l'espacement */
+  .gallery-track {
+    margin-left: -50px;
+    gap: 20px;
+  }
+  /* On réduit la taille des images sur petit écran */
+  .gallery-track .image, .image-clone {
+    width: 280px !important;
+    height: 400px !important;
+  }
+}
+/* =========================================
+   BARRE DE PROGRESSION
+   Indicateur visuel en bas de page
+   ========================================= */
+.progress-container {
+  position: absolute; /* Position libre par rapport au parent .main */
+  bottom: 120px; /* À 120px du bas */
+  left: 50%; /* Placé à 50% de la largeur */
+  transform: translateX(-50%); /* Recentré parfaitement sur son propre axe */
+  width: 300px;
+  height: 4px;
+  background-color: rgba(162, 12, 12, 0.2); /* Fond rouge très transparent */
+  border-radius: 2px; /* Bords arrondis */
+}
+
+/* Ajustement position barre sur mobile */
+@media screen and (max-width: 768px) {
+  .progress-container {
+    bottom: 80px;
+    width: 200px;
+  }
+}
+/* La barre qui se remplit (animée surement via Javascript qui change le width %) */
+.progress-bar {
+  height: 100%;
+  background-color: #A20C0C; /* Couleur rouge pleine */
+  width: 0%; /* Vide au départ */
+  border-radius: 2px;
+  /* cubic-bezier donne une animation de vitesse fluide (rapide puis lent) */
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================
+   FOOTER (BOUTON FIXE)
+   ========================================= */
 .footer button {
+  position: fixed; /* Reste toujours visible en bas à gauche */
+  bottom: 12px;
+  left: 24px;
+  z-index: 3000; /* Au-dessus de tout, même du header */
   display: flex;
   height: 24px;
-  background: none;
-  border: none;
+  background: none; /* Pas de fond */
+  border: none; /* Pas de bordure */
   font-weight: 700;
-  margin-left: 8px;
-  margin-top: 18px;
+  margin: 0;
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
