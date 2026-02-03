@@ -45,7 +45,7 @@ body.home-page {
     left: 0;
     z-index: 2000; 
     
-    background-color: transparent; 
+    background-color: $background; 
     
     .header-left{
         display: flex;
@@ -54,7 +54,7 @@ body.home-page {
         width: 160px;
         height: 78px;
         line-height: 24px;
-        p{ margin:0; margin-left: 12px; }
+        p{ margin:0; margin-left: 0px; }
         a{ text-decoration: none; }
     }
 
@@ -91,7 +91,7 @@ body.home-page {
         gap: 10px;
         padding-bottom: 20px;
         height: auto;
-        background-color: transparent;
+        background-color: $background;
         
         .header-left, .header-center, .header-right {
             width: 100%;
