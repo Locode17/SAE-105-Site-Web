@@ -115,7 +115,7 @@
   .main-about {
     padding: 0 20px;
     margin-top: 100px;
-  } /* Plus de padding en haut */
+  }
   .page-header .titre {
     font-size: 4rem;
     text-align: center;
@@ -131,17 +131,25 @@
   .bio-container .bio-text {
     font-size: 1.2rem;
   }
+  /* MODIFICATION MAJEURE ICI : Passage en Flex Column pour empiler les boîtes */
   .skills-grid {
-    display: flex; /* On passe en Flexbox vertical */
-    flex-direction: column; /* Empilement vertical */
-    gap: 50px; /* Espace entre les blocs */
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Vertical */
+    gap: 60px; /* Grand espace entre les catégories */
   }
   .skill-col {
     width: 100%; /* Prend toute la largeur */
+    margin-bottom: 0;
+    /* Ajustement du titre de colonne */
+    /* Ajustement de la liste */
+  }
+  .skill-col h4 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
   }
   .skill-col ul li {
-    font-size: 1.2rem; /* Texte un peu plus petit */
-    white-space: normal; /* Autorise le retour à la ligne si besoin */
+    font-size: 1.3rem;
+    margin-bottom: 10px;
   }
   .cta-link {
     font-size: 2rem;
