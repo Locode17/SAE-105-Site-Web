@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loïc Teste – Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="projects.css"> </head>
+<body>
+    <div class="container">
+      
+      <header class="header">
+        <div class="header-left">
+            <a href="index.html">
+                <p class="name">loïc teste</p>
+                <p>—</p>
+                <p>webdesigner</p>
+            </a>
+        </div>
+
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="header-center">
+          <a href="projects.html">projets</a>
+          <a href="services.html">services</a>
+          <a href="about.html">à propos</a>
+        </nav>
+        <div class="header-right">
+          <a href="contact.html"><strong>contact</strong></a>
+          <a href="cart.html" class="cart-link">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <span class="cart-count">0</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-overlay">
+            <nav class="mobile-links">
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projets</a>
+                <a href="about.html">À Propos</a>
+                <a href="contact.html">Contact</a>
+                <a href="cart.html" class="mobile-cart-link">Panier</a>
+            </nav>
+        </div>
+      </header>
+
+      <main class="main-projects">
+          
+          <div class="page-header">
+            <h1 class="titre">[SERVICES]</h1>
+          </div>
+
+          <div class="projects-grid">
+
+              <article class="project-card">
+                  <div class="card-image">
+                      <img src="image1.png" alt="Site One Page" style="object-fit: cover;">
+                  </div>
+                  <div class="card-content">
+                      <div class="card-top-info">
+                          <h2 class="project-title">Site One<br>Page</h2>
+                          <span class="project-year">50€</span>
+                      </div>
+                      <div class="card-bottom-info">
+                          <div>
+                              <p class="project-role">Site vitrine simple,<br>rapide et efficace.</p>
+                              <button class="btn-add-cart" onclick="addToCart('Site One Page', 50)">Ajouter au panier</button>
+                          </div>
+                      </div>
+                  </div>
+              </article>
+
+              <article class="project-card">
+                  <div class="card-image">
+                      <img src="image2.png" alt="Site Complexe" style="object-fit: cover;">
+                  </div>
+                  <div class="card-content">
+                      <div class="card-top-info">
+                          <h2 class="project-title">Site Complexe<br>JS / Animé</h2>
+                          <span class="project-year">150€</span>
+                      </div>
+                      <div class="card-bottom-info">
+                          <div>
+                              <p class="project-role">Site multi-pages avec<br>interactions avancées.</p>
+                              <button class="btn-add-cart" onclick="addToCart('Site Complexe JS', 150)">Ajouter au panier</button>
+                          </div>
+                      </div>
+                  </div>
+              </article>
+
+          </div>
+      </main>
+
+      <footer class="footer">
+        <button>fr ▼</button>
+      </footer>
+    </div>
+
+<script src="langue.js"></script>
+<script src="burger.js"></script>
+<script src="cart.js"></script> </body>
+</html>
