@@ -12,11 +12,7 @@
     backface-visibility: hidden;
   }
   .image-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: inherit;
-    text-decoration: none;
+    display: block; width: 100%; height: 100%; color: inherit; text-decoration: none;
   }
   .image-link img { display: block; width: 100%; height: 100%; object-fit: cover; }
   </style>
@@ -28,22 +24,15 @@
   
   <header class="header">
     <div class="header-left">
-      <a href="index.html">
-        <p class="name">loïc teste</p>
-        <p>—</p>
-        <p>webdesigner</p>
-      </a>
+      <a href="index.html"><p class="name">loïc teste</p><p>—</p><p>webdesigner</p></a>
     </div>
 
-    <div class="burger-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    <div class="burger-menu"><span></span><span></span><span></span></div>
 
     <nav class="header-center">
       <a href="projects.html">projets</a>
-      <a href="services.html">services</a> <a href="about.html">à propos</a>
+      <a href="services.html">services</a>
+      <a href="about.html">à propos</a>
     </nav>
     <div class="header-right">
       <a href="contact.html"><strong>contact</strong></a>
@@ -56,57 +45,38 @@
     <div class="mobile-nav-overlay">
         <nav class="mobile-links">
             <a href="index.html">Accueil</a>
-            <a href="services.html">Services</a> <a href="projects.html">Projets</a>
+            <a href="services.html">Services</a>
+            <a href="projects.html">Projets</a>
             <a href="about.html">À Propos</a>
             <a href="contact.html">Contact</a>
-            <a href="cart.html" class="mobile-cart-link">Panier</a> </nav>
+            <a href="cart.html" class="mobile-cart-link">Panier</a>
+        </nav>
     </div>
   </header>
 
-  <main class="main">
+  <main class="main" id="carousel-area">
     <div class="gallery-track">
-        <div class="image">
-          <a class="image-link" href="project1.html" aria-label="Voir le projet">
-            <img src="image1.png" alt="Projet 1">
-            <span>[ 1 ] Moulin Neuf</span>
-          </a>
-        </div>
-        <div class="image">
-          <a class="image-link" href="project2.html" aria-label="Voir le projet">
-            <img src="image2.png" alt="Projet 2">
-            <span>[ 2 ] Identité Visuelle</span>
-          </a>
-        </div>
-        <div class="image">
-          <a class="image-link" href="project3.html" aria-label="Voir le projet">
-            <img src="image3.png" alt="Projet 3">
-            <span>[ 3 ] Application Mobile</span>
-          </a>
-        </div>
-        <div class="image">
-          <a class="image-link" href="project4.html" aria-label="Voir le projet">
-            <img src="image4.png" alt="Projet 4">
-            <span>[ 4 ] Site Vitrine</span>
-          </a>
-        </div>
-        <div class="image">
-          <a class="image-link" href="project5.html" aria-label="Voir le projet">
-            <img src="image5.jpg" alt="Projet 5">
-            <span>[ 5 ] Branding</span>
-          </a>
-        </div>
-        <div class="image">
-          <a class="image-link" href="project6.html" aria-label="Voir le projet">
-            <img src="image6.jpg" alt="Projet 6">
-            <span>[ 6 ] Photographie</span>
-          </a>
-        </div>
+        <div class="image"><a class="image-link" href="project1.html"><img src="image1.png" alt="Projet 1"><span>[ 1 ] Moulin Neuf</span></a></div>
+        <div class="image"><a class="image-link" href="project2.html"><img src="image2.png" alt="Projet 2"><span>[ 2 ] Identité Visuelle</span></a></div>
+        <div class="image"><a class="image-link" href="project3.html"><img src="image3.png" alt="Projet 3"><span>[ 3 ] Application Mobile</span></a></div>
+        <div class="image"><a class="image-link" href="project4.html"><img src="image4.png" alt="Projet 4"><span>[ 4 ] Site Vitrine</span></a></div>
+        <div class="image"><a class="image-link" href="project5.html"><img src="image5.jpg" alt="Projet 5"><span>[ 5 ] Branding</span></a></div>
+        <div class="image"><a class="image-link" href="project6.html"><img src="image6.jpg" alt="Projet 6"><span>[ 6 ] Photographie</span></a></div>
     </div>
-
-    <div class="progress-container">
-        <div class="progress-bar"></div>
-    </div>
+    <div class="progress-container"><div class="progress-bar"></div></div>
   </main>
+
+  <section class="video-section">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <div class="video-overlay">
+            <h2>IMMERSION</h2>
+        </div>
+      </div>
+  </section>
 
   <footer class="footer">
     <button>fr ▼</button>
@@ -117,5 +87,6 @@
 <script src="slidedroite.js"></script>
 <script src="langue.js"></script>
 <script src="burger.js"></script> 
-<script src="cart.js"></script> </body>
+<script src="cart.js"></script>
+</body>
 </html>

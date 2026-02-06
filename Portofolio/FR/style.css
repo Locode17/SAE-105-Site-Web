@@ -18,29 +18,25 @@ html, body {
   font-family: "General Sans Variable", "Arial", sans-serif;
   overflow-x: hidden;
   width: 100%;
+  /* On autorise le scroll vertical global */
+  overflow-y: auto;
 }
 
-/* =========================================
-   HEADER & SCROLL
-   ========================================= */
 body {
   padding-top: 110px;
 }
 
 body.home-page {
-  overflow: hidden;
-  height: 100%;
-  overscroll-behavior-x: contain;
+  height: auto;
   padding-top: 0;
 }
 
 /* =========================================
-   HEADER NAV (DESKTOP PAR DÉFAUT)
+   HEADER NAV (TRANSPARENT)
    ========================================= */
 .header {
   font-weight: bold;
   font-size: 16px;
-  /* ALIGNEMENT GLOBAL */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -50,9 +46,7 @@ body.home-page {
   top: 0;
   left: 0;
   z-index: 2000;
-  /* IMPORTANT : Transparent pour ne pas couper les projets */
   background-color: transparent;
-  /* MODIFICATION POUR LE PANIER */
 }
 .header .header-left {
   display: flex;
@@ -74,6 +68,7 @@ body.home-page {
   justify-content: center;
   gap: 54px;
   flex: 1;
+  align-items: center;
 }
 .header .header-center a {
   text-decoration: none;
@@ -85,13 +80,12 @@ body.home-page {
 }
 .header .header-right {
   display: flex;
-  flex-direction: row; /* Alignement horizontal */
+  flex-direction: row;
   justify-content: flex-end;
-  align-items: center; /* Centré verticalement */
-  gap: 20px; /* Espace entre Contact et Panier */
+  align-items: center;
+  gap: 20px;
   width: 185px;
   text-align: right;
-  /* Style de l'icône panier */
 }
 .header .header-right a {
   text-decoration: none;
@@ -110,8 +104,6 @@ body.home-page {
   stroke: #A20C0C;
   fill: none;
   stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 .header .header-right .cart-link .cart-count {
   position: absolute;
@@ -134,7 +126,6 @@ body.home-page {
   opacity: 1;
 }
 
-/* Éléments mobile cachés par défaut */
 .burger-menu {
   display: none;
 }
@@ -150,9 +141,11 @@ body.home-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  height: 100vh; /* Prend tout le premier écran */
+  width: 100%;
   position: relative;
   margin-top: 0;
+  z-index: 10;
 }
 
 .gallery-track {
@@ -193,7 +186,47 @@ body.home-page {
 }
 
 /* =========================================
-   ELEMENTS E-COMMERCE (BOUTONS & PANIER)
+   SECTION VIDÉO
+   ========================================= */
+.video-section {
+  width: 100%;
+  height: 100vh; /* Prend le deuxième écran complet */
+  position: relative;
+  overflow: hidden;
+  background-color: #000; /* Fond noir si la vidéo charge mal */
+}
+.video-section .video-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.video-section .video-wrapper video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; /* Remplit l'écran sans déformer */
+  display: block;
+}
+.video-section .video-wrapper .video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Filtre sombre */
+}
+.video-section .video-wrapper .video-overlay h2 {
+  color: #fff;
+  font-size: 5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
+
+/* =========================================
+   STYLES DIVERS (Panier, Footer)
    ========================================= */
 .btn-add-cart {
   margin-top: 15px;
@@ -271,9 +304,7 @@ body.home-page {
   color: #A20C0C;
 }
 
-/* =========================================
-   PROGRESS BAR & FOOTER
-   ========================================= */
+/* PROGRESS BAR */
 .progress-container {
   position: absolute;
   bottom: 120px;
@@ -285,6 +316,12 @@ body.home-page {
   border-radius: 2px;
 }
 
+@media screen and (max-width: 768px) {
+  .progress-container {
+    bottom: 80px;
+    width: 200px;
+  }
+}
 .progress-bar {
   height: 100%;
   background-color: #A20C0C;
@@ -306,14 +343,11 @@ body.home-page {
   cursor: pointer;
 }
 
-/* =========================================
-   RESPONSIVE & MENU BURGER (< 900px)
-   ========================================= */
+/* RESPONSIVE */
 @media screen and (max-width: 900px) {
   body {
     padding-top: 0;
   }
-  /* HEADER MOBILE : CONFIGURATION STRICTE */
   .header {
     height: 80px;
     display: flex !important;
@@ -321,8 +355,7 @@ body.home-page {
     justify-content: space-between !important;
     align-items: center !important;
     padding: 0 20px;
-    background-color: transparent; /* Toujours transparent */
-    /* On cache la nav classique ET le header-right (donc le panier bureau) */
+    background-color: transparent;
   }
   .header .header-left {
     width: auto;
@@ -336,7 +369,6 @@ body.home-page {
   .header .header-center, .header .header-right {
     display: none !important;
   }
-  /* BOUTON BURGER */
   .burger-menu {
     display: flex;
     flex-direction: column;
@@ -346,8 +378,6 @@ body.home-page {
     cursor: pointer;
     position: relative;
     z-index: 4000;
-    right: 0;
-    top: 0;
   }
   .burger-menu span {
     display: block;
@@ -356,7 +386,6 @@ body.home-page {
     background-color: #A20C0C;
     transition: all 0.3s ease;
   }
-  /* === LE MENU QUI S'OUVRE (50%) === */
   .mobile-nav-overlay {
     display: flex;
     flex-direction: column;
@@ -365,7 +394,6 @@ body.home-page {
     position: fixed;
     top: 0;
     right: 0;
-    left: auto;
     width: 50%;
     height: 100vh;
     background-color: #D6E6D4;
@@ -388,9 +416,7 @@ body.home-page {
     text-decoration: none;
     color: #A20C0C;
     text-transform: uppercase;
-    word-wrap: break-word;
   }
-  /* État Ouvert */
   body.menu-open {
     overflow: hidden;
   }
@@ -406,7 +432,6 @@ body.home-page {
   body.menu-open .mobile-nav-overlay {
     transform: translateX(0);
   }
-  /* Ajustements Galerie Mobile */
   .gallery-track {
     margin-left: -50px;
     gap: 20px;

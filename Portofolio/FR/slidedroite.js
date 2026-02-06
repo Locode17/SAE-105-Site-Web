@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- CONDITION DE SÉCURITÉ ---
-    // Si on n'est pas sur la page d'accueil (pas de .gallery-track), on arrête le script ici.
-    // Cela permet de retrouver le scroll vertical normal sur les autres pages.
     const track = document.querySelector('.gallery-track');
     if (!track) return; 
 
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // --- Mise à jour index barre de progression ---
         if (direction === 'right') {
             currentIndex++;
             if (currentIndex >= places.length) currentIndex = 0;
@@ -45,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateProgress();
 
-        // --- Logique de rotation SANS CLONES (transform uniquement, timers) ---
         const current = places.map(p => p.innerHTML);
         const rotated = direction === 'right'
             ? current.slice(1).concat(current.slice(0,1))
@@ -55,25 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const EASING = 'cubic-bezier(.2,.8,.2,1)';
         const OFFSET = 10;
 
-        // Phase 1: décaler légèrement
         places.forEach(p => {
             p.style.transition = `transform ${DURATION_MS}ms ${EASING}`;
             p.style.willChange = 'transform';
             p.style.transform = direction === 'right' ? `translate3d(-${OFFSET}px,0,0)` : `translate3d(${OFFSET}px,0,0)`;
         });
 
-        // Après le décalage, swap le contenu
         setTimeout(() => {
             places.forEach((p, i) => {
                 p.innerHTML = rotated[i];
             });
 
-            // Phase 2: revenir à 0
             places.forEach(p => {
                 p.style.transform = 'translate3d(0,0,0)';
             });
 
-            // Fin: nettoyer, débloquer
             setTimeout(() => {
                 places.forEach(p => {
                     p.style.transition = '';
@@ -87,16 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const rotateContentsRight = () => rotate('right');
     const rotateContentsLeft = () => rotate('left');
 
-    // --- Gestion du Scroll et Swipe ---
+    /* --- GESTION DU SCROLL INTELLIGENT ---
+       Le scroll horizontal ne s'active QUE si la souris est 
+       au-dessus de la zone du carrousel (#carousel-area).
+    */
     let lastWheelTime = 0;
     const WHEEL_THROTTLE_MS = 100;
     const WHEEL_THRESHOLD = 30;
-    const mainEl = document.querySelector('.main');
+    const carouselArea = document.getElementById('carousel-area'); // Cible la zone spécifique
     
-    if (mainEl) {
-        mainEl.addEventListener('wheel', (e) => {
-            // IMPORTANT : On preventDefault SEULEMENT si on est sur la home
-            // (La condition au début du fichier gère ça, mais par sécurité :)
+    if (carouselArea) {
+        carouselArea.addEventListener('wheel', (e) => {
+            // Empêche le scroll vertical UNIQUEMENT si on est sur le carrousel
             e.preventDefault();
             
             const now = Date.now();
@@ -110,17 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 lastWheelTime = now;
                 rotateContentsLeft();
             }
-        }, {passive: false});
+        }, {passive: false}); // passive: false est obligatoire pour preventDefault
     }
 
-    // Touch swipe support
+    // Touch swipe support (Mobile)
     let startX = null;
-    if (mainEl) {
-        mainEl.addEventListener('touchstart', (e) => {
+    if (carouselArea) {
+        carouselArea.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         }, {passive: true});
 
-        mainEl.addEventListener('touchend', (e) => {
+        carouselArea.addEventListener('touchend', (e) => {
             if (startX === null) return;
             const endX = e.changedTouches[0].clientX;
             const dx = endX - startX;
